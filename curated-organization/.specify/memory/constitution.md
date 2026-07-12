@@ -1,29 +1,27 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version change: 2.0.1 → 3.0.0
+Version change: 3.1.0 → 3.2.0
 
 Modified principles:
-- I. Component-First UI Architecture — MAJOR redefinition. The previous version applied
-  the generic-engine/domain-adapter split to every route, which did not match how the
-  project was actually built (routes are flat: index.tsx + optional {route}.types.ts /
-  {route}.query.ts / utils.ts, growing a flat components/ folder only when a route needs
-  more than one sub-component). The split is now reserved for genuinely shared, multi-
-  presentation components under app/components/ only (e.g. a single Carousel engine
-  driving both the autoplay homepage hero and the user-controlled Gallery carousel).
-  Root cause: the original architecture article was based on an example from a different,
-  unrelated project provided at the start of the conversation, not this project's actual
-  structure.
+- I. Component-First UI Architecture — components (route-local and shared, including
+  Generic/Domain-adapter) no longer start as a single flat file. Every component is now
+  always a folder pairing its `.tsx` file with a `.types.ts` file from the start. A
+  co-located hook, `utils.ts`, and `config.ts` remain added-only-when-needed. Routes
+  themselves are unchanged — `index.tsx` alone by default, `{route}.types.ts` added only
+  if needed — since the request that prompted this only concerned components, not routes.
+  Flagging that distinction in case it should apply to routes too.
 
 Added principles: N/A
 Removed sections: N/A
 
 Templates requiring updates:
-- ⚠ .specify/templates/plan-template.md — Project Structure tree and Component Design
-  Decisions table both encode the old forced-split-per-route model and need to be rewritten
-  to match: routes flat by default, split reserved for app/components/ only.
+- ⚠ .specify/templates/plan-template.md — Source Code tree and Component Design Decisions
+  table both currently show components as flat single files; need to show every component
+  as a folder with a guaranteed .types.ts.
 
-Follow-up TODOs: Update plan-template.md as noted above.
+Follow-up TODOs: Confirm whether routes should also always carry {route}.types.ts, or
+stay grow-as-needed as written here.
 -->
 
 # Curated Organization Constitution
@@ -38,45 +36,65 @@ Every UI feature MUST be implemented as a discrete, self-contained React compone
 - Be independently renderable in isolation (no hidden global-state dependencies).
 - Not reach into sibling or parent component internals; communicate via props/context only.
 
-**Routes** are flat by default and grow only the files they actually need:
+**Routes stay flat and grow only as needed; components always pair with their own types.** A route begins as a single `index.tsx` and grows companion files only when it actually needs them. Components — route-local or shared — are different: every component is a folder pairing its `.tsx` file with a `.types.ts` file from the start, since nearly every component takes typed props. Everything else about a component (a co-located hook, `utils.ts`, `config.ts`) is still added only when actually needed.
+
+**Routes:**
 
 ```
 app/routes/pages/{route}/          // e.g. booking/, gallery/ — named for the actual route
 ├── index.tsx                      // Route container — loader, renders the route
-├── {route}.types.ts               // Route-specific types (added when the route needs them)
-├── {route}.query.ts               // Colocated Sanity query (per the Sanity Content Layer principle)
-├── utils.ts                        // Route-specific utilities (added when needed)
-└── components/                     // Only when the route needs more than one sub-component
-    ├── VideoPanel.tsx                 // Flat — explicit names, no Generic/Domain split inside a route
-    └── Carousel.tsx
+├── {route}.types.ts               // Added only if the route needs its own types
+├── {route}.query.ts               // Colocated Sanity query, added only if the route needs one
+├── utils.ts                        // Added only if the route needs its own utilities
+└── components/                     // Added only if the route needs more than one sub-component
+    ├── VideoPanel/                    // Always a folder — component + types from the start
+    │   ├── VideoPanel.tsx
+    │   └── VideoPanel.types.ts
+    └── Carousel/
+        ├── Carousel.tsx
+        └── Carousel.types.ts
 ```
 
-A simple route with no repeated sub-elements stays as just `index.tsx`. There is no generic `feature/` or `features/` directory anywhere in this structure, and nothing is scaffolded in advance of the route actually needing it — files and folders are added when the route needs them.
+A route with nothing extra to add stays a single file: `index.tsx` alone. There is no generic `feature/` or `features/` directory anywhere in this structure.
 
-**Shared, cross-route components** live in `app/components/{ComponentName}/`, named for what they are. This is the only place the generic-engine/domain-adapter split is used, and only when a shared component genuinely owns behavior that gets presented differently by more than one consumer (e.g. a `Carousel` that runs autoplay-only on the homepage hero and user-controlled with visible arrows on the Gallery page):
+**Route-local sub-components** (inside a route's own `components/` folder) are never split into Generic/Domain-adapter pairs — that split is reserved for shared components only (below). Every route-local sub-component pairs its component file with its own types file from the start; a co-located hook (`useVideoPanel.ts`) or `utils.ts` are added only if the component actually needs them.
+
+**Shared, cross-route components** live in `app/components/`, named for what they are, and follow the same always-paired-with-types rule as route-local components:
 
 ```
-app/components/{Generic}/            // Owns state/behavior, no domain knowledge
-├── {Generic}.tsx
+app/components/{Name}/
+├── {Name}.tsx
+└── {Name}.types.ts
+```
+
+A co-located hook or `utils.ts` are added only if the component actually needs them.
+
+The generic-engine/domain-adapter split is used only when a shared component genuinely owns behavior that gets presented differently by more than one consumer (e.g. a `Carousel` that runs autoplay-only on the homepage hero and user-controlled with visible arrows on the Gallery page). Both halves of the split follow the same rule — types always present, everything else added as needed:
+
+```
+app/components/{Generic}/             // Owns state/behavior, no domain knowledge
+├── index.tsx
 ├── {Generic}.types.ts
-├── use{Generic}.ts                   // co-located hook
-└── utils.ts
+├── use{Generic}.ts                    // Added only if needed
+└── utils.ts                           // Added only if needed
 
 app/components/{DomainX}{Generic}/    // Presentation + config only, consumes {Generic}
-├── {DomainX}{Generic}.tsx
-├── config.ts
-└── utils.ts
+├── {DomainX}index.tsx
+├── {DomainX}{Generic}.types.ts
+├── config.ts                          // Added only if needed
+└── utils.ts                           // Added only if needed
 ```
 
-If a shared component doesn't need behavior that varies per consumer — it just takes props, like a `Button`, `Nav`, or `Footer` — it MUST NOT be forced into a Generic/Domain-adapter split. That split solves a specific problem (one engine, several presentations); applying it where that problem doesn't exist adds indirection without benefit.
+If a shared component doesn't need behavior that varies per consumer — it just takes props — it MUST NOT be forced into a Generic/Domain-adapter split. That split solves a specific problem (one engine, several presentations); applying it where that problem doesn't exist adds indirection without benefit.
 
 Rules:
 
-- Domain-adapter folders MUST NOT contain business logic — presentation and config only. Shared logic belongs in the generic component.
+- Every component (route-local or shared) is a folder pairing its `.tsx` file with a `.types.ts` file from the start. A co-located hook, `utils.ts`, and `config.ts` are added only when actually needed. Routes themselves are the exception — `{route}.types.ts` is added only if the route needs it.
+- Domain-adapter files/folders MUST NOT contain business logic — presentation and config only. Shared logic belongs in the generic component.
 - Hooks are co-located with the component they serve, whether route-local or shared.
 - File naming: route containers use `index.tsx` (directory-import convention, matching this project's routing). Shared component containers under `app/components/` use an explicit filename matching the folder (e.g. `Carousel/Carousel.tsx`) — never `index.tsx`.
 
-**Rationale**: Most of this site's routes aren't structurally complex enough to need a generic-engine/domain-adapter split — forcing every route into that shape added indirection that didn't match how the project was actually being built. Reserving the split for the rarer case of a genuinely shared, multi-presentation component keeps routes simple by default while still giving real reuse cases (one `Carousel` engine driving two different UIs) a clear home.
+**Rationale**: Routes vary widely in complexity — many stay simple enough that a types file would sit empty, so they keep the grow-as-needed rule. Components are different: almost every component takes props, and in a strict-TypeScript codebase those props need a type either way. Pairing the types file with the component from the start removes a per-component judgment call — valuable when components are being scaffolded by an agent rather than hand-written one at a time. Everything genuinely optional (hooks, utils, config) still grows in only when needed, and the generic-engine/domain-adapter split remains reserved for shared components that actually have more than one presentation.
 
 ### II. Content Ownership
 
@@ -90,7 +108,7 @@ Sanity query and type code stays colocated with the route or component that cons
 
 ### III. Sanity Content Layer
 
-Sanity is the CMS. The Studio lives in the separate `sanity/` project at the repo root; `app/` consumes content via the client library and MUST NOT edit schemas from within `app/`.
+Sanity is the CMS. The Studio lives in the separate `curated-organization/` project at the repo root; `app/` consumes content via the client library and MUST NOT edit schemas from within `app/`.
 
 Client & shared setup lives in `app/lib/sanity/`:
 
@@ -110,7 +128,7 @@ Query rules:
 
 - Every GROQ query MUST be defined with `defineQuery` from the `groq` package, assigned to a uniquely named exported const. Inline `client.fetch(groq\`...\`)` calls are forbidden — they aren't picked up by typegen.
 - Shared/cross-route queries live in `app/lib/sanity/queries/`. Page-specific queries are colocated next to their route (e.g. `app/routes/pages/blog/blog.query.ts`) and imported into that route's loader only.
-- After any schema or query change, `sanity schema extract` MUST run in `sanity/`, then `sanity typegen generate` MUST run in `app/` before the change is considered complete. Hand-written content types are not permitted — if typegen can't infer it, fix the query.
+- After any schema or query change, `sanity schema extract` MUST run in `curated-organization/`, then `sanity typegen generate` MUST run in `app/` before the change is considered complete. Hand-written content types are not permitted — if typegen can't infer it, fix the query.
 - Route loaders import result types from `sanity.types.ts`; never re-declare or cast content shapes manually.
 
 Preview/draft mode:
@@ -213,4 +231,4 @@ This constitution supersedes all other documented or undocumented practices. Whe
 
 **Compliance review**: Constitution Check MUST be performed at the start of every `/speckit.plan` run (before Phase 0 research). Violations found during implementation are blocking; they require either a fix or a documented, approved exception logged in the plan's Complexity Tracking table.
 
-**Version**: 3.0.0 | **Ratified**: 2026-07-10 | **Last Amended**: 2026-07-10
+**Version**: 3.2.0 | **Ratified**: 2026-07-10 | **Last Amended**: 2026-07-10

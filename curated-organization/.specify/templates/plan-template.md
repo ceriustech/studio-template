@@ -28,7 +28,7 @@
 
 **Target Platform**: Web (containerized per Dockerfile)
 
-**Project Type**: web — single React Router app (`app/`) + separate Sanity Studio (`curated-organization/`)
+**Project Type**: web — single React Router app (`app/`) + separate Sanity Studio (`studio/`)
 
 **Performance Goals**: [domain-specific, e.g., LCP < 2.5s, or NEEDS CLARIFICATION]
 
@@ -134,7 +134,7 @@ specs/[###-feature]/
 -->
 
 ```text
-curated-organization/            # Studio project — schema changes for this feature
+studio/            # Studio project — schema changes for this feature
 └── schemaTypes/
     └── [contentType].ts
 

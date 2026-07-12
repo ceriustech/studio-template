@@ -108,7 +108,7 @@ Sanity query and type code stays colocated with the route or component that cons
 
 ### III. Sanity Content Layer
 
-Sanity is the CMS. The Studio lives in the separate `curated-organization/` project at the repo root; `app/` consumes content via the client library and MUST NOT edit schemas from within `app/`.
+Sanity is the CMS. The Studio lives in the separate `studio/` project at the repo root; `app/` consumes content via the client library and MUST NOT edit schemas from within `app/`.
 
 Client & shared setup lives in `app/lib/sanity/`:
 
@@ -128,7 +128,7 @@ Query rules:
 
 - Every GROQ query MUST be defined with `defineQuery` from the `groq` package, assigned to a uniquely named exported const. Inline `client.fetch(groq\`...\`)` calls are forbidden — they aren't picked up by typegen.
 - Shared/cross-route queries live in `app/lib/sanity/queries/`. Page-specific queries are colocated next to their route (e.g. `app/routes/pages/blog/blog.query.ts`) and imported into that route's loader only.
-- After any schema or query change, `sanity schema extract` MUST run in `curated-organization/`, then `sanity typegen generate` MUST run in `app/` before the change is considered complete. Hand-written content types are not permitted — if typegen can't infer it, fix the query.
+- After any schema or query change, `sanity schema extract` MUST run in `studio/`, then `sanity typegen generate` MUST run in `app/` before the change is considered complete. Hand-written content types are not permitted — if typegen can't infer it, fix the query.
 - Route loaders import result types from `sanity.types.ts`; never re-declare or cast content shapes manually.
 
 Preview/draft mode:

@@ -1,0 +1,112 @@
+.hero {
+	position: relative;
+	height: 92vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	overflow: hidden;
+	inset: 0;
+	background-size: cover;
+	background-position: center;
+
+	.heroOverlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to bottom,
+			/* rgba(245,240,232,0.55) 0%,
+      rgba(245,240,232,0.4) 40%,
+      rgba(245,240,232,0.6) 100% */
+			rgb(45 43 39 / 55%) 0%,
+			rgb(63 56 46 / 40%) 40%,
+			rgb(83 75 62 / 60%) 100%
+		);
+	}
+
+	.heroContent {
+		position: relative;
+		z-index: 2;
+		max-width: 720px;
+		padding: 0 24px;
+	}
+
+	.heroStrapline {
+		font-family: var(--sans);
+		font-size: 11px;
+		letter-spacing: 0.25em;
+		text-transform: uppercase;
+		color: var(--warm-white);
+		margin-bottom: 24px;
+	}
+
+	.heroHeadline {
+		font-family: var(--serif);
+		font-size: 76px;
+		font-weight: 300;
+		letter-spacing: 0.2em;
+		color: var(--warm-white);
+		line-height: 1.1;
+		margin-bottom: 16px;
+		text-shadow: 0 1px 40px rgba(245, 240, 232, 0.6);
+	}
+
+	.heroDescriptor {
+		font-family: var(--serif);
+		font-size: 20px;
+		font-weight: 300;
+		font-style: italic;
+		color: var(--warm-white);
+		margin-bottom: 44px;
+		letter-spacing: 0.02em;
+	}
+
+	.heroCta {
+		display: inline-block;
+		font-family: var(--sans);
+		font-size: 12px;
+		font-weight: 500;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--charcoal);
+		border: 1px solid var(--charcoal);
+		padding: 16px 44px;
+		text-decoration: none;
+		transition: all 0.3s;
+		background: rgba(253, 251, 247, 0.6);
+		backdrop-filter: blur(4px);
+	}
+
+	color: var(--warm-white);
+	line-height: 1.1;
+	margin-bottom: 16px;
+	text-shadow: 0 1px 40px rgba(245, 240, 232, 0.6);
+}
+
+.heroCta:hover {
+	background: var(--charcoal);
+	color: var(--warm-white);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1199px) {
+	.hero__headline {
+		font-size: 64px;
+	}
+}
+
+@media (max-width: 767px) {
+	.hero {
+		min-height: 420px;
+		padding: 40px 16px;
+	}
+	.hero__headline {
+		font-size: 36px;
+	}
+	.hero__descriptor {
+		font-size: 16px;
+	}
+	.hero__cta {
+		padding: 12px 20px;
+	}
+}

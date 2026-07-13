@@ -1,0 +1,1369 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Curated Organization — Services Page Mock</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--cream: #f5f0e8;
+				--warm-white: #fdfbf7;
+				--warm-bg: #f7f3ec;
+				--taupe: #b8b0a2;
+				--taupe-light: #d4cfc6;
+				--taupe-dark: #8a8278;
+				--charcoal: #2c2c2a;
+				--charcoal-soft: #3d3d3a;
+				--muted: #9a9590;
+				--brand-teal: #6d838c;
+				--brand-teal-dark: #4b6c71;
+				--border: #e8e4db;
+				--serif: 'Cormorant Garamond', Georgia, serif;
+				--sans: 'Outfit', system-ui, sans-serif;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			html {
+				font-size: 16px;
+				scroll-behavior: smooth;
+			}
+
+			body {
+				font-family: var(--sans);
+				background: var(--warm-white);
+				color: var(--charcoal);
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.mock-banner {
+				position: sticky;
+				top: 0;
+				z-index: 1000;
+				background: var(--charcoal);
+				color: var(--taupe);
+				text-align: center;
+				padding: 10px 20px;
+				font-family: var(--sans);
+				font-size: 11px;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+			}
+			.mock-banner strong {
+				color: #fff;
+				margin-right: 8px;
+			}
+
+			/* ========== NAV ========== */
+			.nav {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 24px 64px;
+				background: rgba(253, 251, 247, 0.95);
+				backdrop-filter: blur(12px);
+				border-bottom: 1px solid var(--border);
+				position: sticky;
+				top: 34px;
+				z-index: 100;
+			}
+			.nav-brand {
+				display: flex;
+				flex-direction: column;
+				gap: 2px;
+			}
+			.nav-brand-name {
+				font-family: var(--serif);
+				font-size: 22px;
+				font-weight: 500;
+				letter-spacing: 0.25em;
+				color: var(--charcoal);
+			}
+			.nav-brand-name a {
+				color: inherit;
+				text-decoration: none;
+			}
+			.nav-brand-tagline {
+				font-family: var(--sans);
+				font-size: 9px;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				color: var(--taupe);
+			}
+			.nav-links {
+				display: flex;
+				align-items: center;
+				gap: 36px;
+			}
+			.nav-links a {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 400;
+				color: var(--taupe-dark);
+				text-decoration: none;
+				letter-spacing: 0.02em;
+				transition: color 0.2s;
+			}
+			.nav-links a:hover {
+				color: var(--charcoal);
+			}
+			.nav-links a.active {
+				color: var(--charcoal);
+				border-bottom: 1px solid var(--charcoal);
+				padding-bottom: 2px;
+			}
+			.nav-cta {
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 500;
+				letter-spacing: 0.06em;
+				color: var(--warm-white) !important;
+				background: var(--charcoal);
+				padding: 10px 24px;
+				border-radius: 2px;
+				transition: background 0.2s;
+			}
+			.nav-cta:hover {
+				background: var(--charcoal-soft);
+			}
+
+			/* ========== COMMON ========== */
+			section {
+				border-bottom: 1px solid var(--border);
+			}
+			.section-eyebrow {
+				font-family: var(--sans);
+				font-size: 10px;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				color: var(--taupe);
+			}
+			.section-heading {
+				font-family: var(--serif);
+				font-size: 36px;
+				font-weight: 400;
+				color: var(--charcoal);
+				line-height: 1.2;
+			}
+			.text-link {
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 500;
+				letter-spacing: 0.05em;
+				color: var(--brand-teal);
+				text-decoration: none;
+				border-bottom: 1px solid var(--brand-teal);
+				padding-bottom: 2px;
+				transition: color 0.2s;
+			}
+			.text-link:hover {
+				color: var(--brand-teal-dark);
+			}
+
+			/* ========== HERO ========== */
+			.services-hero {
+				text-align: center;
+				padding: 100px 64px 90px;
+				background-color: var(--cream);
+				/* background-image: url('https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=1800&q=80&auto=format');
+				background-size: cover;
+				background-position: center; */
+				position: relative;
+				overflow: hidden;
+			}
+			.services-hero::before {
+				content: '';
+				position: absolute;
+				top: -300px;
+				left: -200px;
+				width: 600px;
+				height: 600px;
+				border-radius: 50%;
+				background: rgba(138, 130, 120, 0.58);
+			}
+			.services-hero::after {
+				content: '';
+				position: absolute;
+				bottom: -250px;
+				right: -150px;
+				width: 500px;
+				height: 500px;
+				border-radius: 50%;
+				background: rgba(138, 130, 120, 0.58);
+			}
+			.services-hero .section-eyebrow {
+				margin-bottom: 16px;
+				position: relative;
+			}
+			.services-hero h1 {
+				font-family: var(--serif);
+				font-size: 48px;
+				font-weight: 300;
+				letter-spacing: 0.04em;
+				color: var(--charcoal);
+				margin-bottom: 20px;
+				position: relative;
+			}
+			.services-hero p {
+				font-family: var(--sans);
+				font-size: 15px;
+				font-weight: 300;
+				color: var(--muted);
+				line-height: 1.9;
+				max-width: 520px;
+				margin: 0 auto;
+				position: relative;
+			}
+
+			/* ========== ABOUT SECTION ========== */
+			.about-brief {
+				padding: 100px 64px;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 64px;
+				align-items: center;
+				background: var(--warm-white);
+			}
+			.about-brief-img {
+				height: 420px;
+				background-size: cover;
+				background-position: center;
+				position: relative;
+				overflow: hidden;
+			}
+			.about-brief-img-overlay {
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					135deg,
+					rgba(245, 240, 232, 0.05) 0%,
+					rgba(44, 44, 42, 0.04) 100%
+				);
+			}
+			.about-brief-text .section-eyebrow {
+				margin-bottom: 14px;
+			}
+			.about-brief-text h2 {
+				font-family: var(--serif);
+				font-size: 32px;
+				font-weight: 400;
+				color: var(--charcoal);
+				margin-bottom: 20px;
+				line-height: 1.2;
+			}
+			.about-brief-text p {
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 300;
+				color: var(--muted);
+				line-height: 1.9;
+				max-width: 440px;
+			}
+			.about-brief-text .about-signature {
+				margin-top: 28px;
+				font-family: var(--serif);
+				font-size: 16px;
+				font-style: italic;
+				color: var(--taupe-dark);
+				letter-spacing: 0.02em;
+			}
+
+			/* ========== SERVICE ITEMS (alternating) ========== */
+			.service-item {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				min-height: 520px;
+			}
+			.service-item.reverse .service-img {
+				order: 2;
+			}
+			.service-item.reverse .service-text {
+				order: 1;
+			}
+
+			.service-img {
+				background-size: cover;
+				background-position: center;
+				position: relative;
+				overflow: hidden;
+				min-height: 520px;
+			}
+			.service-img-overlay {
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					135deg,
+					rgba(245, 240, 232, 0.08) 0%,
+					rgba(44, 44, 42, 0.05) 100%
+				);
+			}
+
+			.service-text {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				padding: 72px 80px;
+				background: var(--warm-white);
+			}
+			.service-text .section-eyebrow {
+				margin-bottom: 14px;
+			}
+			.service-text h2 {
+				font-family: var(--serif);
+				font-size: 32px;
+				font-weight: 400;
+				color: var(--charcoal);
+				margin-bottom: 18px;
+				line-height: 1.2;
+			}
+			.service-text > p {
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 300;
+				color: var(--muted);
+				line-height: 1.8;
+				margin-bottom: 28px;
+				max-width: 420px;
+			}
+			.service-includes {
+				list-style: none;
+				margin-bottom: 32px;
+			}
+			.service-includes li {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 300;
+				color: var(--taupe-dark);
+				padding: 10px 0;
+				border-bottom: 1px solid var(--border);
+				display: flex;
+				align-items: center;
+				gap: 12px;
+			}
+			.service-includes li:last-child {
+				border-bottom: none;
+			}
+			.service-dash {
+				width: 12px;
+				height: 1px;
+				background: var(--taupe-light);
+				flex-shrink: 0;
+			}
+			.service-cta {
+				display: inline-block;
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 500;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: var(--charcoal);
+				border: 1px solid var(--charcoal);
+				padding: 14px 32px;
+				text-decoration: none;
+				transition: all 0.3s;
+				align-self: flex-start;
+			}
+			.service-cta:hover {
+				background: var(--charcoal);
+				color: var(--warm-white);
+			}
+
+			/* alt bg for reversed items */
+			.service-item.reverse .service-text {
+				background: var(--warm-bg);
+			}
+
+			/* ========== PRICING ========== */
+			.pricing {
+				padding: 100px 64px;
+				background: var(--warm-white);
+			}
+			.pricing-header {
+				text-align: center;
+				margin-bottom: 16px;
+			}
+			.pricing-header .section-eyebrow {
+				margin-bottom: 14px;
+			}
+			.pricing-header .section-heading {
+				margin-bottom: 16px;
+			}
+			.pricing-note {
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 300;
+				color: var(--muted);
+				line-height: 1.7;
+				max-width: 500px;
+				margin: 0 auto 56px;
+				text-align: center;
+			}
+			.pricing-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 24px;
+				max-width: 1020px;
+				margin: 0 auto;
+			}
+			.pricing-card {
+				border: 1px solid var(--border);
+				padding: 40px 32px;
+				text-align: center;
+				background: var(--warm-white);
+				transition:
+					transform 0.3s,
+					box-shadow 0.3s;
+				position: relative;
+			}
+			.pricing-card:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 12px 40px rgba(44, 44, 42, 0.06);
+			}
+			.pricing-card.featured {
+				border-color: var(--brand-teal);
+				background: var(--warm-bg);
+			}
+			.pricing-card.featured::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 3px;
+				background: var(--brand-teal);
+			}
+			.pricing-card-eyebrow {
+				font-family: var(--sans);
+				font-size: 10px;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				color: var(--taupe);
+				margin-bottom: 12px;
+			}
+			.pricing-card.featured .pricing-card-eyebrow {
+				color: var(--brand-teal);
+			}
+			.pricing-card-name {
+				font-family: var(--serif);
+				font-size: 26px;
+				font-weight: 400;
+				color: var(--charcoal);
+				margin-bottom: 8px;
+			}
+			.pricing-card-price {
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 400;
+				color: var(--taupe-dark);
+				margin-bottom: 28px;
+			}
+			.pricing-card-divider {
+				height: 1px;
+				background: var(--border);
+				margin-bottom: 24px;
+			}
+			.pricing-card-features {
+				list-style: none;
+				text-align: left;
+				margin-bottom: 32px;
+			}
+			.pricing-card-features li {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 300;
+				color: var(--taupe-dark);
+				padding: 7px 0;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+			.pricing-check {
+				width: 16px;
+				height: 16px;
+				border-radius: 50%;
+				background: var(--cream);
+				border: 1px solid var(--border);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+				font-size: 9px;
+				color: var(--brand-teal);
+			}
+			.pricing-card.featured .pricing-check {
+				background: rgba(109, 131, 140, 0.12);
+				border-color: rgba(109, 131, 140, 0.25);
+			}
+			.pricing-card-cta {
+				display: inline-block;
+				font-family: var(--sans);
+				font-size: 11px;
+				font-weight: 500;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				padding: 12px 28px;
+				text-decoration: none;
+				transition: all 0.3s;
+				color: var(--taupe-dark);
+				border: 1px solid var(--border);
+			}
+			.pricing-card-cta:hover {
+				color: var(--charcoal);
+				border-color: var(--charcoal);
+			}
+			.pricing-card.featured .pricing-card-cta {
+				background: var(--charcoal);
+				color: var(--warm-white);
+				border-color: var(--charcoal);
+			}
+			.pricing-card.featured .pricing-card-cta:hover {
+				background: var(--charcoal-soft);
+			}
+
+			/* ========== PROCESS ========== */
+			.process {
+				padding: 100px 64px;
+				background: var(--warm-bg);
+			}
+			.process-header {
+				text-align: center;
+				margin-bottom: 56px;
+			}
+			.process-header .section-eyebrow {
+				margin-bottom: 14px;
+			}
+			.process-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 48px;
+				max-width: 900px;
+				margin: 0 auto;
+			}
+			.process-step {
+				text-align: center;
+				position: relative;
+			}
+			.process-num {
+				font-family: var(--serif);
+				font-size: 48px;
+				font-weight: 300;
+				color: var(--taupe-light);
+				line-height: 1;
+				margin-bottom: 16px;
+			}
+			.process-title {
+				font-family: var(--serif);
+				font-size: 20px;
+				font-weight: 500;
+				color: var(--charcoal);
+				margin-bottom: 10px;
+			}
+			.process-desc {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 300;
+				color: var(--muted);
+				line-height: 1.7;
+			}
+			.process-connector {
+				position: absolute;
+				top: 32px;
+				right: -28px;
+				width: 8px;
+				height: 1px;
+				background: var(--taupe-light);
+			}
+
+			/* ========== CTA ========== */
+			.cta-block {
+				padding: 100px 64px;
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
+			.cta-bg {
+				position: absolute;
+				inset: 0;
+				background-image: url('https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=1800&q=80&auto=format');
+				background-size: cover;
+				background-position: center;
+			}
+			.cta-overlay {
+				position: absolute;
+				inset: 0;
+				background: rgba(245, 240, 232, 0.88);
+				backdrop-filter: blur(2px);
+			}
+			.cta-content {
+				position: relative;
+				z-index: 1;
+			}
+			.cta-block .section-heading {
+				margin-bottom: 12px;
+			}
+			.cta-block-sub {
+				font-family: var(--sans);
+				font-size: 15px;
+				font-weight: 300;
+				color: var(--muted);
+				margin-bottom: 36px;
+			}
+			.cta-btn {
+				display: inline-block;
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 500;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--warm-white);
+				background: var(--charcoal);
+				padding: 18px 48px;
+				text-decoration: none;
+				transition: all 0.3s;
+			}
+			.cta-btn:hover {
+				background: var(--charcoal-soft);
+				transform: translateY(-2px);
+				box-shadow: 0 8px 24px rgba(44, 44, 42, 0.12);
+			}
+
+			/* ========== FOOTER ========== */
+			.footer {
+				padding: 64px 64px 32px;
+				background: var(--charcoal);
+				color: var(--taupe);
+			}
+			.footer-grid {
+				display: grid;
+				grid-template-columns: 2fr 1fr 1fr 1fr;
+				gap: 48px;
+				margin-bottom: 48px;
+			}
+			.footer-brand-name {
+				font-family: var(--serif);
+				font-size: 24px;
+				font-weight: 400;
+				letter-spacing: 0.2em;
+				color: var(--cream);
+				margin-bottom: 12px;
+			}
+			.footer-brand-desc {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 300;
+				line-height: 1.8;
+				color: var(--taupe-dark);
+			}
+			.footer-heading {
+				font-family: var(--sans);
+				font-size: 10px;
+				font-weight: 500;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				color: var(--taupe);
+				margin-bottom: 16px;
+			}
+			.footer-links {
+				list-style: none;
+			}
+			.footer-links li {
+				margin-bottom: 10px;
+			}
+			.footer-links a {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 300;
+				color: var(--taupe-dark);
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+			.footer-links a:hover {
+				color: var(--cream);
+			}
+			.footer-divider {
+				height: 1px;
+				background: rgba(184, 176, 162, 0.15);
+				margin-bottom: 24px;
+			}
+			.footer-bottom {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-family: var(--sans);
+				font-size: 11px;
+				color: var(--taupe-dark);
+				font-weight: 300;
+			}
+			.footer-social {
+				display: flex;
+				gap: 20px;
+			}
+			.footer-social a {
+				color: var(--taupe-dark);
+				text-decoration: none;
+				font-size: 12px;
+				letter-spacing: 0.05em;
+				transition: color 0.2s;
+			}
+			.footer-social a:hover {
+				color: var(--cream);
+			}
+
+			/* ========== RESPONSIVE ========== */
+			html {
+				-webkit-text-size-adjust: 100%;
+			}
+
+			body {
+				overflow-x: hidden;
+			}
+
+			.nav,
+			.services-hero,
+			.about-brief,
+			.pricing,
+			.process,
+			.cta-block,
+			.footer {
+				padding-left: clamp(20px, 5vw, 64px);
+				padding-right: clamp(20px, 5vw, 64px);
+			}
+
+			.section-heading {
+				font-size: clamp(30px, 5vw, 36px);
+			}
+
+			.services-hero {
+				padding-top: clamp(72px, 10vw, 100px);
+				padding-bottom: clamp(64px, 9vw, 90px);
+			}
+
+			.services-hero h1 {
+				font-size: clamp(34px, 7vw, 48px);
+				max-width: 760px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.about-brief,
+			.pricing,
+			.process,
+			.cta-block {
+				padding-top: clamp(64px, 8vw, 100px);
+				padding-bottom: clamp(64px, 8vw, 100px);
+			}
+
+			.about-brief {
+				gap: clamp(36px, 6vw, 64px);
+			}
+
+			.about-brief-img {
+				min-height: 280px;
+				height: clamp(320px, 38vw, 420px);
+			}
+
+			.service-text {
+				padding: clamp(48px, 7vw, 72px) clamp(32px, 6vw, 80px);
+			}
+
+			.pricing-grid {
+				grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+			}
+
+			@media (max-width: 960px) {
+				.nav {
+					padding-top: 20px;
+					padding-bottom: 20px;
+				}
+
+				.nav-links {
+					gap: 22px;
+				}
+
+				.about-brief {
+					grid-template-columns: 1fr;
+				}
+
+				.about-brief-text p,
+				.service-text > p {
+					max-width: none;
+				}
+
+				.service-item {
+					grid-template-columns: 1fr;
+					min-height: auto;
+				}
+
+				.service-item.reverse .service-img,
+				.service-item.reverse .service-text {
+					order: initial;
+				}
+
+				.service-img {
+					min-height: 360px;
+				}
+
+				.pricing-grid {
+					max-width: 720px;
+				}
+
+				.process-grid {
+					grid-template-columns: 1fr;
+					gap: 36px;
+					max-width: 360px;
+				}
+
+				.process-connector {
+					display: none;
+				}
+
+				.footer-grid {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+			}
+
+			@media (max-width: 720px) {
+				.mock-banner {
+					position: static;
+					padding: 9px 16px;
+					line-height: 1.5;
+				}
+
+				.nav {
+					position: sticky;
+					top: 0;
+					align-items: flex-start;
+					flex-direction: column;
+					gap: 18px;
+					padding-top: 18px;
+					padding-bottom: 18px;
+				}
+
+				.nav-brand-name {
+					font-size: 20px;
+					letter-spacing: 0.18em;
+				}
+
+				.nav-links {
+					width: 100%;
+					justify-content: space-between;
+					gap: 10px;
+					flex-wrap: wrap;
+				}
+
+				.nav-links a {
+					padding: 8px 0;
+					font-size: 12px;
+				}
+
+				.nav-cta {
+					margin-left: auto;
+					padding: 10px 18px !important;
+				}
+
+				.services-hero {
+					padding-top: 64px;
+					padding-bottom: 58px;
+				}
+
+				.services-hero::before {
+					top: -230px;
+					left: -270px;
+					width: 430px;
+					height: 430px;
+					opacity: 0.55;
+				}
+
+				.services-hero::after {
+					right: -260px;
+					bottom: -230px;
+					width: 420px;
+					height: 420px;
+					opacity: 0.45;
+				}
+
+				.services-hero p {
+					font-size: 14px;
+					line-height: 1.75;
+				}
+
+				.about-brief {
+					gap: 32px;
+				}
+
+				.about-brief-img {
+					height: 300px;
+				}
+
+				.service-img {
+					min-height: 320px;
+				}
+
+				.pricing-note {
+					margin-bottom: 40px;
+				}
+
+				.pricing-grid {
+					grid-template-columns: 1fr;
+					max-width: 420px;
+				}
+
+				.cta-btn {
+					width: 100%;
+					max-width: 320px;
+					padding-left: 24px;
+					padding-right: 24px;
+				}
+
+				.footer-grid {
+					gap: 36px 28px;
+				}
+
+				.footer-bottom {
+					align-items: flex-start;
+					flex-direction: column;
+					gap: 16px;
+					line-height: 1.6;
+				}
+
+				.footer-social {
+					flex-wrap: wrap;
+				}
+			}
+
+			@media (max-width: 520px) {
+				.mock-banner strong {
+					display: block;
+					margin: 0 0 2px;
+				}
+
+				.nav-brand-name,
+				.footer-brand-name {
+					letter-spacing: 0.14em;
+				}
+
+				.nav-links {
+					display: grid;
+					grid-template-columns: 1fr 1fr;
+					align-items: stretch;
+				}
+
+				.nav-links a {
+					text-align: center;
+				}
+
+				.nav-links .nav-cta {
+					grid-column: 1 / -1;
+					width: 100%;
+					margin-left: 0;
+				}
+
+				.services-hero h1 {
+					font-size: 34px;
+					margin-bottom: 14px;
+				}
+
+				.about-brief,
+				.service-text,
+				.pricing,
+				.process,
+				.cta-block,
+				.footer {
+					padding-left: 20px;
+					padding-right: 20px;
+				}
+
+				.about-brief-img {
+					height: 260px;
+				}
+
+				.about-brief-text h2,
+				.service-text h2 {
+					font-size: 27px;
+				}
+
+				.service-img {
+					min-height: 280px;
+				}
+
+				.service-includes {
+					margin-bottom: 28px;
+				}
+
+				.service-includes li,
+				.pricing-card-features li {
+					align-items: flex-start;
+					line-height: 1.5;
+				}
+
+				.service-cta,
+				.pricing-card-cta {
+					width: 100%;
+					text-align: center;
+				}
+
+				.pricing-card {
+					padding: 32px 24px;
+				}
+
+				.pricing-card-name {
+					font-size: 23px;
+				}
+
+				.process-num {
+					font-size: 38px;
+				}
+
+				.footer-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media (max-width: 380px) {
+				.nav,
+				.services-hero,
+				.about-brief,
+				.service-text,
+				.pricing,
+				.process,
+				.cta-block,
+				.footer {
+					padding-left: 16px;
+					padding-right: 16px;
+				}
+
+				.nav-brand-name {
+					font-size: 18px;
+					letter-spacing: 0.12em;
+				}
+
+				.nav-brand-tagline {
+					font-size: 8px;
+				}
+
+				.services-hero h1 {
+					font-size: 30px;
+				}
+
+				.services-hero p {
+					font-size: 13px;
+				}
+
+				.about-brief-img {
+					height: 230px;
+				}
+
+				.service-img {
+					min-height: 240px;
+				}
+
+				.cta-btn {
+					padding-top: 14px;
+					padding-bottom: 14px;
+				}
+			}
+
+			@media (max-width: 340px) {
+				.nav-links {
+					grid-template-columns: 1fr;
+				}
+
+				.nav-links .nav-cta {
+					grid-column: auto;
+				}
+
+				.services-hero h1 {
+					font-size: 28px;
+				}
+			}
+
+			
+		</style>
+	</head>
+	<body>
+		<div class="mock-banner">
+			<strong>High-fidelity mockup</strong> Services page · Desktop 1440px ·
+			Unsplash imagery (requires internet)
+		</div>
+
+		<!-- NAV -->
+		<div class="nav">
+			<div class="nav-brand">
+				<div class="nav-brand-name">
+					<a href="./curated-home-mockup.html">CURATED</a>
+				</div>
+				<div class="nav-brand-tagline">Professional Organizing</div>
+			</div>
+			<div class="nav-links">
+				<a href="./curated-services-mockup.html">Services</a>
+				<a href="./curated-gallery-mockup.html">Gallery</a>
+				<a href="./curated-book-mockup.html" class="nav-cta">Book now</a>
+			</div>
+		</div>
+
+		<!-- HERO -->
+		<section class="services-hero">
+			<p class="section-eyebrow">The services</p>
+			<h1>Bespoke solutions, gracefully executed</h1>
+			<p>
+				Our all-inclusive organizing services are tailored to your lifestyle,
+				your space, and your goals. Every project begins with listening.
+			</p>
+		</section>
+
+		<!-- ABOUT BRIEF -->
+		<section class="about-brief">
+			<div
+				class="about-brief-img"
+				style="
+					background-image: url('https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=1000&q=80&auto=format');
+				"
+			>
+				<div class="about-brief-img-overlay"></div>
+			</div>
+			<div class="about-brief-text">
+				<p class="section-eyebrow">About Curated</p>
+				<h2>Where order meets elegance</h2>
+				<p>
+					Curated is a professional organizing studio serving the NOVA and DMV
+					area. We transform cluttered, overwhelming spaces into functional
+					sanctuaries — homes and offices that look beautiful and work
+					effortlessly for the way you actually live. Every project starts with
+					listening, and every system we build is designed to last long after we
+					leave.
+				</p>
+				<div class="about-signature">— The Curated Team</div>
+			</div>
+		</section>
+
+		<!-- SERVICE 1: Home Organizing -->
+		<section class="service-item">
+			<div
+				class="service-img"
+				style="
+					background-image: url('https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=1000&q=80&auto=format');
+				"
+			>
+				<div class="service-img-overlay"></div>
+			</div>
+			<div class="service-text">
+				<p class="section-eyebrow">01</p>
+				<h2>Home organizing</h2>
+				<p>
+					Full-service organizing for any room in your home. We sort, declutter,
+					design custom systems, and style your space so it works for how you
+					actually live.
+				</p>
+				<ul class="service-includes">
+					<li><span class="service-dash"></span> Decluttering and sorting</li>
+					<li>
+						<span class="service-dash"></span> Custom organization systems
+					</li>
+					<li>
+						<span class="service-dash"></span> Product sourcing and shopping
+					</li>
+					<li><span class="service-dash"></span> Labeling and styling</li>
+					<li><span class="service-dash"></span> Donation coordination</li>
+				</ul>
+				<a href="#" class="service-cta">Get started</a>
+			</div>
+		</section>
+
+		<!-- SERVICE 2: Unpacking + Move-in -->
+		<section class="service-item reverse">
+			<div
+				class="service-img"
+				style="
+					background-image: url('https://images.unsplash.com/photo-1758523671826-d7f8217ffac3?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format');
+				"
+			>
+				<div class="service-img-overlay"></div>
+			</div>
+			<div class="service-text">
+				<p class="section-eyebrow">02</p>
+				<h2>Unpacking + move-in</h2>
+				<p>
+					Turn your new house into a home from day one. We unpack, set up
+					systems, and organize every room so you're settled — not just moved
+					in.
+				</p>
+				<ul class="service-includes">
+					<li><span class="service-dash"></span> Full unpacking service</li>
+					<li><span class="service-dash"></span> Room-by-room system setup</li>
+					<li>
+						<span class="service-dash"></span> Product sourcing and shopping
+					</li>
+					<li><span class="service-dash"></span> Box breakdown and removal</li>
+					<li><span class="service-dash"></span> Labeling and styling</li>
+				</ul>
+				<a href="#" class="service-cta">Get started</a>
+			</div>
+		</section>
+
+		<!-- SERVICE 3: Business + Office -->
+		<section class="service-item">
+			<div
+				class="service-img"
+				style="
+					background-image: url('https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=1000&q=80&auto=format');
+				"
+			>
+				<div class="service-img-overlay"></div>
+			</div>
+			<div class="service-text">
+				<p class="section-eyebrow">03</p>
+				<h2>Business + office</h2>
+				<p>
+					Organized workspaces drive productivity. We design systems for
+					corporate offices and home-based businesses that reflect your brand
+					and keep operations running smoothly.
+				</p>
+				<ul class="service-includes">
+					<li><span class="service-dash"></span> Office layout optimization</li>
+					<li>
+						<span class="service-dash"></span> Filing and document systems
+					</li>
+					<li><span class="service-dash"></span> Supply organization</li>
+					<li>
+						<span class="service-dash"></span> Brand-aligned workspace design
+					</li>
+				</ul>
+				<a href="#" class="service-cta">Get started</a>
+			</div>
+		</section>
+
+		<!-- PRICING -->
+		<section class="pricing">
+			<div class="pricing-header">
+				<p class="section-eyebrow">Investment</p>
+				<h2 class="section-heading">Transparent pricing</h2>
+			</div>
+			<p class="pricing-note">
+				Every project is unique. These starting points give you a sense of
+				investment — your custom quote is built during your free consultation.
+			</p>
+			<div class="pricing-grid">
+				<div class="pricing-card">
+					<div class="pricing-card-eyebrow">Essential</div>
+					<div class="pricing-card-name">Single space</div>
+					<div class="pricing-card-price">Starting at $X / session</div>
+					<div class="pricing-card-divider"></div>
+					<ul class="pricing-card-features">
+						<li><span class="pricing-check">✓</span> One room or area</li>
+						<li><span class="pricing-check">✓</span> Declutter + organize</li>
+						<li>
+							<span class="pricing-check">✓</span> Product recommendations
+						</li>
+						<li><span class="pricing-check">✓</span> Labeling system</li>
+					</ul>
+					<a href="#" class="pricing-card-cta">Book consultation</a>
+				</div>
+
+				<div class="pricing-card featured">
+					<div class="pricing-card-eyebrow">Most popular</div>
+					<div class="pricing-card-name">Multi-room</div>
+					<div class="pricing-card-price">Starting at $X / project</div>
+					<div class="pricing-card-divider"></div>
+					<ul class="pricing-card-features">
+						<li><span class="pricing-check">✓</span> 2–4 rooms or areas</li>
+						<li>
+							<span class="pricing-check">✓</span> Full-service organizing
+						</li>
+						<li>
+							<span class="pricing-check">✓</span> Product sourcing + shopping
+						</li>
+						<li><span class="pricing-check">✓</span> Donation coordination</li>
+						<li><span class="pricing-check">✓</span> Labeling + styling</li>
+					</ul>
+					<a href="#" class="pricing-card-cta">Book consultation</a>
+				</div>
+
+				<div class="pricing-card">
+					<div class="pricing-card-eyebrow">Premium</div>
+					<div class="pricing-card-name">Whole home</div>
+					<div class="pricing-card-price">Custom quote</div>
+					<div class="pricing-card-divider"></div>
+					<ul class="pricing-card-features">
+						<li>
+							<span class="pricing-check">✓</span> Full home transformation
+						</li>
+						<li><span class="pricing-check">✓</span> Multi-day project</li>
+						<li>
+							<span class="pricing-check">✓</span> Everything in Multi-room
+						</li>
+						<li><span class="pricing-check">✓</span> Priority scheduling</li>
+						<li><span class="pricing-check">✓</span> Maintenance follow-up</li>
+					</ul>
+					<a href="#" class="pricing-card-cta">Book consultation</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA -->
+		<section class="cta-block">
+			<div class="cta-bg"></div>
+			<div class="cta-overlay"></div>
+			<div class="cta-content">
+				<h2 class="section-heading">Ready to transform your space?</h2>
+				<p class="cta-block-sub">
+					Your complimentary 30-minute consultation starts here
+				</p>
+				<a href="#" class="cta-btn">Book a consultation</a>
+			</div>
+		</section>
+
+		<!-- FOOTER -->
+		<footer class="footer">
+			<div class="footer-grid">
+				<div>
+					<div class="footer-brand-name">CURATED</div>
+					<p class="footer-brand-desc">
+						Professional organizing for the discerning home.<br />
+						Serving the NOVA / DMV area.
+					</p>
+				</div>
+				<div>
+					<div class="footer-heading">Navigate</div>
+					<ul class="footer-links">
+						<li><a href="#">Services</a></li>
+						<li><a href="#">Gallery</a></li>
+						<li><a href="#">Book</a></li>
+					</ul>
+				</div>
+				<div>
+					<div class="footer-heading">Connect</div>
+					<ul class="footer-links">
+						<li><a href="#">Email</a></li>
+						<li><a href="#">Phone</a></li>
+						<li><a href="#">Instagram</a></li>
+					</ul>
+				</div>
+				<div>
+					<div class="footer-heading">Hours</div>
+					<ul class="footer-links">
+						<li><a href="#">Mon – Fri: 9am – 5pm</a></li>
+						<li><a href="#">Sat: By appointment</a></li>
+						<li><a href="#">Sun: Closed</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer-divider"></div>
+			<div class="footer-bottom">
+				<span>© 2026 Curated Organization. All rights reserved.</span>
+				<div class="footer-social">
+					<a href="#">Instagram</a>
+					<a href="#">Facebook</a>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

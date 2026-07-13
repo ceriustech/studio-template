@@ -1,0 +1,1292 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Curated Organization — Home Page Mock (with imagery)</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--cream: #f5f0e8;
+				--warm-white: #fdfbf7;
+				--warm-bg: #f7f3ec;
+				--taupe: #b8b0a2;
+				--taupe-light: #d4cfc6;
+				--taupe-dark: #8a8278;
+				--charcoal: #2c2c2a;
+				--charcoal-soft: #3d3d3a;
+				--muted: #9a9590;
+				--brand-teal: #6d838c;
+				--brand-teal-dark: #4b6c71;
+				--border: #e8e4db;
+				--serif: 'Cormorant Garamond', Georgia, serif;
+				--sans: 'Outfit', system-ui, sans-serif;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			html {
+				font-size: 16px;
+				scroll-behavior: smooth;
+			}
+
+			body {
+				font-family: var(--sans);
+				background: var(--warm-white);
+				color: var(--charcoal);
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.mock-banner {
+				position: sticky;
+				top: 0;
+				z-index: 1000;
+				background: var(--charcoal);
+				color: var(--taupe);
+				text-align: center;
+				padding: 10px 20px;
+				font-family: var(--sans);
+				font-size: 11px;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+			}
+			.mock-banner strong {
+				color: #fff;
+				margin-right: 8px;
+			}
+
+			/* ========== NAV ========== */
+			.nav {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 24px 64px;
+				background: rgba(253, 251, 247, 0.95);
+				backdrop-filter: blur(12px);
+				border-bottom: 1px solid var(--border);
+				position: sticky;
+				top: 34px;
+				z-index: 100;
+			}
+			.nav-brand {
+				display: flex;
+				flex-direction: column;
+				gap: 2px;
+			}
+			.nav-brand-name {
+				font-family: var(--serif);
+				font-size: 22px;
+				font-weight: 500;
+				letter-spacing: 0.25em;
+				color: var(--charcoal);
+			}
+			.nav-brand-name a {
+				color: inherit;
+				text-decoration: none;
+			}
+			.nav-brand-tagline {
+				font-family: var(--sans);
+				font-size: 9px;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				color: var(--taupe);
+			}
+			.nav-links {
+				display: flex;
+				align-items: center;
+				gap: 36px;
+			}
+			.nav-links a {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 400;
+				color: var(--taupe-dark);
+				text-decoration: none;
+				letter-spacing: 0.02em;
+				transition: color 0.2s;
+			}
+			.nav-links a:hover {
+				color: var(--charcoal);
+			}
+			.nav-cta {
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 500;
+				letter-spacing: 0.06em;
+				color: var(--warm-white) !important;
+				background: var(--charcoal);
+				padding: 10px 24px;
+				border-radius: 2px;
+				transition: background 0.2s;
+			}
+			.nav-cta:hover {
+				background: var(--charcoal-soft);
+			}
+
+			/* ========== HERO ========== */
+			.hero {
+				position: relative;
+				height: 92vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				overflow: hidden;
+			}
+			.hero-img {
+				position: absolute;
+				inset: 0;
+				background-image: url('https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=1800&q=80&auto=format');
+				background-size: cover;
+				background-position: center;
+			}
+			.hero-overlay {
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					to bottom,
+					/* rgba(245,240,232,0.55) 0%,
+      rgba(245,240,232,0.4) 40%,
+      rgba(245,240,232,0.6) 100% */
+					rgb(45 43 39 / 55%) 0%,
+					rgb(63 56 46 / 40%) 40%,
+					rgb(83 75 62 / 60%) 100%
+				);
+			}
+			.hero-content {
+				position: relative;
+				z-index: 2;
+				max-width: 720px;
+				padding: 0 24px;
+			}
+			.hero-eyebrow {
+				font-family: var(--sans);
+				font-size: 11px;
+				letter-spacing: 0.25em;
+				text-transform: uppercase;
+				color: var(--warm-white);
+				margin-bottom: 24px;
+			}
+			.hero-title {
+				font-family: var(--serif);
+				font-size: 76px;
+				font-weight: 300;
+				letter-spacing: 0.2em;
+				color: var(--warm-white);
+				line-height: 1.1;
+				margin-bottom: 16px;
+				text-shadow: 0 1px 40px rgba(245, 240, 232, 0.6);
+			}
+			.hero-subtitle {
+				font-family: var(--serif);
+				font-size: 20px;
+				font-weight: 300;
+				font-style: italic;
+				color: var(--warm-white);
+				margin-bottom: 44px;
+				letter-spacing: 0.02em;
+			}
+			.hero-btn {
+				display: inline-block;
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 500;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--charcoal);
+				border: 1px solid var(--charcoal);
+				padding: 16px 44px;
+				text-decoration: none;
+				transition: all 0.3s;
+				background: rgba(253, 251, 247, 0.6);
+				backdrop-filter: blur(4px);
+			}
+			.hero-btn:hover {
+				background: var(--charcoal);
+				color: var(--warm-white);
+			}
+			.hero-scroll {
+				position: absolute;
+				bottom: 36px;
+				left: 50%;
+				transform: translateX(-50%);
+				z-index: 2;
+				width: 1px;
+				height: 48px;
+				background: var(--taupe-light);
+			}
+			.hero-scroll::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: -2px;
+				width: 5px;
+				height: 5px;
+				border-radius: 50%;
+				background: var(--taupe);
+				animation: scrollPulse 2s infinite;
+			}
+			@keyframes scrollPulse {
+				0%,
+				100% {
+					transform: translateY(0);
+					opacity: 1;
+				}
+				50% {
+					transform: translateY(-20px);
+					opacity: 0.3;
+				}
+			}
+
+			/* ========== SECTION ========== */
+			section {
+				border-bottom: 1px solid var(--border);
+			}
+			.section-eyebrow {
+				font-family: var(--sans);
+				font-size: 10px;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				color: var(--taupe);
+			}
+			.section-heading {
+				font-family: var(--serif);
+				font-size: 36px;
+				font-weight: 400;
+				color: var(--charcoal);
+				line-height: 1.2;
+			}
+
+			/* ========== INTRO ========== */
+			.intro {
+				padding: 100px 64px;
+				display: flex;
+				justify-content: center;
+			}
+			.intro-inner {
+				max-width: 620px;
+				text-align: center;
+			}
+			.intro .section-eyebrow {
+				margin-bottom: 16px;
+			}
+			.intro .section-heading {
+				margin-bottom: 24px;
+			}
+			.intro-text {
+				font-family: var(--sans);
+				font-size: 15px;
+				font-weight: 300;
+				color: var(--muted);
+				line-height: 1.9;
+				margin-bottom: 32px;
+			}
+			.text-link {
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 500;
+				letter-spacing: 0.05em;
+				color: var(--brand-teal);
+				text-decoration: none;
+				border-bottom: 1px solid var(--brand-teal);
+				padding-bottom: 2px;
+				transition: color 0.2s;
+			}
+			.text-link:hover {
+				color: var(--brand-teal-dark);
+			}
+
+			/* ========== SERVICES ========== */
+			.services {
+				padding: 100px 64px;
+				background: var(--warm-bg);
+			}
+			.services-header {
+				text-align: center;
+				margin-bottom: 56px;
+			}
+			.services-header .section-eyebrow {
+				margin-bottom: 14px;
+			}
+			.services-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 28px;
+				max-width: 1080px;
+				margin: 0 auto 40px;
+			}
+			.service-card {
+				background: var(--warm-white);
+				border: 1px solid var(--border);
+				overflow: hidden;
+				transition:
+					transform 0.3s,
+					box-shadow 0.3s;
+			}
+			.service-card:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 12px 40px rgba(44, 44, 42, 0.06);
+			}
+			.service-card-img {
+				height: 240px;
+				background-size: cover;
+				background-position: center;
+			}
+			.service-card-body {
+				padding: 24px 28px 28px;
+			}
+			.service-card-title {
+				font-family: var(--serif);
+				font-size: 22px;
+				font-weight: 500;
+				color: var(--charcoal);
+				margin-bottom: 8px;
+			}
+			.service-card-desc {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 300;
+				color: var(--muted);
+				line-height: 1.7;
+			}
+			.services-footer {
+				text-align: center;
+			}
+
+			/* ========== BEFORE / AFTER ========== */
+			.before-after {
+				padding: 100px 64px;
+			}
+			.ba-header {
+				text-align: center;
+				margin-bottom: 48px;
+			}
+			.ba-header .section-eyebrow {
+				margin-bottom: 14px;
+			}
+			.ba-container {
+				max-width: 1080px;
+				margin: 0 auto;
+			}
+			.ba-pair {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 3px;
+				margin-bottom: 16px;
+				border-radius: 2px;
+				overflow: hidden;
+			}
+			.ba-cell {
+				border: 1px solid var(--border);
+				height: 380px;
+				background-size: cover;
+				background-position: center;
+				position: relative;
+			}
+			.ba-tag {
+				position: absolute;
+				top: 16px;
+				left: 20px;
+				font-family: var(--sans);
+				font-size: 10px;
+				font-weight: 500;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: var(--charcoal);
+				background: rgba(253, 251, 247, 0.9);
+				padding: 6px 14px;
+				backdrop-filter: blur(4px);
+			}
+			.ba-caption {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 300;
+				color: var(--muted);
+				max-width: 560px;
+				line-height: 1.7;
+			}
+			.ba-footer {
+				text-align: center;
+				margin-top: 32px;
+			}
+
+			/* ========== PROCESS ========== */
+			.process {
+				padding: 100px 64px;
+				background: var(--warm-bg);
+			}
+			.process-header {
+				text-align: center;
+				margin-bottom: 56px;
+			}
+			.process-header .section-eyebrow {
+				margin-bottom: 14px;
+			}
+			.process-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 48px;
+				max-width: 900px;
+				margin: 0 auto;
+			}
+			.process-step {
+				text-align: center;
+				position: relative;
+			}
+			.process-num {
+				font-family: var(--serif);
+				font-size: 48px;
+				font-weight: 300;
+				color: var(--taupe-light);
+				line-height: 1;
+				margin-bottom: 16px;
+			}
+			.process-title {
+				font-family: var(--serif);
+				font-size: 20px;
+				font-weight: 500;
+				color: var(--charcoal);
+				margin-bottom: 10px;
+			}
+			.process-desc {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 300;
+				color: var(--muted);
+				line-height: 1.7;
+			}
+			.process-connector {
+				position: absolute;
+				top: 32px;
+				right: -28px;
+				width: 8px;
+				height: 1px;
+				background: var(--taupe-light);
+			}
+
+			/* ========== TESTIMONIAL ========== */
+			.testimonial {
+				padding: 100px 64px;
+				text-align: center;
+			}
+			.testimonial-stars {
+				margin-bottom: 24px;
+				color: var(--taupe);
+				font-size: 14px;
+				letter-spacing: 4px;
+			}
+			.testimonial-quote-mark {
+				font-family: var(--serif);
+				font-size: 80px;
+				font-weight: 300;
+				color: var(--taupe-light);
+				line-height: 0.6;
+				margin-bottom: 16px;
+			}
+			.testimonial-text {
+				font-family: var(--serif);
+				font-size: 22px;
+				font-weight: 300;
+				font-style: italic;
+				color: var(--charcoal-soft);
+				line-height: 1.8;
+				max-width: 580px;
+				margin: 0 auto 24px;
+			}
+			.testimonial-attr {
+				font-family: var(--sans);
+				font-size: 12px;
+				color: var(--taupe);
+				letter-spacing: 0.05em;
+			}
+
+			/* ========== CTA ========== */
+			.cta-block {
+				padding: 100px 64px;
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
+			.cta-bg {
+				position: absolute;
+				inset: 0;
+				background-image: url('https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=1800&q=80&auto=format');
+				background-size: cover;
+				background-position: center;
+			}
+			.cta-overlay {
+				position: absolute;
+				inset: 0;
+				background: rgba(245, 240, 232, 0.88);
+				backdrop-filter: blur(2px);
+			}
+			.cta-content {
+				position: relative;
+				z-index: 1;
+			}
+			.cta-block .section-heading {
+				margin-bottom: 12px;
+			}
+			.cta-block-sub {
+				font-family: var(--sans);
+				font-size: 15px;
+				font-weight: 300;
+				color: var(--muted);
+				margin-bottom: 36px;
+			}
+			.cta-btn {
+				display: inline-block;
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 500;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--warm-white);
+				background: var(--charcoal);
+				padding: 18px 48px;
+				text-decoration: none;
+				transition: all 0.3s;
+			}
+			.cta-btn:hover {
+				background: var(--charcoal-soft);
+				transform: translateY(-2px);
+				box-shadow: 0 8px 24px rgba(44, 44, 42, 0.12);
+			}
+
+			/* ========== FOOTER ========== */
+			.footer {
+				padding: 64px 64px 32px;
+				background: var(--charcoal);
+				color: var(--taupe);
+			}
+			.footer-grid {
+				display: grid;
+				grid-template-columns: 2fr 1fr 1fr 1fr;
+				gap: 48px;
+				margin-bottom: 48px;
+			}
+			.footer-brand-name {
+				font-family: var(--serif);
+				font-size: 24px;
+				font-weight: 400;
+				letter-spacing: 0.2em;
+				color: var(--cream);
+				margin-bottom: 12px;
+			}
+			.footer-brand-desc {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 300;
+				line-height: 1.8;
+				color: var(--taupe-dark);
+			}
+			.footer-heading {
+				font-family: var(--sans);
+				font-size: 10px;
+				font-weight: 500;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				color: var(--taupe);
+				margin-bottom: 16px;
+			}
+			.footer-links {
+				list-style: none;
+			}
+			.footer-links li {
+				margin-bottom: 10px;
+			}
+			.footer-links a {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 300;
+				color: var(--taupe-dark);
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+			.footer-links a:hover {
+				color: var(--cream);
+			}
+			.footer-divider {
+				height: 1px;
+				background: rgba(184, 176, 162, 0.15);
+				margin-bottom: 24px;
+			}
+			.footer-bottom {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-family: var(--sans);
+				font-size: 11px;
+				color: var(--taupe-dark);
+				font-weight: 300;
+			}
+			.footer-social {
+				display: flex;
+				gap: 20px;
+			}
+			.footer-social a {
+				color: var(--taupe-dark);
+				text-decoration: none;
+				font-size: 12px;
+				letter-spacing: 0.05em;
+				transition: color 0.2s;
+			}
+			.footer-social a:hover {
+				color: var(--cream);
+			}
+
+			/* ========== ANNOTATIONS ========== */
+			.annotations {
+				max-width: 1440px;
+				margin: 32px auto 60px;
+				padding: 28px 36px;
+				background: var(--cream);
+				border-radius: 8px;
+				font-family: var(--sans);
+				font-size: 13px;
+				color: var(--muted);
+				line-height: 1.8;
+			}
+			.annotations strong {
+				color: var(--charcoal);
+			}
+			.annotations p {
+				margin-bottom: 6px;
+			}
+			.annotations p:last-child {
+				margin-bottom: 0;
+			}
+			.ann-title {
+				font-weight: 600;
+				color: var(--charcoal);
+				margin-bottom: 14px;
+				font-size: 14px;
+			}
+
+			/* ========== RESPONSIVE: TABLET (768px and below) ========== */
+			@media (max-width: 768px) {
+				.nav {
+					padding: 16px 24px;
+				}
+				.nav-links {
+					gap: 20px;
+				}
+				.nav-links a {
+					font-size: 12px;
+				}
+				.footer-grid {
+					grid-template-columns: 1fr 1fr;
+					gap: 32px;
+				}
+			}
+
+			/* ========== RESPONSIVE: MOBILE (480px and below) ========== */
+			@media (max-width: 480px) {
+				.nav {
+					padding: 14px 20px;
+					gap: 12px;
+				}
+				.nav-brand-name {
+					font-size: 16px;
+					letter-spacing: 0.15em;
+				}
+				.nav-brand-tagline {
+					font-size: 8px;
+				}
+				.nav-links {
+					gap: 14px;
+				}
+				.nav-links a {
+					font-size: 11px;
+				}
+				.nav-cta,
+				.nav-cta-active {
+					padding: 8px 16px;
+					font-size: 10px;
+				}
+				.section-heading {
+					font-size: 28px;
+				}
+				.section-eyebrow {
+					font-size: 9px;
+				}
+				.footer {
+					padding: 40px 24px 24px;
+				}
+				.footer-grid {
+					grid-template-columns: 1fr;
+					gap: 28px;
+				}
+				.footer-brand-name {
+					font-size: 20px;
+				}
+				.footer-bottom {
+					flex-direction: column;
+					gap: 12px;
+					text-align: center;
+				}
+				.mock-banner {
+					font-size: 9px;
+					padding: 8px 12px;
+				}
+			}
+
+			/* ========== RESPONSIVE: SMALL MOBILE (320px) ========== */
+			@media (max-width: 360px) {
+				.nav {
+					padding: 12px 16px;
+				}
+				.nav-brand-name {
+					font-size: 14px;
+					letter-spacing: 0.1em;
+				}
+				.nav-links {
+					gap: 10px;
+				}
+				.nav-links a {
+					font-size: 10px;
+				}
+				.nav-cta,
+				.nav-cta-active {
+					padding: 6px 12px;
+					font-size: 9px;
+				}
+				.section-heading {
+					font-size: 24px;
+				}
+			}
+
+			@media (max-width: 768px) {
+				.hero {
+					height: 70vh;
+					min-height: 500px;
+				}
+				.hero-title {
+					font-size: 48px;
+					letter-spacing: 0.12em;
+				}
+				.hero-subtitle {
+					font-size: 16px;
+				}
+				.intro {
+					padding: 64px 32px;
+				}
+				.services {
+					padding: 64px 32px;
+				}
+				.services-grid {
+					grid-template-columns: 1fr;
+					gap: 24px;
+					max-width: 420px;
+				}
+				.before-after {
+					padding: 64px 32px;
+				}
+				.ba-pair {
+					grid-template-columns: 1fr;
+				}
+				.ba-cell {
+					height: 240px;
+				}
+				.process {
+					padding: 64px 32px;
+				}
+				.process-grid {
+					grid-template-columns: 1fr;
+					gap: 36px;
+					max-width: 320px;
+					margin: 0 auto;
+				}
+				.process-connector {
+					display: none;
+				}
+				.testimonial {
+					padding: 64px 32px;
+				}
+				.testimonial-text {
+					font-size: 18px;
+				}
+				.cta-block {
+					padding: 64px 32px;
+				}
+				.annotations {
+					margin: 24px 16px 40px;
+					padding: 20px 24px;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.hero {
+					height: 65vh;
+					min-height: 440px;
+				}
+				.hero-title {
+					font-size: 36px;
+					letter-spacing: 0.1em;
+				}
+				.hero-eyebrow {
+					font-size: 9px;
+					margin-bottom: 16px;
+				}
+				.hero-subtitle {
+					font-size: 15px;
+					margin-bottom: 28px;
+				}
+				.hero-btn {
+					padding: 14px 28px;
+					font-size: 11px;
+				}
+				.intro {
+					padding: 48px 20px;
+				}
+				.intro .section-heading {
+					font-size: 28px;
+				}
+				.intro-text {
+					font-size: 14px;
+				}
+				.services {
+					padding: 48px 20px;
+				}
+				.service-card-img {
+					height: 200px;
+				}
+				.service-card-title {
+					font-size: 20px;
+				}
+				.service-card-body {
+					padding: 20px 20px 24px;
+				}
+				.before-after {
+					padding: 48px 20px;
+				}
+				.ba-cell {
+					height: 200px;
+				}
+				.process {
+					padding: 48px 20px;
+				}
+				.process-num {
+					font-size: 36px;
+				}
+				.process-title {
+					font-size: 18px;
+				}
+				.testimonial {
+					padding: 48px 20px;
+				}
+				.testimonial-quote-mark {
+					font-size: 56px;
+				}
+				.testimonial-text {
+					font-size: 16px;
+				}
+				.cta-block {
+					padding: 48px 20px;
+				}
+				.cta-btn {
+					padding: 14px 32px;
+					font-size: 11px;
+				}
+			}
+
+			@media (max-width: 360px) {
+				.hero-title {
+					font-size: 28px;
+				}
+				.hero-subtitle {
+					font-size: 14px;
+				}
+				.intro {
+					padding: 40px 16px;
+				}
+				.services {
+					padding: 40px 16px;
+				}
+				.before-after {
+					padding: 40px 16px;
+				}
+				.process {
+					padding: 40px 16px;
+				}
+				.testimonial {
+					padding: 40px 16px;
+				}
+				.cta-block {
+					padding: 40px 16px;
+				}
+			}
+			/* ========== RESPONSIVE NAV MATCHING INNER PAGES ========== */
+			@media (max-width: 960px) {
+				.nav {
+					padding-top: 20px;
+					padding-bottom: 20px;
+				}
+
+				.nav-links {
+					gap: 22px;
+				}
+			}
+
+			@media (max-width: 720px) {
+				.mock-banner {
+					position: static;
+					padding: 9px 16px;
+					line-height: 1.5;
+				}
+
+				.nav {
+					position: sticky;
+					top: 0;
+					align-items: flex-start;
+					flex-direction: column;
+					gap: 18px;
+					padding: 18px 24px;
+				}
+
+				.nav-brand-name {
+					font-size: 20px;
+					letter-spacing: 0.18em;
+				}
+
+				.nav-links {
+					width: 100%;
+					justify-content: space-between;
+					gap: 10px;
+					flex-wrap: wrap;
+				}
+
+				.nav-links a {
+					padding: 8px 0;
+				}
+
+				.nav-cta {
+					margin-left: auto;
+					padding: 10px 18px !important;
+				}
+			}
+
+			@media (max-width: 520px) {
+				.mock-banner strong {
+					display: block;
+					margin: 0 0 2px;
+				}
+
+				.nav-brand-name {
+					letter-spacing: 0.14em;
+				}
+
+				.nav-links {
+					display: grid;
+					grid-template-columns: 1fr 1fr;
+					align-items: stretch;
+				}
+
+				.nav-links a {
+					text-align: center;
+				}
+
+				.nav-links .nav-cta {
+					grid-column: 1 / -1;
+					width: 100%;
+					margin-left: 0;
+				}
+			}
+
+			@media (max-width: 380px) {
+				.nav {
+					padding-left: 16px;
+					padding-right: 16px;
+				}
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="mock-banner">
+			<strong>High-fidelity mockup</strong> Home page · Desktop 1440px ·
+			Unsplash imagery (requires internet)
+		</div>
+
+		<!-- NAV -->
+		<div class="nav">
+			<div class="nav-brand">
+				<div class="nav-brand-name">
+					<a href="./curated-home-mockup.html">CURATED</a>
+				</div>
+				<div class="nav-brand-tagline">Professional Organizing</div>
+			</div>
+			<div class="nav-links">
+				<a href="./curated-services-mockup.html">Services</a>
+				<a href="./curated-gallery-mockup.html">Gallery</a>
+				<a href="./curated-book-mockup.html" class="nav-cta">Book now</a>
+			</div>
+		</div>
+
+		<!-- HERO -->
+		<section class="hero">
+			<div class="hero-img"></div>
+			<div class="hero-overlay"></div>
+			<div class="hero-content">
+				<p class="hero-eyebrow">The sanctuary of simplicity</p>
+				<h1 class="hero-title">CURATED</h1>
+				<p class="hero-subtitle">
+					Professional organizing for the discerning home
+				</p>
+				<a href="#" class="hero-btn">Discover your space</a>
+			</div>
+			<div class="hero-scroll"></div>
+		</section>
+
+		<!-- INTRO -->
+		<section class="intro">
+			<div class="intro-inner">
+				<p class="section-eyebrow">Our approach</p>
+				<h2 class="section-heading">Functional luxury</h2>
+				<p class="intro-text">
+					We believe an organized home is a form of self-care. Our approach
+					merges refined aesthetics with practical systems — spaces that look
+					beautiful and work effortlessly for the way you actually live.
+				</p>
+				<a href="#" class="text-link">Learn more about us →</a>
+			</div>
+		</section>
+
+		<!-- SERVICES -->
+		<section class="services">
+			<div class="services-header">
+				<p class="section-eyebrow">The services</p>
+				<h2 class="section-heading">Bespoke solutions, gracefully executed</h2>
+			</div>
+			<div class="services-grid">
+				<div class="service-card">
+					<div
+						class="service-card-img"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=800&q=80&auto=format');
+						"
+					></div>
+					<div class="service-card-body">
+						<h3 class="service-card-title">Home organizing</h3>
+						<p class="service-card-desc">
+							Full-service sorting, decluttering, and custom systems for any
+							room in your home.
+						</p>
+					</div>
+				</div>
+				<div class="service-card">
+					<div
+						class="service-card-img"
+						style="
+							background-image: url('https://plus.unsplash.com/premium_photo-1661286629847-22e62d832f3f?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+						"
+					></div>
+					<div class="service-card-body">
+						<h3 class="service-card-title">Unpacking + move-in</h3>
+						<p class="service-card-desc">
+							Turn your new house into a home from day one with complete
+							unpacking and setup.
+						</p>
+					</div>
+				</div>
+				<div class="service-card">
+					<div
+						class="service-card-img"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800&q=80&auto=format');
+						"
+					></div>
+					<div class="service-card-body">
+						<h3 class="service-card-title">Business + office</h3>
+						<p class="service-card-desc">
+							Workspace organization that drives productivity and reflects your
+							brand's standards.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="services-footer">
+				<a href="#" class="text-link">View all services →</a>
+			</div>
+		</section>
+
+		<!-- BEFORE / AFTER -->
+		<section class="before-after">
+			<div class="ba-header">
+				<p class="section-eyebrow">The transformation</p>
+				<h2 class="section-heading">See the difference</h2>
+			</div>
+			<div class="ba-container">
+				<div class="ba-pair">
+					<div
+						class="ba-cell"
+						style="
+							background-image: url('https://plus.unsplash.com/premium_photo-1683141147002-f3543aa988eb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+						"
+					>
+						<span class="ba-tag">Before</span>
+					</div>
+					<div
+						class="ba-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=900&q=80&auto=format');
+						"
+					>
+						<span class="ba-tag">After</span>
+					</div>
+				</div>
+				<p class="ba-caption">
+					Master closet transformation — Arlington, VA. Complete reorganization
+					with custom storage systems, labeled bins, and seasonal rotation.
+				</p>
+				<div class="ba-footer">
+					<a href="#" class="text-link">View full gallery →</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- PROCESS -->
+		<section class="process">
+			<div class="process-header">
+				<p class="section-eyebrow">The process</p>
+				<h2 class="section-heading">How it works</h2>
+			</div>
+			<div class="process-grid">
+				<div class="process-step">
+					<div class="process-num">01</div>
+					<h3 class="process-title">Consultation</h3>
+					<p class="process-desc">
+						Free 30-minute video or in-person assessment of your space and goals
+					</p>
+					<div class="process-connector"></div>
+				</div>
+				<div class="process-step">
+					<div class="process-num">02</div>
+					<h3 class="process-title">Design + shop</h3>
+					<p class="process-desc">
+						Custom plan, product sourcing, and everything you need before we
+						arrive
+					</p>
+					<div class="process-connector"></div>
+				</div>
+				<div class="process-step">
+					<div class="process-num">03</div>
+					<h3 class="process-title">Organizing day</h3>
+					<p class="process-desc">
+						We sort, declutter, build systems, label, and style your space to
+						perfection
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- TESTIMONIAL -->
+		<section class="testimonial">
+			<div class="testimonial-stars">★ ★ ★ ★ ★</div>
+			<div class="testimonial-quote-mark">"</div>
+			<p class="testimonial-text">
+				Client testimonial will go here. One or two sentences about the
+				transformation experience and how it changed their daily life.
+			</p>
+			<p class="testimonial-attr">— Client name, Arlington, VA</p>
+		</section>
+
+		<!-- CTA -->
+		<section class="cta-block">
+			<div class="cta-bg"></div>
+			<div class="cta-overlay"></div>
+			<div class="cta-content">
+				<h2 class="section-heading">Ready to transform your space?</h2>
+				<p class="cta-block-sub">
+					Your complimentary 30-minute consultation starts here
+				</p>
+				<a href="#" class="cta-btn">Book a consultation</a>
+			</div>
+		</section>
+
+		<!-- FOOTER -->
+		<footer class="footer">
+			<div class="footer-grid">
+				<div>
+					<div class="footer-brand-name">CURATED</div>
+					<p class="footer-brand-desc">
+						Professional organizing for the discerning home.<br />
+						Serving the NOVA / DMV area.
+					</p>
+				</div>
+				<div>
+					<div class="footer-heading">Navigate</div>
+					<ul class="footer-links">
+						<li><a href="#">About</a></li>
+						<li><a href="#">Services</a></li>
+						<li><a href="#">Gallery</a></li>
+						<li><a href="#">Book</a></li>
+					</ul>
+				</div>
+				<div>
+					<div class="footer-heading">Connect</div>
+					<ul class="footer-links">
+						<li><a href="#">Email</a></li>
+						<li><a href="#">Phone</a></li>
+						<li><a href="#">Instagram</a></li>
+					</ul>
+				</div>
+				<div>
+					<div class="footer-heading">Hours</div>
+					<ul class="footer-links">
+						<li><a href="#">Mon – Fri: 9am – 5pm</a></li>
+						<li><a href="#">Sat: By appointment</a></li>
+						<li><a href="#">Sun: Closed</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer-divider"></div>
+			<div class="footer-bottom">
+				<span>© 2026 Curated Organization. All rights reserved.</span>
+				<div class="footer-social">
+					<a href="#">Instagram</a>
+					<a href="#">Facebook</a>
+				</div>
+			</div>
+		</footer>
+
+		<!-- ANNOTATIONS -->
+		<!-- <div class="annotations">
+			<div class="ann-title">Mockup notes</div>
+			<p>
+				<strong>Imagery:</strong> All photos sourced from Unsplash (free, no
+				attribution required). These are stand-in images to demonstrate the
+				visual feel — they will be replaced with Rina's actual before/after and
+				portfolio photography. The file requires an internet connection to load
+				images.
+			</p>
+			<p>
+				<strong>Hero:</strong> The hero image has a warm cream overlay at ~55%
+				opacity so the text remains readable. With Rina's own photography, we'd
+				calibrate the overlay to match the specific image brightness and tone.
+			</p>
+			<p>
+				<strong>CTA section:</strong> Uses a background image with a heavier
+				cream overlay (~88% opacity) to keep the focus on the call to action
+				while adding depth. This subtle layering technique gives the section
+				visual weight without competing with the text.
+			</p>
+			<p>
+				<strong>Key difference from Option 1:</strong> This version demonstrates
+				the emotional impact that photography creates. The design system is
+				identical — same typography, spacing, palette, and components. The
+				imagery is what transforms it from "well-designed wireframe" to "this is
+				my website." This is why high-quality photography is the single most
+				important deliverable Rina needs to provide.
+			</p>
+		</div> -->
+	</body>
+</html>

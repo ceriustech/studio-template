@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Curated Organization — Gallery Page Mock</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--cream: #f5f0e8;
+				--warm-white: #fdfbf7;
+				--warm-bg: #f7f3ec;
+				--taupe: #b8b0a2;
+				--taupe-light: #d4cfc6;
+				--taupe-dark: #8a8278;
+				--charcoal: #2c2c2a;
+				--charcoal-soft: #3d3d3a;
+				--muted: #9a9590;
+				--brand-teal: #6d838c;
+				--brand-teal-dark: #4b6c71;
+				--border: #e8e4db;
+				--serif: 'Cormorant Garamond', Georgia, serif;
+				--sans: 'Outfit', system-ui, sans-serif;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			html {
+				font-size: 16px;
+				scroll-behavior: smooth;
+			}
+
+			body {
+				font-family: var(--sans);
+				background: var(--warm-white);
+				color: var(--charcoal);
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.mock-banner {
+				position: sticky;
+				top: 0;
+				z-index: 1000;
+				background: var(--charcoal);
+				color: var(--taupe);
+				text-align: center;
+				padding: 10px 20px;
+				font-family: var(--sans);
+				font-size: 11px;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+			}
+			.mock-banner strong {
+				color: #fff;
+				margin-right: 8px;
+			}
+
+			/* ========== NAV ========== */
+			.nav {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 24px 64px;
+				background: rgba(253, 251, 247, 0.95);
+				backdrop-filter: blur(12px);
+				border-bottom: 1px solid var(--border);
+				position: sticky;
+				top: 34px;
+				z-index: 100;
+			}
+			.nav-brand {
+				display: flex;
+				flex-direction: column;
+				gap: 2px;
+			}
+			.nav-brand-name {
+				font-family: var(--serif);
+				font-size: 22px;
+				font-weight: 500;
+				letter-spacing: 0.25em;
+				color: var(--charcoal);
+			}
+			.nav-brand-name a {
+				color: inherit;
+				text-decoration: none;
+			}
+			.nav-brand-tagline {
+				font-family: var(--sans);
+				font-size: 9px;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				color: var(--taupe);
+			}
+			.nav-links {
+				display: flex;
+				align-items: center;
+				gap: 36px;
+			}
+			.nav-links a {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 400;
+				color: var(--taupe-dark);
+				text-decoration: none;
+				letter-spacing: 0.02em;
+				transition: color 0.2s;
+			}
+			.nav-links a:hover {
+				color: var(--charcoal);
+			}
+			.nav-links a.active {
+				color: var(--charcoal);
+				border-bottom: 1px solid var(--charcoal);
+				padding-bottom: 2px;
+			}
+			.nav-cta {
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 500;
+				letter-spacing: 0.06em;
+				color: var(--warm-white) !important;
+				background: var(--charcoal);
+				padding: 10px 24px;
+				border-radius: 2px;
+				transition: background 0.2s;
+			}
+			.nav-cta:hover {
+				background: var(--charcoal-soft);
+			}
+
+			/* ========== COMMON ========== */
+			section {
+				border-bottom: 1px solid var(--border);
+			}
+			.section-eyebrow {
+				font-family: var(--sans);
+				font-size: 10px;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				color: var(--taupe);
+			}
+			.section-heading {
+				font-family: var(--serif);
+				font-size: 36px;
+				font-weight: 400;
+				color: var(--charcoal);
+				line-height: 1.2;
+			}
+			.text-link {
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 500;
+				letter-spacing: 0.05em;
+				color: var(--brand-teal);
+				text-decoration: none;
+				border-bottom: 1px solid var(--brand-teal);
+				padding-bottom: 2px;
+				transition: color 0.2s;
+			}
+			.text-link:hover {
+				color: var(--brand-teal-dark);
+			}
+
+			/* ========== HERO ========== */
+			.gallery-hero {
+				text-align: center;
+				padding: 100px 64px 90px;
+				background-color: var(--cream);
+				position: relative;
+				overflow: hidden;
+			}
+			.gallery-hero::before {
+				content: '';
+				position: absolute;
+				top: -300px;
+				right: -200px;
+				width: 600px;
+				height: 600px;
+				border-radius: 50%;
+				background: rgba(138, 130, 120, 0.58);
+			}
+			.gallery-hero::after {
+				content: '';
+				position: absolute;
+				top: 70px;
+				left: -200px;
+				width: 500px;
+				height: 500px;
+				border-radius: 50%;
+				background: rgba(138, 130, 120, 0.58);
+			}
+			.gallery-hero .section-eyebrow {
+				margin-bottom: 16px;
+				position: relative;
+			}
+			.gallery-hero h1 {
+				font-family: var(--serif);
+				font-size: 48px;
+				font-weight: 300;
+				letter-spacing: 0.04em;
+				color: var(--charcoal);
+				margin-bottom: 20px;
+				position: relative;
+			}
+			.gallery-hero p {
+				font-family: var(--sans);
+				font-size: 15px;
+				font-weight: 300;
+				color: var(--muted);
+				line-height: 1.9;
+				max-width: 480px;
+				margin: 0 auto;
+				position: relative;
+			}
+
+			/* ========== FILTER BAR ========== */
+			.filter-bar {
+				padding: 24px 64px;
+				display: flex;
+				justify-content: center;
+				gap: 12px;
+				border-bottom: 1px solid var(--border);
+				background: var(--warm-white);
+				flex-wrap: wrap;
+			}
+			.filter-pill {
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 400;
+				letter-spacing: 0.03em;
+				padding: 8px 20px;
+				border-radius: 24px;
+				color: var(--taupe-dark);
+				border: 1px solid var(--border);
+				cursor: pointer;
+				transition: all 0.2s;
+				background: transparent;
+			}
+			.filter-pill:hover {
+				border-color: var(--taupe);
+				color: var(--charcoal);
+			}
+			.filter-pill.active {
+				background: var(--charcoal);
+				color: var(--warm-white);
+				border-color: var(--charcoal);
+			}
+
+			/* ========== PROJECTS ========== */
+			.projects {
+				padding: 64px 64px 80px;
+			}
+
+			.project {
+				margin-bottom: 80px;
+			}
+			.project:last-child {
+				margin-bottom: 0;
+			}
+
+			.project-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				margin-bottom: 24px;
+				padding-bottom: 16px;
+				border-bottom: 1px solid var(--border);
+			}
+			.project-title {
+				font-family: var(--serif);
+				font-size: 26px;
+				font-weight: 400;
+				color: var(--charcoal);
+			}
+			.project-meta {
+				display: flex;
+				gap: 12px;
+				align-items: center;
+			}
+			.project-tag {
+				font-family: var(--sans);
+				font-size: 10px;
+				font-weight: 500;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				padding: 5px 14px;
+				border: 1px solid var(--border);
+				color: var(--taupe-dark);
+				border-radius: 2px;
+			}
+			.project-location {
+				font-family: var(--sans);
+				font-size: 12px;
+				color: var(--taupe);
+				letter-spacing: 0.02em;
+			}
+
+			/* Before / After pair */
+			.ba-pair {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 3px;
+				margin-bottom: 16px;
+				border-radius: 2px;
+				overflow: hidden;
+			}
+			.ba-cell {
+				height: 400px;
+				background-size: cover;
+				background-position: center;
+				position: relative;
+			}
+			.ba-tag {
+				position: absolute;
+				top: 16px;
+				left: 20px;
+				font-family: var(--sans);
+				font-size: 10px;
+				font-weight: 500;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: var(--charcoal);
+				background: rgba(253, 251, 247, 0.9);
+				padding: 6px 14px;
+				backdrop-filter: blur(4px);
+			}
+
+			/* Detail grid */
+			.detail-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 3px;
+				border-radius: 2px;
+				overflow: hidden;
+				margin-top: 3px;
+				margin-bottom: 16px;
+			}
+			.detail-cell {
+				height: 220px;
+				background-size: cover;
+				background-position: center;
+				position: relative;
+				transition: opacity 0.3s;
+			}
+			.detail-cell:hover {
+				opacity: 0.92;
+			}
+
+			.project-caption {
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 300;
+				color: var(--muted);
+				line-height: 1.7;
+				max-width: 640px;
+				margin-top: 20px;
+			}
+
+			/* ========== CTA ========== */
+			.cta-block {
+				padding: 100px 64px;
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
+			.cta-bg {
+				position: absolute;
+				inset: 0;
+				background-image: url('https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=1800&q=80&auto=format');
+				background-size: cover;
+				background-position: center;
+			}
+			.cta-overlay {
+				position: absolute;
+				inset: 0;
+				background: rgba(245, 240, 232, 0.88);
+				backdrop-filter: blur(2px);
+			}
+			.cta-content {
+				position: relative;
+				z-index: 1;
+			}
+			.cta-block .section-heading {
+				margin-bottom: 12px;
+			}
+			.cta-block-sub {
+				font-family: var(--sans);
+				font-size: 15px;
+				font-weight: 300;
+				color: var(--muted);
+				margin-bottom: 36px;
+			}
+			.cta-btn {
+				display: inline-block;
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 500;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--warm-white);
+				background: var(--charcoal);
+				padding: 18px 48px;
+				text-decoration: none;
+				transition: all 0.3s;
+			}
+			.cta-btn:hover {
+				background: var(--charcoal-soft);
+				transform: translateY(-2px);
+				box-shadow: 0 8px 24px rgba(44, 44, 42, 0.12);
+			}
+
+			/* ========== FOOTER ========== */
+			.footer {
+				padding: 64px 64px 32px;
+				background: var(--charcoal);
+				color: var(--taupe);
+			}
+			.footer-grid {
+				display: grid;
+				grid-template-columns: 2fr 1fr 1fr 1fr;
+				gap: 48px;
+				margin-bottom: 48px;
+			}
+			.footer-brand-name {
+				font-family: var(--serif);
+				font-size: 24px;
+				font-weight: 400;
+				letter-spacing: 0.2em;
+				color: var(--cream);
+				margin-bottom: 12px;
+			}
+			.footer-brand-desc {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 300;
+				line-height: 1.8;
+				color: var(--taupe-dark);
+			}
+			.footer-heading {
+				font-family: var(--sans);
+				font-size: 10px;
+				font-weight: 500;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				color: var(--taupe);
+				margin-bottom: 16px;
+			}
+			.footer-links {
+				list-style: none;
+			}
+			.footer-links li {
+				margin-bottom: 10px;
+			}
+			.footer-links a {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 300;
+				color: var(--taupe-dark);
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+			.footer-links a:hover {
+				color: var(--cream);
+			}
+			.footer-divider {
+				height: 1px;
+				background: rgba(184, 176, 162, 0.15);
+				margin-bottom: 24px;
+			}
+			.footer-bottom {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-family: var(--sans);
+				font-size: 11px;
+				color: var(--taupe-dark);
+				font-weight: 300;
+			}
+			.footer-social {
+				display: flex;
+				gap: 20px;
+			}
+			.footer-social a {
+				color: var(--taupe-dark);
+				text-decoration: none;
+				font-size: 12px;
+				letter-spacing: 0.05em;
+				transition: color 0.2s;
+			}
+			.footer-social a:hover {
+				color: var(--cream);
+			}
+			/* ========== RESPONSIVE ========== */
+			html {
+				-webkit-text-size-adjust: 100%;
+			}
+
+			body {
+				overflow-x: hidden;
+			}
+
+			.nav,
+			.gallery-hero,
+			.filter-bar,
+			.projects,
+			.cta-block,
+			.footer {
+				padding-left: clamp(20px, 5vw, 64px);
+				padding-right: clamp(20px, 5vw, 64px);
+			}
+
+			.section-heading {
+				font-size: clamp(30px, 5vw, 36px);
+			}
+
+			.gallery-hero {
+				padding-top: clamp(72px, 10vw, 100px);
+				padding-bottom: clamp(64px, 9vw, 90px);
+			}
+
+			.gallery-hero h1 {
+				font-size: clamp(38px, 8vw, 48px);
+			}
+
+			.projects {
+				padding-top: clamp(44px, 7vw, 64px);
+				padding-bottom: clamp(56px, 8vw, 80px);
+			}
+
+			.ba-cell {
+				height: clamp(280px, 32vw, 400px);
+			}
+
+			.detail-cell {
+				height: clamp(170px, 20vw, 220px);
+			}
+
+			.cta-block {
+				padding-top: clamp(72px, 9vw, 100px);
+				padding-bottom: clamp(72px, 9vw, 100px);
+			}
+
+			@media (max-width: 960px) {
+				.nav {
+					padding-top: 20px;
+					padding-bottom: 20px;
+				}
+
+				.nav-links {
+					gap: 22px;
+				}
+
+				.footer-grid {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+			}
+
+			@media (max-width: 720px) {
+				.mock-banner {
+					position: static;
+					padding: 9px 16px;
+					line-height: 1.5;
+				}
+
+				.nav {
+					position: sticky;
+					top: 0;
+					align-items: flex-start;
+					flex-direction: column;
+					gap: 18px;
+					padding-top: 18px;
+					padding-bottom: 18px;
+				}
+
+				.nav-brand-name {
+					font-size: 20px;
+					letter-spacing: 0.18em;
+				}
+
+				.nav-links {
+					width: 100%;
+					justify-content: space-between;
+					gap: 10px;
+					flex-wrap: wrap;
+				}
+
+				.nav-links a {
+					padding: 8px 0;
+				}
+
+				.nav-cta {
+					margin-left: auto;
+					padding: 10px 18px !important;
+				}
+
+				.gallery-hero {
+					padding-top: 64px;
+					padding-bottom: 58px;
+				}
+
+				.gallery-hero::before {
+					top: -220px;
+					right: -260px;
+					width: 430px;
+					height: 430px;
+					opacity: 0.55;
+				}
+
+				.gallery-hero::after {
+					top: 190px;
+					left: -270px;
+					width: 420px;
+					height: 420px;
+					opacity: 0.45;
+				}
+
+				.gallery-hero p {
+					font-size: 14px;
+					line-height: 1.75;
+				}
+
+				.filter-bar {
+					justify-content: flex-start;
+					flex-wrap: nowrap;
+					overflow-x: auto;
+					padding-top: 16px;
+					padding-bottom: 16px;
+					-webkit-overflow-scrolling: touch;
+					scrollbar-width: none;
+				}
+
+				.filter-bar::-webkit-scrollbar {
+					display: none;
+				}
+
+				.filter-pill {
+					flex: 0 0 auto;
+				}
+
+				.project {
+					margin-bottom: 56px;
+				}
+
+				.project-header {
+					align-items: flex-start;
+					flex-direction: column;
+					gap: 10px;
+					margin-bottom: 18px;
+				}
+
+				.project-title {
+					font-size: 24px;
+				}
+
+				.project-meta {
+					flex-wrap: wrap;
+					gap: 8px;
+				}
+
+				.ba-pair {
+					grid-template-columns: 1fr;
+					gap: 4px;
+				}
+
+				.ba-cell {
+					height: 300px;
+				}
+
+				.detail-grid {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+					gap: 4px;
+				}
+
+				.project-caption {
+					max-width: none;
+					font-size: 14px;
+					line-height: 1.65;
+				}
+
+				.cta-btn {
+					width: 100%;
+					max-width: 320px;
+					padding-left: 24px;
+					padding-right: 24px;
+				}
+
+				.footer-grid {
+					gap: 36px 28px;
+				}
+
+				.footer-bottom {
+					align-items: flex-start;
+					flex-direction: column;
+					gap: 16px;
+					line-height: 1.6;
+				}
+
+				.footer-social {
+					flex-wrap: wrap;
+				}
+			}
+
+			@media (max-width: 520px) {
+				.mock-banner strong {
+					display: block;
+					margin: 0 0 2px;
+				}
+
+				.nav-brand-name,
+				.footer-brand-name {
+					letter-spacing: 0.14em;
+				}
+
+				.nav-links {
+					display: grid;
+					grid-template-columns: 1fr 1fr;
+					align-items: stretch;
+				}
+
+				.nav-links a {
+					text-align: center;
+				}
+
+				.nav-links .nav-cta {
+					grid-column: 1 / -1;
+					width: 100%;
+					margin-left: 0;
+				}
+
+				.gallery-hero h1 {
+					margin-bottom: 14px;
+				}
+
+				.filter-pill {
+					padding: 8px 16px;
+				}
+
+				.project-title {
+					font-size: 22px;
+				}
+
+				.ba-cell {
+					height: 260px;
+				}
+
+				.ba-tag {
+					top: 12px;
+					left: 12px;
+				}
+
+				.detail-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.detail-cell {
+					height: 220px;
+				}
+
+				.footer-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media (max-width: 380px) {
+				.nav,
+				.gallery-hero,
+				.filter-bar,
+				.projects,
+				.cta-block,
+				.footer {
+					padding-left: 16px;
+					padding-right: 16px;
+				}
+
+				.gallery-hero h1 {
+					font-size: 34px;
+				}
+
+				.ba-cell {
+					height: 230px;
+				}
+
+				.detail-cell {
+					height: 200px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mock-banner">
+			<strong>High-fidelity mockup</strong> Gallery page · Desktop 1440px ·
+			Unsplash imagery (requires internet)
+		</div>
+
+		<!-- NAV -->
+		<div class="nav">
+			<div class="nav-brand">
+				<div class="nav-brand-name">
+					<a href="./curated-home-mockup.html">CURATED</a>
+				</div>
+				<div class="nav-brand-tagline">Professional Organizing</div>
+			</div>
+			<div class="nav-links">
+				<a href="./curated-services-mockup.html">Services</a>
+				<a href="./curated-gallery-mockup.html">Gallery</a>
+				<a href="./curated-book-mockup.html" class="nav-cta">Book now</a>
+			</div>
+		</div>
+
+		<!-- HERO -->
+		<section class="gallery-hero">
+			<p class="section-eyebrow">The transformations</p>
+			<h1>See the difference</h1>
+			<p>
+				Real spaces, real results. Every project starts with chaos and ends with
+				calm.
+			</p>
+		</section>
+
+		<!-- FILTER BAR -->
+		<div class="filter-bar">
+			<span class="filter-pill active">All</span>
+			<span class="filter-pill">Kitchen</span>
+			<span class="filter-pill">Closet</span>
+			<span class="filter-pill">Pantry</span>
+			<span class="filter-pill">Office</span>
+			<span class="filter-pill">Living space</span>
+			<span class="filter-pill">Garage</span>
+		</div>
+
+		<!-- PROJECTS -->
+		<section class="projects">
+			<!-- Project 1: Closet -->
+			<div class="project">
+				<div class="project-header">
+					<div class="project-title">Master closet transformation</div>
+					<div class="project-meta">
+						<span class="project-tag">Closet</span>
+						<span class="project-location">Arlington, VA</span>
+					</div>
+				</div>
+				<div class="ba-pair">
+					<div
+						class="ba-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1742453161018-73e39a241541?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format');
+						"
+					>
+						<span class="ba-tag">Before</span>
+					</div>
+					<div
+						class="ba-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1618236444721-4a8dba415c15?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format');
+						"
+					>
+						<span class="ba-tag">After</span>
+					</div>
+				</div>
+				<div class="detail-grid">
+					<div
+						class="detail-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format');
+						"
+					></div>
+					<div
+						class="detail-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format');
+						"
+					></div>
+					<div
+						class="detail-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format');
+						"
+					></div>
+				</div>
+				<p class="project-caption">
+					Complete wardrobe reorganization with custom shelf dividers,
+					coordinated hangers, and a seasonal rotation system. The client went
+					from dreading their morning routine to looking forward to it.
+				</p>
+			</div>
+
+			<!-- Project 2: Kitchen + Pantry -->
+			<div class="project">
+				<div class="project-header">
+					<div class="project-title">Kitchen + pantry overhaul</div>
+					<div class="project-meta">
+						<span class="project-tag">Kitchen</span>
+						<span class="project-tag">Pantry</span>
+						<span class="project-location">Alexandria, VA</span>
+					</div>
+				</div>
+				<div class="ba-pair">
+					<div
+						class="ba-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80&auto=format');
+						"
+					>
+						<span class="ba-tag">Before</span>
+					</div>
+					<div
+						class="ba-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=900&q=80&auto=format');
+						"
+					>
+						<span class="ba-tag">After</span>
+					</div>
+				</div>
+				<div class="detail-grid">
+					<div
+						class="detail-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format');
+						"
+					></div>
+					<div
+						class="detail-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format');
+						"
+					></div>
+					<div
+						class="detail-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format');
+						"
+					></div>
+				</div>
+
+				<p class="project-caption">
+					A family kitchen transformed with clear storage containers, labeled
+					zones, and a pantry system designed around their weekly meal prep
+					routine. Cooking went from stressful to streamlined.
+				</p>
+			</div>
+
+			<!-- Project 3: Home Office -->
+			<div class="project">
+				<div class="project-header">
+					<div class="project-title">Home office setup</div>
+					<div class="project-meta">
+						<span class="project-tag">Office</span>
+						<span class="project-location">McLean, VA</span>
+					</div>
+				</div>
+				<div class="ba-pair">
+					<div
+						class="ba-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1772157361267-bf6fe2100dd2?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format');
+						"
+					>
+						<span class="ba-tag">Before</span>
+					</div>
+					<div
+						class="ba-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=900&q=80&auto=format');
+						"
+					>
+						<span class="ba-tag">After</span>
+					</div>
+				</div>
+				<div class="detail-grid">
+					<div
+						class="detail-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=600&q=80&auto=format');
+						"
+					></div>
+					<div
+						class="detail-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1591382696684-38c427c7547a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format');
+						"
+					></div>
+					<div
+						class="detail-cell"
+						style="
+							background-image: url('https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80&auto=format');
+						"
+					></div>
+				</div>
+				<p class="project-caption">
+					A spare bedroom converted into a focused workspace with built-in file
+					systems, cable management, and a minimalist desk setup. Remote work,
+					finally organized.
+				</p>
+			</div>
+		</section>
+
+		<!-- CTA -->
+		<section class="cta-block">
+			<div class="cta-bg"></div>
+			<div class="cta-overlay"></div>
+			<div class="cta-content">
+				<h2 class="section-heading">Your space could be next</h2>
+				<p class="cta-block-sub">
+					Schedule your complimentary consultation today
+				</p>
+				<a href="#" class="cta-btn">Book a consultation</a>
+			</div>
+		</section>
+
+		<!-- FOOTER -->
+		<footer class="footer">
+			<div class="footer-grid">
+				<div>
+					<div class="footer-brand-name">CURATED</div>
+					<p class="footer-brand-desc">
+						Professional organizing for the discerning home.<br />
+						Serving the NOVA / DMV area.
+					</p>
+				</div>
+				<div>
+					<div class="footer-heading">Navigate</div>
+					<ul class="footer-links">
+						<li><a href="#">Services</a></li>
+						<li><a href="#">Gallery</a></li>
+						<li><a href="#">Book</a></li>
+					</ul>
+				</div>
+				<div>
+					<div class="footer-heading">Connect</div>
+					<ul class="footer-links">
+						<li><a href="#">Email</a></li>
+						<li><a href="#">Phone</a></li>
+						<li><a href="#">Instagram</a></li>
+					</ul>
+				</div>
+				<div>
+					<div class="footer-heading">Hours</div>
+					<ul class="footer-links">
+						<li><a href="#">Mon – Fri: 9am – 5pm</a></li>
+						<li><a href="#">Sat: By appointment</a></li>
+						<li><a href="#">Sun: Closed</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer-divider"></div>
+			<div class="footer-bottom">
+				<span>© 2026 Curated Organization. All rights reserved.</span>
+				<div class="footer-social">
+					<a href="#">Instagram</a>
+					<a href="#">Facebook</a>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

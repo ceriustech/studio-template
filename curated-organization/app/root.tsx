@@ -8,6 +8,7 @@ import {
 } from 'react-router';
 
 import type { Route } from './+types/root';
+import Navigation from './routes/components/navigation';
 import './app.css';
 
 const META_DATA = [
@@ -53,6 +54,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
+				<Navigation />
 				{children}
 				<ScrollRestoration />
 				<Scripts />

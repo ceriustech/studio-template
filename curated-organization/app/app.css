@@ -125,7 +125,7 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 1rem 2.5rem;
-	background: rgba(253, 251, 247, 0.95);
+	background: var(--warm-white);
 	backdrop-filter: blur(12px);
 	border-bottom: 1px solid var(--border);
 	position: sticky;

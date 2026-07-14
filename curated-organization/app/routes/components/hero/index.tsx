@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
 			<div className="heroOverlay" />
 			<div className="heroContent">
 				<div className="heroStrapline">{strapline}</div>
-				<h1 id="hero-heading" className="heroHeadline">
+				<h1 id="hero-headline" className="heroHeadline">
 					{headline}
 				</h1>
 				<div className="heroDescriptor">{descriptor}</div>
@@ -28,6 +28,7 @@ const Hero: React.FC = () => {
 					{ctaLabel}
 				</Link>
 			</div>
+			<div className="heroScroll"></div>
 		</section>
 	);
 };

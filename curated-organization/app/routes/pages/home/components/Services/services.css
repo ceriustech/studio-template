@@ -1,0 +1,72 @@
+/* Services section styles translated from mockup; camelCased class names */
+.services {
+  padding: 100px 64px;
+  background: var(--warm-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.servicesHeader {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1080px;
+  margin: 0 auto 40px;
+}
+
+.serviceCard {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.serviceCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(44, 44, 42, 0.06);
+}
+
+.serviceCardImg {
+  height: 240px;
+  background-size: cover;
+  background-position: center;
+}
+
+.serviceCardBody {
+  padding: 24px 28px 28px;
+}
+
+.serviceCardTitle {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-bottom: 8px;
+}
+
+.serviceCardDesc {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.servicesFooter {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .services {
+    padding: 64px 32px;
+  }
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 420px;
+  }
+}

@@ -1,0 +1,130 @@
+/**
+ * Intro Component Styles
+ * Home page intro section with brand philosophy
+ */
+
+.intro {
+	padding: 100px 64px;
+	display: flex;
+	justify-content: center;
+	border-bottom: 1px solid var(--border);
+}
+
+.introInner {
+	max-width: 620px;
+	text-align: center;
+}
+
+.sectionEyebrow {
+	font-family: var(--sans);
+	font-size: 10px;
+	font-weight: 400;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--taupe);
+	margin-bottom: 16px;
+}
+
+.sectionHeading {
+	font-family: var(--serif);
+	font-size: 36px;
+	font-weight: 400;
+	letter-spacing: 0.2em;
+	color: var(--charcoal);
+	line-height: 1.2;
+	margin-bottom: 24px;
+}
+
+.introText {
+	font-family: var(--sans);
+	font-size: 15px;
+	font-weight: 300;
+	color: var(--muted);
+	line-height: 1.9;
+	margin-bottom: 32px;
+}
+
+.textLink {
+	font-family: var(--sans);
+	font-size: 12px;
+	font-weight: 500;
+	letter-spacing: 0.05em;
+	color: var(--brand-teal);
+	text-decoration: none;
+	border-bottom: 1px solid var(--brand-teal);
+	padding-bottom: 2px;
+	transition: color 0.2s ease-in-out;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.textLink:hover {
+	color: var(--brand-teal-dark);
+}
+
+.textLink:focus-visible {
+	outline: 2px solid var(--brand-teal);
+	outline-offset: 2px;
+	border-radius: 2px;
+}
+
+/* Responsive: Tablet (768px and below) */
+@media (max-width: 768px) {
+	.intro {
+		padding: 64px 32px;
+	}
+
+	.beforeAfter {
+		padding: 64px 32px;
+	}
+
+	.sectionHeading {
+		font-size: 28px;
+	}
+
+	.baPair {
+		grid-template-columns: 1fr;
+	}
+
+	.baCell {
+		min-height: 240px;
+	}
+}
+
+/* Responsive: Mobile (480px and below) */
+@media (max-width: 480px) {
+	.intro {
+		padding: 48px 20px;
+	}
+
+	.beforeAfter {
+		padding: 48px 20px;
+	}
+
+	.sectionHeading {
+		font-size: 28px;
+	}
+
+	.sectionEyebrow {
+		font-size: 9px;
+	}
+
+	.introText {
+		font-size: 14px;
+	}
+
+	.baCell {
+		min-height: 200px;
+	}
+}
+
+/* Responsive: Extra-small (360px and below) */
+@media (max-width: 360px) {
+	.intro {
+		padding: 40px 16px;
+	}
+
+	.beforeAfter {
+		padding: 40px 16px;
+	}
+}

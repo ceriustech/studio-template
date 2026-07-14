@@ -4,20 +4,22 @@ import './beforeAfter.css';
 
 const beforeAfterItems = [
 	{
+		key: 'before',
 		tag: 'Before' as const,
 		src: 'https://plus.unsplash.com/premium_photo-1683141147002-f3543aa988eb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
 		alt: 'Before view of master closet transformation in Arlington, Virginia',
 	},
 	{
+		key: 'after',
 		tag: 'After' as const,
 		src: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=900&q=80&auto=format',
 		alt: 'After view of master closet transformation with custom storage systems',
 	},
-];
+] as const;
 
-type BeforeAfterTag = (typeof beforeAfterItems)[number]['tag'];
+type BeforeAfterKey = (typeof beforeAfterItems)[number]['key'];
 
-type FallbackState = Record<'before' | 'after', boolean>;
+type FallbackState = Record<BeforeAfterKey, boolean>;
 
 const BeforeAfter: React.FC = () => {
 	const [fallback, setFallback] = useState<FallbackState>({
@@ -25,7 +27,7 @@ const BeforeAfter: React.FC = () => {
 		after: false,
 	});
 
-	const handleImageError = (tag: BeforeAfterTag) => {
+	const handleImageError = (tag: BeforeAfterKey) => {
 		const key = tag.toLowerCase() as 'before' | 'after';
 		setFallback((prev) => ({ ...prev, [key]: true }));
 	};
@@ -39,10 +41,10 @@ const BeforeAfter: React.FC = () => {
 			<div className="baContainer">
 				<div className="baPair">
 					{beforeAfterItems.map((item) => {
-						const key = item.tag.toLowerCase() as Lowercase<BeforeAfterTag>;
+						const key = item.key;
 						return (
 							<div
-								key={item.tag}
+								key={item.key}
 								className={`baCell ${fallback[key] ? 'baCellPlaceholder' : ''}`}
 								style={
 									!fallback[key]
@@ -63,7 +65,7 @@ const BeforeAfter: React.FC = () => {
 										className="srOnly"
 										src={item.src}
 										alt={item.alt}
-										onError={() => handleImageError(item.tag)}
+										onError={() => handleImageError(item.key)}
 									/>
 								)}
 								<span className="baTag">{item.tag}</span>

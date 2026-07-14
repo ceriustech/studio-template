@@ -1,0 +1,88 @@
+.cta {
+	padding: 100px 64px;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.ctaBg {
+	position: absolute;
+	inset: 0;
+	background-size: cover;
+	background-position: center;
+}
+
+.ctaOverlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(245, 240, 232, 0.88);
+	backdrop-filter: blur(2px);
+}
+
+.ctaContent {
+	position: relative;
+	z-index: 1;
+}
+
+.cta .sectionHeading {
+	margin-bottom: 12px;
+}
+
+.ctaSub {
+	font-family: var(--sans);
+	font-size: 15px;
+	font-weight: 300;
+	color: var(--muted);
+	margin-bottom: 36px;
+}
+
+.ctaBtn {
+	display: inline-block;
+	font-family: var(--sans);
+	font-size: 12px;
+	font-weight: 500;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--warm-white);
+	background: var(--charcoal);
+	padding: 18px 48px;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+.ctaBtn:hover {
+	background: var(--charcoal-soft);
+	transform: translateY(-2px);
+	box-shadow: 0 8px 24px rgba(44, 44, 42, 0.12);
+}
+
+.ctaBtn:focus-visible {
+	outline: 2px solid var(--charcoal);
+	outline-offset: 2px;
+}
+
+/* Responsive: Tablet (768px and below) */
+@media (max-width: 768px) {
+	.cta {
+		padding: 64px 32px;
+	}
+}
+
+/* Responsive: Mobile (480px and below) */
+@media (max-width: 480px) {
+	.cta {
+		padding: 48px 20px;
+	}
+
+	.ctaBtn {
+		padding: 14px 32px;
+		font-size: 11px;
+	}
+}
+
+/* Responsive: Extra-small (360px and below) */
+@media (max-width: 360px) {
+	.cta {
+		padding: 40px 16px;
+	}
+}

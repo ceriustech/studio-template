@@ -1,0 +1,133 @@
+.footer {
+	padding: 64px 64px 32px;
+	background: var(--charcoal);
+	color: var(--taupe);
+}
+
+.footerGrid {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr 1fr;
+	gap: 48px;
+	margin-bottom: 48px;
+}
+
+.footerBrandName {
+	font-family: var(--serif);
+	font-size: 24px;
+	font-weight: 400;
+	letter-spacing: 0.2em;
+	color: var(--cream);
+	margin-bottom: 12px;
+}
+
+.footerBrandDesc {
+	font-family: var(--sans);
+	font-size: 13px;
+	font-weight: 300;
+	line-height: 1.8;
+	color: var(--taupe-dark);
+}
+
+.footerHeading {
+	font-family: var(--sans);
+	font-size: 10px;
+	font-weight: 500;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: var(--taupe);
+	margin-bottom: 16px;
+}
+
+.footerLinks {
+	list-style: none;
+}
+
+.footerLinks li {
+	margin-bottom: 10px;
+}
+
+.footerLinks a {
+	font-family: var(--sans);
+	font-size: 13px;
+	font-weight: 300;
+	color: var(--taupe-dark);
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.footerLinks a:hover {
+	color: var(--cream);
+}
+
+.footerLinks a:focus-visible {
+	outline: 2px solid var(--cream);
+	outline-offset: 2px;
+}
+
+.footerDivider {
+	height: 1px;
+	background: rgba(184, 176, 162, 0.15);
+	margin-bottom: 24px;
+}
+
+.footerBottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-family: var(--sans);
+	font-size: 11px;
+	color: var(--taupe-dark);
+	font-weight: 300;
+}
+
+.footerSocial {
+	display: flex;
+	gap: 20px;
+}
+
+.footerSocial a {
+	color: var(--taupe-dark);
+	text-decoration: none;
+	font-size: 12px;
+	letter-spacing: 0.05em;
+	transition: color 0.2s;
+}
+
+.footerSocial a:hover {
+	color: var(--cream);
+}
+
+.footerSocial a:focus-visible {
+	outline: 2px solid var(--cream);
+	outline-offset: 2px;
+}
+
+/* Responsive: Tablet (768px and below) */
+@media (max-width: 768px) {
+	.footerGrid {
+		grid-template-columns: 1fr 1fr;
+		gap: 32px;
+	}
+}
+
+/* Responsive: Mobile (480px and below) */
+@media (max-width: 480px) {
+	.footer {
+		padding: 40px 24px 24px;
+	}
+
+	.footerGrid {
+		grid-template-columns: 1fr;
+		gap: 28px;
+	}
+
+	.footerBrandName {
+		font-size: 20px;
+	}
+
+	.footerBottom {
+		flex-direction: column;
+		gap: 12px;
+		text-align: center;
+	}
+}

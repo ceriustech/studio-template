@@ -7,7 +7,7 @@ const Hero: React.FC = () => {
 	const headline = 'CURATED';
 	const descriptor = 'Professional organizing for the discerning home';
 	const ctaLabel = 'DISCOVER YOUR SPACE';
-	const ctaUrl = '/services';
+	const ctaUrl = '/booking';
 	const backgroundImage =
 		'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=1800&q=80&auto=format';
 

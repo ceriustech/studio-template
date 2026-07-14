@@ -8,7 +8,7 @@ const Intro: React.FC = () => {
 	const body =
 		'We believe an organized home is a form of self-care. Our approach merges refined aesthetics with practical systems — spaces that look beautiful and work effortlessly for the way you actually live.';
 	const linkText = 'Learn more about us →';
-	const linkHref = '/about';
+	const linkHref = '/services';
 
 	return (
 		<section className="intro">

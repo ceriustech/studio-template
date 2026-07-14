@@ -9,6 +9,8 @@ import {
 
 import type { Route } from './+types/root';
 import Navigation from './routes/components/navigation';
+import Footer from './routes/components/Footer';
+import Cta from './routes/components/Cta';
 import './app.css';
 
 const META_DATA = [
@@ -56,6 +58,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			<body>
 				<Navigation />
 				{children}
+				<Cta />
+				<Footer />
 				<ScrollRestoration />
 				<Scripts />
 			</body>

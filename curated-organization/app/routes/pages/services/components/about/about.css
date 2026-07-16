@@ -1,0 +1,89 @@
+.aboutBrief {
+	padding: 100px 64px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 64px;
+	align-items: center;
+	background: var(--warm-white);
+}
+
+.aboutBriefImg {
+	height: 420px;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.aboutBriefImgOverlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		135deg,
+		rgba(245, 240, 232, 0.05) 0%,
+		rgba(44, 44, 42, 0.04) 100%
+	);
+}
+
+.aboutBriefText .sectionEyebrow {
+	font-family: var(--sans);
+	font-size: 10px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--taupe);
+	margin-bottom: 14px;
+}
+
+.aboutBriefText h2 {
+	font-family: var(--serif);
+	font-size: 32px;
+	font-weight: 400;
+	color: var(--charcoal);
+	margin-bottom: 20px;
+	line-height: 1.2;
+}
+
+.aboutBriefText p {
+	font-family: var(--sans);
+	font-size: 14px;
+	font-weight: 300;
+	color: var(--muted);
+	line-height: 1.9;
+	max-width: 440px;
+}
+
+.aboutBriefText .aboutSignature {
+	margin-top: 28px;
+	font-family: var(--serif);
+	font-size: 16px;
+	font-style: italic;
+	color: var(--taupe-dark);
+	letter-spacing: 0.02em;
+}
+
+/* Responsive: Tablet (768px and below) */
+@media (max-width: 768px) {
+	.aboutBrief {
+		grid-template-columns: 1fr;
+		gap: 32px;
+	}
+
+	.aboutBriefImg {
+		height: 300px;
+	}
+
+	.aboutBriefText p {
+		max-width: none;
+	}
+}
+
+/* Responsive: Mobile (480px and below) */
+@media (max-width: 480px) {
+	.aboutBriefImg {
+		height: 260px;
+	}
+
+	.aboutBriefText h2 {
+		font-size: 27px;
+	}
+}

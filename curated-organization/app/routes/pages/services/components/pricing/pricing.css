@@ -1,0 +1,59 @@
+.pricing {
+	padding: 100px 64px;
+	background: var(--warm-white);
+	border-top: 1px solid var(--border);
+}
+
+.pricingHeader {
+	text-align: center;
+	margin-bottom: 16px;
+}
+
+.pricingHeader .sectionEyebrow {
+	font-family: var(--sans);
+	font-size: 10px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--taupe);
+	margin-bottom: 14px;
+}
+
+.pricingHeader h2 {
+	font-family: var(--serif);
+	font-size: 36px;
+	font-weight: 400;
+	color: var(--charcoal);
+	line-height: 1.2;
+	margin-bottom: 16px;
+}
+
+.pricingNote {
+	font-family: var(--sans);
+	font-size: 14px;
+	font-weight: 300;
+	color: var(--muted);
+	line-height: 1.7;
+	max-width: 500px;
+	margin: 0 auto 56px;
+	text-align: center;
+}
+
+.pricingGrid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+	max-width: 1020px;
+	margin: 0 auto;
+}
+
+/* Responsive: Tablet (768px and below) */
+@media (max-width: 768px) {
+	.pricing {
+		padding: 64px 24px;
+	}
+
+	.pricingGrid {
+		grid-template-columns: 1fr;
+		gap: 20px;
+	}
+}

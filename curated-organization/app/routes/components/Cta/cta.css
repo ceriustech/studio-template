@@ -28,6 +28,15 @@
 	margin-bottom: 12px;
 }
 
+.sectionHeading {
+	font-family: var(--serif);
+	font-size: 36px;
+	font-weight: 400;
+	letter-spacing: 0.2em;
+	color: var(--charcoal);
+	line-height: 1.2;
+}
+
 .ctaSub {
 	font-family: var(--sans);
 	font-size: 15px;

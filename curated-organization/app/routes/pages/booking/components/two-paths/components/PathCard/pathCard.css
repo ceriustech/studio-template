@@ -1,0 +1,86 @@
+.pathCard {
+	padding: 64px 60px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+	transition: background 0.3s;
+}
+
+.pathCard:hover {
+	background: var(--cream);
+}
+
+.pathIcon {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	background: var(--cream);
+	border: 1px solid var(--border);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 24px;
+	font-size: 22px;
+	color: var(--taupe-dark);
+	transition: all 0.3s;
+}
+
+.pathCard:hover .pathIcon {
+	background: var(--warm-white);
+	border-color: var(--taupe);
+}
+
+.pathTitle {
+	font-family: var(--serif);
+	font-size: 26px;
+	font-weight: 400;
+	color: var(--charcoal);
+	margin-bottom: 10px;
+}
+
+.pathDesc {
+	font-family: var(--sans);
+	font-size: 13px;
+	font-weight: 300;
+	color: var(--muted);
+	line-height: 1.7;
+	max-width: 320px;
+	margin-bottom: 28px;
+}
+
+.pathBtn {
+	display: inline-block;
+	font-family: var(--sans);
+	font-size: 12px;
+	font-weight: 500;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	padding: 14px 36px;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+.pathBtnPrimary {
+	background: var(--charcoal);
+	color: var(--warm-white);
+	border: 1px solid var(--charcoal);
+}
+
+.pathBtnPrimary:hover {
+	background: var(--charcoal-soft);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(44, 44, 42, 0.1);
+}
+
+.pathBtnSecondary {
+	background: transparent;
+	color: var(--charcoal);
+	border: 1px solid var(--charcoal);
+}
+
+.pathBtnSecondary:hover {
+	background: var(--charcoal);
+	color: var(--warm-white);
+}

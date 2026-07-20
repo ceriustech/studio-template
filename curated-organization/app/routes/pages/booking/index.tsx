@@ -1,5 +1,13 @@
+import Hero from './components/hero';
+import TwoPaths from './components/two-paths';
+
 const Booking = () => {
-	return <div>Booking</div>;
+	return (
+		<main>
+			<Hero />
+			<TwoPaths />
+		</main>
+	);
 };
 
 export default Booking;

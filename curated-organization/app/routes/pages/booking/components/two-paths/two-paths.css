@@ -1,0 +1,26 @@
+.twoPaths {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	border-bottom: 1px solid var(--border);
+}
+
+.twoPaths .pathCard:first-child {
+	border-right: 1px solid var(--border);
+	background: var(--warm-white);
+}
+
+.twoPaths .pathCard:last-child {
+	background: var(--warm-bg);
+}
+
+/* Responsive: Tablet (768px and below) */
+@media (max-width: 768px) {
+	.twoPaths {
+		grid-template-columns: 1fr;
+	}
+
+	.twoPaths .pathCard:first-child {
+		border-right: none;
+		border-bottom: 1px solid var(--border);
+	}
+}

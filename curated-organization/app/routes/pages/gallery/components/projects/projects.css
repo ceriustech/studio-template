@@ -1,0 +1,14 @@
+.projects {
+	padding-top: clamp(44px, 7vw, 64px);
+	padding-bottom: clamp(56px, 8vw, 80px);
+	padding-left: clamp(20px, 5vw, 64px);
+	padding-right: clamp(20px, 5vw, 64px);
+}
+
+/* Responsive: 380px and below */
+@media (max-width: 380px) {
+	.projects {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+}

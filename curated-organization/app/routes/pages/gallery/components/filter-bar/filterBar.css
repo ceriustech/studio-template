@@ -1,0 +1,73 @@
+.filterBar {
+	padding-top: 24px;
+	padding-bottom: 24px;
+	padding-left: clamp(20px, 5vw, 64px);
+	padding-right: clamp(20px, 5vw, 64px);
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+	border-bottom: 1px solid var(--border);
+	background: var(--warm-white);
+	flex-wrap: wrap;
+}
+
+.filterPill {
+	font-family: var(--sans);
+	font-size: 12px;
+	font-weight: 400;
+	letter-spacing: 0.03em;
+	padding: 8px 20px;
+	border-radius: 24px;
+	color: var(--taupe-dark);
+	border: 1px solid var(--border);
+	cursor: pointer;
+	transition: all 0.2s;
+	background: transparent;
+}
+
+.filterPill:hover {
+	border-color: var(--taupe);
+	color: var(--charcoal);
+}
+
+.filterPill.active {
+	background: var(--charcoal);
+	color: var(--warm-white);
+	border-color: var(--charcoal);
+}
+
+/* Responsive: 720px and below */
+@media (max-width: 720px) {
+	.filterBar {
+		justify-content: flex-start;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		padding-top: 16px;
+		padding-bottom: 16px;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+	}
+
+	.filterBar::-webkit-scrollbar {
+		display: none;
+	}
+
+	.filterPill {
+		flex: 0 0 auto;
+	}
+}
+
+/* Responsive: 520px and below */
+@media (max-width: 520px) {
+	.filterPill {
+		padding: 8px 16px;
+	}
+}
+
+/* Responsive: 380px and below */
+@media (max-width: 380px) {
+	.filterBar {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+}

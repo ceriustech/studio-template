@@ -1,0 +1,98 @@
+.detailCarousel {
+	position: relative;
+	margin-top: 3px;
+	margin-bottom: 16px;
+}
+
+.detailGrid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 3px;
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+.detailCell {
+	height: clamp(170px, 20vw, 220px);
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	transition: opacity 0.3s;
+}
+
+.detailCell:hover {
+	opacity: 0.92;
+}
+
+.srOnly {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.detailNav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	border: 1px solid rgba(253, 251, 247, 0.6);
+	background: rgba(44, 44, 42, 0.45);
+	color: var(--warm-white);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: background 0.2s;
+	z-index: 1;
+}
+
+.detailNavPrev {
+	left: 12px;
+}
+
+.detailNavNext {
+	right: 12px;
+}
+
+.detailNav:hover:not(:disabled) {
+	background: rgba(44, 44, 42, 0.65);
+}
+
+.detailNav:disabled {
+	opacity: 0.35;
+	cursor: not-allowed;
+}
+
+/* Responsive: 720px and below */
+@media (max-width: 720px) {
+	.detailGrid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 4px;
+	}
+}
+
+/* Responsive: 520px and below */
+@media (max-width: 520px) {
+	.detailGrid {
+		grid-template-columns: 1fr;
+	}
+
+	.detailCell {
+		height: 220px;
+	}
+}
+
+/* Responsive: 380px and below */
+@media (max-width: 380px) {
+	.detailCell {
+		height: 200px;
+	}
+}

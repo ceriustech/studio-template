@@ -30,7 +30,7 @@
 
 .bookingHero .sectionEyebrow {
 	font-family: var(--sans);
-	font-size: 10px;
+	font-size: 1rem;
 	letter-spacing: 0.2em;
 	text-transform: uppercase;
 	color: var(--taupe);

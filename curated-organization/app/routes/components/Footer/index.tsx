@@ -11,7 +11,8 @@ const Footer: React.FC<FooterProps> = () => {
 				<div>
 					<div className="footerBrandName">CURATED</div>
 					<p className="footerBrandDesc">
-						Professional organizing for the discerning home.
+						Your home curated to your lifestyle - because time is your biggest
+						luxury.
 						<br />
 						Serving the NOVA / DMV area.
 					</p>

@@ -16,7 +16,7 @@ const cards: PathCardProps[] = [
 		icon: '↻',
 		title: 'Book again',
 		description:
-			'Welcome back. Skip the intake and go straight to scheduling your next session.',
+			'Welcome back! Skip the intake and go straight to scheduling your next session.',
 		ctaLabel: 'Schedule now',
 		ctaHref: '#calendly',
 		variant: 'secondary',

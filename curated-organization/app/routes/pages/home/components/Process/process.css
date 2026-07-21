@@ -1,75 +1,75 @@
 /* Process section styles translated from mockup; camelCased class names */
 .process {
-  padding: 100px 64px;
-  background: var(--warm-bg);
+	padding: 100px 64px;
+	background: var(--warm-bg);
 }
 
 .processHeader {
-  text-align: center;
-  margin-bottom: 56px;
+	text-align: center;
+	margin-bottom: 56px;
 }
 
 .processHeader .sectionEyebrow {
-  margin-bottom: 14px;
+	margin-bottom: 14px;
 }
 
 .processGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
-  max-width: 900px;
-  margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 48px;
+	max-width: 900px;
+	margin: 0 auto;
 }
 
 .processStep {
-  text-align: center;
-  position: relative;
+	text-align: center;
+	position: relative;
 }
 
 .processNum {
-  font-family: var(--serif);
-  font-size: 48px;
-  font-weight: 300;
-  color: var(--taupe-light);
-  line-height: 1;
-  margin-bottom: 16px;
+	font-family: var(--serif);
+	font-size: 48px;
+	font-weight: 300;
+	color: var(--taupe-light);
+	line-height: 1;
+	margin-bottom: 16px;
 }
 
 .processTitle {
-  font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--charcoal);
-  margin-bottom: 10px;
+	font-family: var(--serif);
+	font-size: 20px;
+	font-weight: 500;
+	color: var(--charcoal);
+	margin-bottom: 10px;
 }
 
 .processDesc {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.7;
+	font-family: var(--sans);
+	font-size: 13px;
+	font-weight: 300;
+	color: var(--muted);
+	line-height: 1.7;
 }
 
 .processConnector {
-  position: absolute;
-  top: 32px;
-  right: -28px;
-  width: 8px;
-  height: 1px;
-  background: var(--taupe-light);
+	position: absolute;
+	top: 32px;
+	right: -28px;
+	width: 8px;
+	height: 1px;
+	background: var(--taupe-light);
 }
 
 @media (max-width: 768px) {
-  .process {
-    padding: 64px 32px;
-  }
-  .processGrid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    max-width: 420px;
-  }
-  .processConnector {
-    display: none;
-  }
+	.process {
+		padding: 64px 32px;
+	}
+	.processGrid {
+		grid-template-columns: 1fr;
+		gap: 40px;
+		max-width: 420px;
+	}
+	.processConnector {
+		display: none;
+	}
 }

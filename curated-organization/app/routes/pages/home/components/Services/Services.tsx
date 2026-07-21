@@ -34,10 +34,8 @@ const Services: React.FC<ServicesProps> = () => {
 	return (
 		<section className="services">
 			<div className="servicesHeader">
-				<p className="sectionEyebrow">The services</p>
-				<h2 className="sectionHeading">
-					Bespoke solutions, gracefully executed
-				</h2>
+				<p className="sectionEyebrow">Personalized services</p>
+				<h2 className="sectionHeading">Tailored Flow, Elevated Living</h2>
 			</div>
 
 			<div className="servicesGrid">

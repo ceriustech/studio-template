@@ -7,8 +7,19 @@
 	text-align: center;
 	overflow: hidden;
 	inset: 0;
-	background-size: cover;
-	background-position: center;
+
+	.heroSlide {
+		position: absolute;
+		inset: 0;
+		background-size: cover;
+		background-position: center;
+		opacity: 0;
+		transition: opacity 1.5s ease;
+	}
+
+	.heroSlide.heroSlideActive {
+		opacity: 1;
+	}
 
 	.heroOverlay {
 		position: absolute;

@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState, type SubmitEvent } from 'react';
+import { useState, type SubmitEvent } from 'react';
 import './questionnaire.css';
 import type { QuestionnaireProps } from './Questionnaire.types';
 import {
 	parseInquiry,
 	type Inquiry,
-	SPACE_LABELS,
-	TIMEFRAME_LABELS,
 	SERVICE_LABELS,
+	INVESTMENT_LABELS,
+	DECISION_LABELS,
 	REFERRAL_LABELS,
 } from '../../utils';
 
@@ -14,45 +14,6 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 	const [fieldErrors, setFieldErrors] = useState<
 		Partial<Record<keyof Inquiry, string>>
 	>({});
-	const [spaces, setSpaces] = useState<string[]>([]);
-	const [spacesOpen, setSpacesOpen] = useState(false);
-	const spacesRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (!spacesOpen) {
-			return;
-		}
-
-		const handlePointerDown = (event: PointerEvent) => {
-			if (!spacesRef.current?.contains(event.target as Node)) {
-				setSpacesOpen(false);
-			}
-		};
-		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.key === 'Escape') {
-				setSpacesOpen(false);
-			}
-		};
-
-		document.addEventListener('pointerdown', handlePointerDown);
-		document.addEventListener('keydown', handleKeyDown);
-		return () => {
-			document.removeEventListener('pointerdown', handlePointerDown);
-			document.removeEventListener('keydown', handleKeyDown);
-		};
-	}, [spacesOpen]);
-
-	const toggleSpace = (value: string) => {
-		setSpaces((prev) =>
-			prev.includes(value)
-				? prev.filter((v) => v !== value)
-				: [...prev, value],
-		);
-	};
-
-	const spacesSummary = spaces
-		.map((value) => SPACE_LABELS[value as keyof typeof SPACE_LABELS])
-		.join(', ');
 
 	const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -200,95 +161,53 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 				</div>
 
 				<div className="formRow">
-					<label className="formLabel" id="spaces-label">
-						Which spaces need attention?
+					<label className="formLabel" htmlFor="deadline">
+						If you have a project deadline, please specify here:
 					</label>
-					<div className="formMultiSelect" ref={spacesRef}>
-						<button
-							type="button"
-							className="formMultiSelectButton"
-							aria-haspopup="true"
-							aria-expanded={spacesOpen}
-							aria-labelledby="spaces-label"
-							aria-invalid={
-								fieldErrors.spaces && spaces.length === 0 ? true : undefined
-							}
-							aria-describedby={
-								fieldErrors.spaces && spaces.length === 0
-									? 'spaces-error'
-									: undefined
-							}
-							onClick={() => setSpacesOpen((open) => !open)}
-						>
-							{spaces.length > 0 ? (
-								<span className="formMultiSelectButtonValue">
-									{spacesSummary}
-								</span>
-							) : (
-								<span className="formMultiSelectButtonPlaceholder">
-									Select all that apply
-								</span>
-							)}
-							<svg
-								className="formMultiSelectChevron"
-								viewBox="0 0 12 12"
-								fill="none"
-								aria-hidden="true"
-							>
-								<path d="M6 8L1 3h10z" fill="currentColor" />
-							</svg>
-						</button>
-						{/* Always rendered (not just while open) so the checked boxes stay
-						    part of the form submission — hidden visually via the `hidden`
-						    attribute rather than unmounted, which would drop them from
-						    FormData whenever the panel is closed at submit time. */}
-						<div className="formMultiSelectPanel" hidden={!spacesOpen}>
-							{Object.entries(SPACE_LABELS).map(([value, label]) => (
-								<label key={value} className="formMultiSelectOption">
-									<input
-										type="checkbox"
-										name="spaces"
-										value={value}
-										checked={spaces.includes(value)}
-										onChange={() => toggleSpace(value)}
-									/>
-									{label}
-								</label>
-							))}
-						</div>
-					</div>
-					{fieldErrors.spaces && spaces.length === 0 && (
-						<p className="formError" id="spaces-error" aria-live="polite">
-							{fieldErrors.spaces}
-						</p>
-					)}
+					<input
+						id="deadline"
+						name="deadline"
+						type="text"
+						className="formInput"
+						placeholder="e.g., move-in date, event date, or no rush"
+					/>
 				</div>
 
 				<div className="formRow">
-					<label className="formLabel" htmlFor="timeframe">
-						What is your ideal timeframe?
+					<label className="formLabel" htmlFor="investmentTarget">
+						What is your rough investment target for this project?
 					</label>
 					<select
-						id="timeframe"
-						name="timeframe"
+						id="investmentTarget"
+						name="investmentTarget"
 						className="formSelect"
-						aria-invalid={fieldErrors.timeframe ? true : undefined}
-						aria-describedby={
-							fieldErrors.timeframe ? 'timeframe-error' : undefined
-						}
 					>
-						<option value="">Select a timeframe</option>
-						{Object.entries(TIMEFRAME_LABELS).map(([value, label]) => (
+						<option value="">Select a range</option>
+						{Object.entries(INVESTMENT_LABELS).map(([value, label]) => (
 							<option key={value} value={value}>
 								{label}
 							</option>
 						))}
 					</select>
-					{fieldErrors.timeframe && (
-						<p className="formError" id="timeframe-error" aria-live="polite">
-							{fieldErrors.timeframe}
-						</p>
-					)}
+				</div>
+
+				<div className="formRow">
+					<label className="formLabel" htmlFor="decisionMakersReady">
+						Are all key decision-makers on board and available to join the
+						initial consultation?
+					</label>
+					<select
+						id="decisionMakersReady"
+						name="decisionMakersReady"
+						className="formSelect"
+					>
+						<option value="">Select one</option>
+						{Object.entries(DECISION_LABELS).map(([value, label]) => (
+							<option key={value} value={value}>
+								{label}
+							</option>
+						))}
+					</select>
 				</div>
 
 				<div className="formRow">

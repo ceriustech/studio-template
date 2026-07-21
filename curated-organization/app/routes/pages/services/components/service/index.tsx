@@ -39,7 +39,7 @@ const services: Omit<ServiceItemProps, 'reversed'>[] = [
 		eyebrow: '03',
 		heading: 'Business + office',
 		description:
-			'Organized workspaces drive productivity. We design systems for corporate offices and home-based businesses that reflect your brand and keep operations running smoothly.',
+			'Want to reword the description to “Organized workspaces drive productivity. We design systems for home-based businesses that reflect your brand and keep operations running efficiently.',
 		imageUrl:
 			'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=1000&q=80&auto=format',
 		items: [
@@ -85,7 +85,11 @@ const Service = () => {
 	return (
 		<>
 			{services.map((service, index) => (
-				<ServiceItem key={service.heading} {...service} reversed={index % 2 === 1} />
+				<ServiceItem
+					key={service.heading}
+					{...service}
+					reversed={index % 2 === 1}
+				/>
 			))}
 		</>
 	);

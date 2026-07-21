@@ -3,9 +3,9 @@ import { InlineWidget, useCalendlyEventListener } from 'react-calendly';
 import './calendar.css';
 import type { CalendarProps } from './Calendar.types';
 import {
-	SPACE_LABELS,
-	TIMEFRAME_LABELS,
 	SERVICE_LABELS,
+	INVESTMENT_LABELS,
+	DECISION_LABELS,
 	REFERRAL_LABELS,
 } from '../../utils';
 
@@ -54,23 +54,22 @@ const Calendar = ({ inquiry, onScheduled }: CalendarProps) => {
 						name: `${inquiry.firstName} ${inquiry.lastName}`,
 						email: inquiry.email,
 						customAnswers: {
-							a1:
-								SERVICE_LABELS[
-									inquiry.service as keyof typeof SERVICE_LABELS
-								] ?? '',
-							a2: (inquiry.spaces || [])
-								.map((s) => SPACE_LABELS[s as keyof typeof SPACE_LABELS] ?? '')
+							a1: inquiry.service ? SERVICE_LABELS[inquiry.service] : '',
+							a2: inquiry.deadline ?? '',
+							a3: inquiry.investmentTarget
+								? INVESTMENT_LABELS[inquiry.investmentTarget]
+								: '',
+							a4: inquiry.decisionMakersReady
+								? DECISION_LABELS[inquiry.decisionMakersReady]
+								: '',
+							a5: inquiry.referral ? REFERRAL_LABELS[inquiry.referral] : '',
+							a6: [
+								inquiry.phone && `Phone: ${inquiry.phone}`,
+								inquiry.location && `Location: ${inquiry.location}`,
+								inquiry.notes && `Notes: ${inquiry.notes}`,
+							]
 								.filter(Boolean)
-								.join(', '),
-							a3:
-								TIMEFRAME_LABELS[
-									inquiry.timeframe as keyof typeof TIMEFRAME_LABELS
-								] ?? '',
-							a4:
-								REFERRAL_LABELS[
-									inquiry.referral as keyof typeof REFERRAL_LABELS
-								] ?? '',
-							a5: inquiry.notes ?? '',
+								.join('\n'),
 						},
 					}}
 					pageSettings={{

@@ -1,4 +1,6 @@
 import type { Category, PortfolioPiece } from './gallery.types';
+import beforeVideo from '~/assets/vid-1.mp4';
+import afterVideo from '~/assets/vid-2.mp4';
 
 const PIECES_PER_PAGE = 5;
 
@@ -11,10 +13,8 @@ export const CATEGORIES: { value: Category; label: string }[] = [
 	{ value: 'garage', label: 'Garage' },
 ];
 
-const BEFORE_VIDEO =
-	'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
-const AFTER_VIDEO =
-	'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4';
+const BEFORE_VIDEO = beforeVideo;
+const AFTER_VIDEO = afterVideo;
 
 export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 	{

@@ -3,12 +3,9 @@ import './hero.css';
 const Hero = () => {
 	return (
 		<section className="galleryHero">
-			<p className="sectionEyebrow">The transformations</p>
+			<p className="sectionEyebrow">YOUR TRANSFORMATION</p>
 			<h1>See the difference</h1>
-			<p>
-				Real spaces, real results. Every project starts with chaos and ends
-				with calm.
-			</p>
+			<p>Real spaces, Real results. From Dysfunction to Function.</p>
 		</section>
 	);
 };

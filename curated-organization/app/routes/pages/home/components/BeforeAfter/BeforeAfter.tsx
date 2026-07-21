@@ -43,8 +43,10 @@ const BeforeAfter: React.FC = () => {
 					{beforeAfterItems.map((item) => {
 						const key = item.key;
 						return (
-							<div
+							<Link
 								key={item.key}
+								to="/gallery"
+								aria-label={`View full gallery — ${item.tag}`}
 								className={`baCell ${fallback[key] ? 'baCellPlaceholder' : ''}`}
 								style={
 									!fallback[key]
@@ -69,7 +71,7 @@ const BeforeAfter: React.FC = () => {
 									/>
 								)}
 								<span className="baTag">{item.tag}</span>
-							</div>
+							</Link>
 						);
 					})}
 				</div>

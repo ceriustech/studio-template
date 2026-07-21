@@ -30,6 +30,16 @@
   box-shadow: 0 12px 40px rgba(44, 44, 42, 0.06);
 }
 
+.serviceCardImgLink {
+  display: block;
+}
+
+.serviceCardImgLink:focus-visible {
+  outline: 2px solid var(--brand-teal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 .serviceCardImg {
   height: 240px;
   background-size: cover;

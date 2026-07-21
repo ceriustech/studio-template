@@ -20,9 +20,9 @@ const REFERRAL_VALUES = [
 ] as const;
 
 const InquirySchema = z.object({
-	firstName: z.string().trim().min(1, 'Please enter your first name').max(100),
-	lastName: z.string().trim().min(1, 'Please enter your last name').max(100),
-	email: z.string().trim().email('Please enter a valid email'),
+	firstName: z.string().trim().optional().default(''),
+	lastName: z.string().trim().optional().default(''),
+	email: z.string().trim().optional().default(''),
 	phone: z.string().trim().max(30).optional().default(''),
 	location: z.string().trim().max(200).optional().default(''),
 	service: z.enum(SERVICE_VALUES).optional(),
@@ -33,12 +33,21 @@ const InquirySchema = z.object({
 	notes: z
 		.string()
 		.trim()
-		.max(2000, 'Please keep notes under 2000 characters')
+		.transform((s) => s.slice(0, 2000))
 		.optional()
 		.default(''),
 });
 
 export type Inquiry = z.infer<typeof InquirySchema>;
+
+export function formatPhoneNumber(value: string): string {
+	const digits = value.replace(/\D/g, '').slice(0, 10);
+
+	if (digits.length === 0) return '';
+	if (digits.length <= 3) return `(${digits}`;
+	if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+	return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+}
 
 export function parseInquiry(form: FormData) {
 	return InquirySchema.safeParse({

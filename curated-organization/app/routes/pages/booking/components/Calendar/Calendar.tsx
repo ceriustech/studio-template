@@ -42,6 +42,31 @@ class CalendlyErrorBoundary extends Component<
 const Calendar = ({ inquiry, onScheduled }: CalendarProps) => {
 	useCalendlyEventListener({ onEventScheduled: onScheduled });
 
+	const prefill = inquiry
+		? {
+				name: `${inquiry.firstName} ${inquiry.lastName}`.trim(),
+				email: inquiry.email,
+				customAnswers: {
+					a1: inquiry.service ? SERVICE_LABELS[inquiry.service] : '',
+					a2: inquiry.deadline ?? '',
+					a3: inquiry.investmentTarget
+						? INVESTMENT_LABELS[inquiry.investmentTarget]
+						: '',
+					a4: inquiry.decisionMakersReady
+						? DECISION_LABELS[inquiry.decisionMakersReady]
+						: '',
+					a5: inquiry.referral ? REFERRAL_LABELS[inquiry.referral] : '',
+					a6: [
+						inquiry.phone && `Phone: ${inquiry.phone}`,
+						inquiry.location && `Location: ${inquiry.location}`,
+						inquiry.notes && `Notes: ${inquiry.notes}`,
+					]
+						.filter(Boolean)
+						.join('\n'),
+				},
+			}
+		: undefined;
+
 	return (
 		<section className="calendarSection" id="calendly">
 			<p className="sectionEyebrow">Select a time</p>
@@ -50,28 +75,7 @@ const Calendar = ({ inquiry, onScheduled }: CalendarProps) => {
 				<InlineWidget
 					url={CALENDLY_URL}
 					styles={{ minWidth: '320px', height: '700px' }}
-					prefill={{
-						name: `${inquiry.firstName} ${inquiry.lastName}`,
-						email: inquiry.email,
-						customAnswers: {
-							a1: inquiry.service ? SERVICE_LABELS[inquiry.service] : '',
-							a2: inquiry.deadline ?? '',
-							a3: inquiry.investmentTarget
-								? INVESTMENT_LABELS[inquiry.investmentTarget]
-								: '',
-							a4: inquiry.decisionMakersReady
-								? DECISION_LABELS[inquiry.decisionMakersReady]
-								: '',
-							a5: inquiry.referral ? REFERRAL_LABELS[inquiry.referral] : '',
-							a6: [
-								inquiry.phone && `Phone: ${inquiry.phone}`,
-								inquiry.location && `Location: ${inquiry.location}`,
-								inquiry.notes && `Notes: ${inquiry.notes}`,
-							]
-								.filter(Boolean)
-								.join('\n'),
-						},
-					}}
+					prefill={prefill}
 					pageSettings={{
 						backgroundColor: 'fdfbf7',
 						primaryColor: '2c2c2a',

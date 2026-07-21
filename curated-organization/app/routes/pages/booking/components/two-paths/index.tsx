@@ -1,6 +1,7 @@
 import './two-paths.css';
 import PathCard from './components/PathCard/PathCard';
 import type { PathCardProps } from './components/PathCard/PathCard.types';
+import type { TwoPathsProps } from './TwoPaths.types';
 
 const cards: PathCardProps[] = [
 	{
@@ -23,11 +24,15 @@ const cards: PathCardProps[] = [
 	},
 ];
 
-const TwoPaths = () => {
+const TwoPaths = ({ onBookAgain }: TwoPathsProps) => {
 	return (
 		<div className="twoPaths">
 			{cards.map((card) => (
-				<PathCard key={card.title} {...card} />
+				<PathCard
+					key={card.title}
+					{...card}
+					onClick={card.title === 'Book again' ? onBookAgain : undefined}
+				/>
 			))}
 		</div>
 	);

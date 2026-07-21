@@ -1,6 +1,6 @@
 import type { Inquiry } from '../../utils';
 
 export interface CalendarProps {
-	inquiry: Inquiry;
+	inquiry: Inquiry | null;
 	onScheduled: () => void;
 }

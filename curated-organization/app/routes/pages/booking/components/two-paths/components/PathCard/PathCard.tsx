@@ -8,6 +8,7 @@ const PathCard = ({
 	ctaLabel,
 	ctaHref,
 	variant,
+	onClick,
 }: PathCardProps) => {
 	return (
 		<div className="pathCard">
@@ -20,6 +21,14 @@ const PathCard = ({
 					variant === 'primary'
 						? 'pathBtn pathBtnPrimary'
 						: 'pathBtn pathBtnSecondary'
+				}
+				onClick={
+					onClick
+						? (event) => {
+								event.preventDefault();
+								onClick();
+							}
+						: undefined
 				}
 			>
 				{ctaLabel}

@@ -3,7 +3,7 @@ import './questionnaire.css';
 import type { QuestionnaireProps } from './Questionnaire.types';
 import {
 	parseInquiry,
-	type Inquiry,
+	formatPhoneNumber,
 	SERVICE_LABELS,
 	INVESTMENT_LABELS,
 	DECISION_LABELS,
@@ -11,9 +11,7 @@ import {
 } from '../../utils';
 
 const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
-	const [fieldErrors, setFieldErrors] = useState<
-		Partial<Record<keyof Inquiry, string>>
-	>({});
+	const [phone, setPhone] = useState('');
 
 	const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -21,19 +19,8 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 		const formData = new FormData(event.currentTarget);
 		const parsed = parseInquiry(formData);
 
-		if (!parsed.success) {
-			const errors: Partial<Record<keyof Inquiry, string>> = {};
-			for (const issue of parsed.error.issues) {
-				const key = issue.path[0] as keyof Inquiry;
-				if (!errors[key]) {
-					errors[key] = issue.message;
-				}
-			}
-			setFieldErrors(errors);
-			return;
-		}
+		if (!parsed.success) return;
 
-		setFieldErrors({});
 		onSubmit(parsed.data);
 	};
 
@@ -61,17 +48,8 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 							name="firstName"
 							type="text"
 							className="formInput"
-							placeholder="Jane"
-							aria-invalid={fieldErrors.firstName ? true : undefined}
-							aria-describedby={
-								fieldErrors.firstName ? 'firstName-error' : undefined
-							}
+							placeholder="First name"
 						/>
-						{fieldErrors.firstName && (
-							<p className="formError" id="firstName-error" aria-live="polite">
-								{fieldErrors.firstName}
-							</p>
-						)}
 					</div>
 					<div>
 						<label className="formLabel" htmlFor="lastName">
@@ -82,17 +60,8 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 							name="lastName"
 							type="text"
 							className="formInput"
-							placeholder="Smith"
-							aria-invalid={fieldErrors.lastName ? true : undefined}
-							aria-describedby={
-								fieldErrors.lastName ? 'lastName-error' : undefined
-							}
+							placeholder="Last name"
 						/>
-						{fieldErrors.lastName && (
-							<p className="formError" id="lastName-error" aria-live="polite">
-								{fieldErrors.lastName}
-							</p>
-						)}
 					</div>
 				</div>
 
@@ -106,15 +75,8 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 							name="email"
 							type="email"
 							className="formInput"
-							placeholder="jane@example.com"
-							aria-invalid={fieldErrors.email ? true : undefined}
-							aria-describedby={fieldErrors.email ? 'email-error' : undefined}
+							placeholder="youremail@example.com"
 						/>
-						{fieldErrors.email && (
-							<p className="formError" id="email-error" aria-live="polite">
-								{fieldErrors.email}
-							</p>
-						)}
 					</div>
 					<div>
 						<label className="formLabel" htmlFor="phone">
@@ -126,6 +88,10 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 							type="tel"
 							className="formInput"
 							placeholder="(555) 123-4567"
+							value={phone}
+							onChange={(event) =>
+								setPhone(formatPhoneNumber(event.target.value))
+							}
 						/>
 					</div>
 				</div>
@@ -233,14 +199,7 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 						name="notes"
 						className="formTextarea"
 						placeholder="Tell us about your goals, challenges, or any specific needs..."
-						aria-invalid={fieldErrors.notes ? true : undefined}
-						aria-describedby={fieldErrors.notes ? 'notes-error' : undefined}
 					/>
-					{fieldErrors.notes && (
-						<p className="formError" id="notes-error" aria-live="polite">
-							{fieldErrors.notes}
-						</p>
-					)}
 				</div>
 
 				<div className="formDivider" />

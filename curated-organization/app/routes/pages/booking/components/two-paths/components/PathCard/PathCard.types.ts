@@ -5,4 +5,5 @@ export interface PathCardProps {
 	ctaLabel: string;
 	ctaHref: string;
 	variant: 'primary' | 'secondary';
+	onClick?: () => void;
 }

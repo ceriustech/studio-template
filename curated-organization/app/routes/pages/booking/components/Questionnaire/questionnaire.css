@@ -164,14 +164,6 @@
 	margin-top: 14px;
 }
 
-.formError {
-	font-family: var(--sans);
-	font-size: 12px;
-	font-weight: 400;
-	color: #b3261e;
-	margin-top: 6px;
-}
-
 /* Responsive: clamp padding, matching mockup RESPONSIVE block */
 @media (max-width: 960px) {
 	.questionnaire {

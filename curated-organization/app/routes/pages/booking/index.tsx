@@ -7,12 +7,13 @@ import type { Inquiry } from './utils';
 
 const Booking = () => {
 	const [inquiry, setInquiry] = useState<Inquiry | null>(null);
+	const [showCalendar, setShowCalendar] = useState(false);
 
 	return (
 		<main>
 			<Hero />
-			<TwoPaths />
-			{inquiry ? (
+			<TwoPaths onBookAgain={() => setShowCalendar(true)} />
+			{inquiry || showCalendar ? (
 				<Calendar inquiry={inquiry} onScheduled={() => {}} />
 			) : (
 				<Questionnaire onSubmit={setInquiry} />

@@ -28,6 +28,19 @@
 	color: var(--taupe-dark);
 }
 
+.footerLogos {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	margin-top: 10px;
+}
+
+.footerLogos img {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
 .footerHeading {
 	font-family: var(--sans);
 	font-size: 10px;

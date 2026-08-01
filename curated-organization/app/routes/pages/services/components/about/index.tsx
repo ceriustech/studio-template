@@ -1,5 +1,7 @@
 import React from 'react';
 import './about.css';
+import napoCircularLogo from '~/assets/napo-circular-logo.png';
+import napoTitleLogo from '~/assets/napo-title-logo.png';
 
 const About = () => {
 	return (
@@ -20,11 +22,25 @@ const About = () => {
 					Curated is a professional organizing studio serving the NOVA and DMV
 					area. We transform cluttered, overwhelming spaces into functional
 					sanctuaries — homes and offices that look beautiful and work
-					effortlessly for the way you actually live. Every project starts
-					with listening, and every system we build is designed to last long
-					after we leave.
+					effortlessly for the way you actually live. Every project starts with
+					listening, and every system we build is designed to last long after we
+					leave.
 				</p>
 				<div className="aboutSignature">— The Curated Team</div>
+				<div className="aboutLogos">
+					<img
+						src={napoCircularLogo}
+						alt="The Board of Certification for Professional Organizers"
+						width={36}
+						height={36}
+					/>
+					<img
+						src={napoTitleLogo}
+						alt="NAPO — National Association of Productivity and Organizing Professionals member"
+						width={72}
+						height={36}
+					/>
+				</div>
 			</div>
 		</section>
 	);

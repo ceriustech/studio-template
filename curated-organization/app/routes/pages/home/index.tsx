@@ -12,8 +12,8 @@ const Home: React.FC = () => {
 			<Hero />
 			<Intro />
 			<Services />
-			<BeforeAfter />
 			<Process />
+			<BeforeAfter />
 			<Testimonial />
 		</main>
 	);

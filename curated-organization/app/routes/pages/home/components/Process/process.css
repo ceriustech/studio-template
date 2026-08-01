@@ -1,7 +1,6 @@
 /* Process section styles translated from mockup; camelCased class names */
 .process {
 	padding: 100px 64px;
-	background: var(--warm-bg);
 }
 
 .processHeader {

@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import './footer.css';
 import type { FooterProps } from './Footer.types';
 import { PAGE_ROUTES_DATA } from '../../constants';
+import napoCircularLogo from '~/assets/napo-circular-logo.png';
+import napoTitleLogo from '~/assets/napo-title-logo.png';
 
 const Footer: React.FC<FooterProps> = () => {
 	return (
@@ -16,6 +18,20 @@ const Footer: React.FC<FooterProps> = () => {
 						<br />
 						Serving the NOVA / DMV area.
 					</p>
+					<div className="footerLogos">
+						<img
+							src={napoCircularLogo}
+							alt="The Board of Certification for Professional Organizers"
+							width={32}
+							height={32}
+						/>
+						<img
+							src={napoTitleLogo}
+							alt="NAPO — National Association of Productivity and Organizing Professionals member"
+							width={64}
+							height={32}
+						/>
+					</div>
 				</div>
 				<div>
 					<h3 className="footerHeading">Navigate</h3>

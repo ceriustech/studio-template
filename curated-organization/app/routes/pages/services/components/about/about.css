@@ -61,6 +61,19 @@
 	letter-spacing: 0.02em;
 }
 
+.aboutLogos {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	margin-top: 20px;
+}
+
+.aboutLogos img {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
 /* Responsive: Tablet (768px and below) */
 @media (max-width: 768px) {
 	.aboutBrief {

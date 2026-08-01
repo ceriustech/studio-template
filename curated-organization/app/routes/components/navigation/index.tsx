@@ -55,17 +55,13 @@ const Navigation: React.FC<NavigationProps> = ({ items = NAVBAR_DATA }) => {
 
 	return (
 		<header className="nav" role="navigation" aria-label="Primary">
-			<div className="navBrand">
+			<Link to="/" className="navBrand" aria-label="Curated Professional Organizing">
 				<img className="navBrandLogo" src={curatedLogo} alt="" width={40} height={40} />
 				<div className="navBrandText">
-					<div className="navBrandName">
-						<Link to="/" aria-label="Curated Professional Organizing">
-							CURATED
-						</Link>
-					</div>
+					<div className="navBrandName">CURATED</div>
 					<div className="navBrandTagline">Professional Organizing</div>
 				</div>
-			</div>
+			</Link>
 
 			<button
 				ref={toggleRef}

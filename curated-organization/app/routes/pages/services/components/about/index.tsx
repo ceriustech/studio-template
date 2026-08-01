@@ -28,18 +28,24 @@ const About = () => {
 				</p>
 				<div className="aboutSignature">— The Curated Team</div>
 				<div className="aboutLogos">
-					<img
-						src={napoCircularLogo}
-						alt="The Board of Certification for Professional Organizers"
-						width={36}
-						height={36}
-					/>
-					<img
-						src={napoTitleLogo}
-						alt="NAPO — National Association of Productivity and Organizing Professionals member"
-						width={72}
-						height={36}
-					/>
+					<div className="aboutLogoItem">
+						<p className="aboutLogoLabel">CPO Certified</p>
+						<img
+							src={napoCircularLogo}
+							alt="The Board of Certification for Professional Organizers"
+							width={50}
+							height={50}
+						/>
+					</div>
+					<div className="aboutLogoItem">
+						<p className="aboutLogoLabel">NAPO Member</p>
+						<img
+							src={napoTitleLogo}
+							alt="NAPO — National Association of Productivity and Organizing Professionals member"
+							width={85}
+							height={50}
+						/>
+					</div>
 				</div>
 			</div>
 		</section>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import { NAVBAR_DATA, QUERIES } from '../../../constants';
+import curatedLogo from '~/assets/curated-logo.png';
 import type { NavigationProps } from './navigation.types';
 
 const MOBILE_MENU_ID = 'mobile-nav-menu';
@@ -55,12 +56,15 @@ const Navigation: React.FC<NavigationProps> = ({ items = NAVBAR_DATA }) => {
 	return (
 		<header className="nav" role="navigation" aria-label="Primary">
 			<div className="navBrand">
-				<div className="navBrandName">
-					<Link to="/" aria-label="Curated Professional Organizing">
-						CURATED
-					</Link>
+				<img className="navBrandLogo" src={curatedLogo} alt="" width={40} height={40} />
+				<div className="navBrandText">
+					<div className="navBrandName">
+						<Link to="/" aria-label="Curated Professional Organizing">
+							CURATED
+						</Link>
+					</div>
+					<div className="navBrandTagline">Professional Organizing</div>
 				</div>
-				<div className="navBrandTagline">Professional Organizing</div>
 			</div>
 
 			<button

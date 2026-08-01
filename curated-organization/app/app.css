@@ -135,6 +135,19 @@
 
 .navBrand {
 	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.navBrandLogo {
+	display: block;
+	width: 40px;
+	height: 40px;
+	flex-shrink: 0;
+}
+
+.navBrandText {
+	display: flex;
 	flex-direction: column;
 	gap: 0.125rem;
 }

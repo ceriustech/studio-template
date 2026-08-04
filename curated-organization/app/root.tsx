@@ -5,12 +5,15 @@ import {
 	Outlet,
 	Scripts,
 	ScrollRestoration,
+	useLocation,
 } from 'react-router';
 
 import type { Route } from './+types/root';
 import Navigation from './routes/components/navigation';
 import Footer from './routes/components/Footer';
 import Cta from './routes/components/Cta';
+import WhatToExpect from './routes/components/WhatToExpect';
+import { PAGE_ROUTES_DATA } from './routes/constants';
 import './app.css';
 
 const META_DATA = [
@@ -47,6 +50,9 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+	const location = useLocation();
+	const isBookingRoute = location.pathname === PAGE_ROUTES_DATA.BOOKING.path;
+
 	return (
 		<html lang="en">
 			<head>
@@ -58,7 +64,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			<body>
 				<Navigation />
 				{children}
-				<Cta />
+				{isBookingRoute ? <WhatToExpect /> : <Cta />}
 				<Footer />
 				<ScrollRestoration />
 				<Scripts />

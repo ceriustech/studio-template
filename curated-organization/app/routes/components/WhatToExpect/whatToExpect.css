@@ -1,0 +1,80 @@
+/* What to Expect section styles translated from mockup; camelCased class names */
+.whatToExpect {
+	padding: 100px 64px;
+	background: var(--warm-bg);
+}
+
+.whatToExpectHeader {
+	text-align: center;
+	margin-bottom: 56px;
+}
+
+.whatToExpectHeader .sectionEyebrow {
+	font-family: var(--sans);
+	font-size: 10px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--taupe);
+	margin-bottom: 14px;
+}
+
+.whatToExpectGrid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 48px;
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.whatToExpectStep {
+	text-align: center;
+	position: relative;
+}
+
+.whatToExpectNum {
+	font-family: var(--serif);
+	font-size: 48px;
+	font-weight: 300;
+	color: var(--taupe-light);
+	line-height: 1;
+	margin-bottom: 16px;
+}
+
+.whatToExpectTitle {
+	font-family: var(--serif);
+	font-size: 20px;
+	font-weight: 500;
+	color: var(--charcoal);
+	margin-bottom: 10px;
+}
+
+.whatToExpectDesc {
+	font-family: var(--sans);
+	font-size: 13px;
+	font-weight: 300;
+	color: var(--muted);
+	line-height: 1.7;
+}
+
+.whatToExpectConnector {
+	position: absolute;
+	top: 32px;
+	right: -28px;
+	width: 8px;
+	height: 1px;
+	background: var(--taupe-light);
+}
+
+@media (max-width: 768px) {
+	.whatToExpect {
+		padding: 64px 32px;
+	}
+	.whatToExpectGrid {
+		grid-template-columns: 1fr;
+		gap: 40px;
+		max-width: 420px;
+	}
+	.whatToExpectConnector {
+		display: none;
+	}
+}

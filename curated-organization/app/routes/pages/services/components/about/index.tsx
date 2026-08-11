@@ -5,12 +5,14 @@ import napoTitleLogo from '~/assets/napo-title-logo.png';
 import ceoImage from '~/assets/ceo_img_2.png';
 
 const About = () => {
-	let imgUrl =
-		'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=1000&q=80&auto=format';
 
 	return (
 		<section className="aboutBrief">
 			<div className="aboutBriefImg">
+				<div className="aboutBriefHeaderMobile">
+					<p className="sectionEyebrow">About Curated</p>
+					<h2 className="aboutBriefTitle">Where order meets elegance</h2>
+				</div>
 				<img
 					src={ceoImage}
 					alt="Rina, Founder and Lead Curator"
@@ -20,8 +22,10 @@ const About = () => {
 				{/* <div className="aboutBriefImgOverlay" /> */}
 			</div>
 			<div className="aboutBriefText">
-				<p className="sectionEyebrow">About Curated</p>
-				<h2>Where order meets elegance</h2>
+				<div className="aboutBriefHeaderDesktop">
+					<p className="sectionEyebrow">About Curated</p>
+					<h2 className="aboutBriefTitle">Where order meets elegance</h2>
+				</div>
 				<p>
 					Based in the DMV, Curated offers dedicated, highly personalized
 					professional organizing. Grounded in 15 years of ER nursing precision

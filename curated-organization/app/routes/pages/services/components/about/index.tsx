@@ -2,39 +2,45 @@ import React from 'react';
 import './about.css';
 import napoCircularLogo from '~/assets/napo-circular-logo.png';
 import napoTitleLogo from '~/assets/napo-title-logo.png';
+import ceoImage from '~/assets/ceo_img.png';
 
 const About = () => {
+	let imgUrl =
+		'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=1000&q=80&auto=format';
+
 	return (
 		<section className="aboutBrief">
-			<div
-				className="aboutBriefImg"
-				style={{
-					backgroundImage:
-						"url('https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=1000&q=80&auto=format')",
-				}}
-			>
-				<div className="aboutBriefImgOverlay" />
+			<div className="aboutBriefImg">
+				<img
+					src={ceoImage}
+					alt="Rina, Founder and Lead Curator"
+					className="aboutBriefPhoto"
+					fetchPriority="high"
+				/>
+				{/* <div className="aboutBriefImgOverlay" /> */}
 			</div>
 			<div className="aboutBriefText">
 				<p className="sectionEyebrow">About Curated</p>
 				<h2>Where order meets elegance</h2>
 				<p>
-					Curated is a professional organizing studio serving the NOVA and DMV
-					area. We transform cluttered, overwhelming spaces into functional
-					sanctuaries — homes and offices that look beautiful and work
-					effortlessly for the way you actually live. Every project starts with
-					listening, and every system we build is designed to last long after we
-					leave.
+					Based in the DMV, Curated offers dedicated, highly personalized
+					professional organizing. Grounded in 15 years of ER nursing precision
+					and a degree in psychology, we view clutter as neurological friction
+					that drains your daily energy. Whether you prefer a seamless,
+					hands-off transformation or direct collaboration, we turn chaotic home
+					and office environments into tailored, relapse-proof
+					sanctuaries—delivering the ultimate feeling of relief and clarity that
+					comes with true Consolidation Therapy.
 				</p>
-				<div className="aboutSignature">— The Curated Team</div>
+				<div className="aboutSignature">— Rina, Founder and Lead Curator</div>
 				<div className="aboutLogos">
 					<div className="aboutLogoItem">
 						<p className="aboutLogoLabel">CPO Certified</p>
 						<img
 							src={napoCircularLogo}
 							alt="The Board of Certification for Professional Organizers"
-							width={50}
-							height={50}
+							width={40}
+							height={40}
 						/>
 					</div>
 					<div className="aboutLogoItem">
@@ -42,7 +48,7 @@ const About = () => {
 						<img
 							src={napoTitleLogo}
 							alt="NAPO — National Association of Productivity and Organizing Professionals member"
-							width={85}
+							width={80}
 							height={50}
 						/>
 					</div>

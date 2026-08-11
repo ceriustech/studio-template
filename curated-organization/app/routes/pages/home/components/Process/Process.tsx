@@ -25,7 +25,7 @@ const processSteps: ProcessStep[] = [
 		number: '04',
 		title: 'Ongoing Support',
 		description:
-			'options for regular check-ins and scheduled maintenance/ maintenance packages',
+			'Options for regular check-ins and scheduled maintenance/ maintenance packages',
 	},
 ];
 

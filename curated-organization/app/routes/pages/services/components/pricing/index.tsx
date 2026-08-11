@@ -5,11 +5,11 @@ import type { PricingCardProps } from './components/PricingCard/PricingCard.type
 
 const cards: PricingCardProps[] = [
 	{
-		eyebrow: 'Associate',
-		title: 'Associate Organizer',
-		price: '$75 / hour per additional organizer',
+		eyebrow: 'COACHING',
+		title: 'Executive Functioning Coaching',
+		price: '$150 / hour ($75 per 30-min session)',
 		description:
-			'Specialist that focuses on independent space execution, high efficiency system implementation, inventory cataloging, labeling, and collaborative team organizing.',
+			'Virtual 1-on-1 coaching designed to help you build routines, manage clutter, and follow through on everyday tasks. Includes a free 15-minute phone consultation to discuss your goals and choose the right session length for your needs.',
 		ctaLabel: 'Book consultation',
 	},
 	{
@@ -25,9 +25,10 @@ const cards: PricingCardProps[] = [
 		eyebrow: 'Fine print',
 		title: 'Fees',
 		features: [
-			'Donation fee — $30 per trip',
-			'Products billed separately from organizing time',
-			'*Travel fees may apply',
+			'Donation Removal: $30 per trip for small donation drop-offs.',
+			'Donation Pick-Up: We can assist with scheduling third-party pickup services (fees discussed ahead of time).',
+			'Travel Fees: Live outside the DMV? Curated travels! Travel fees may apply.',
+			'Products: Billed separately from organizing time.',
 		],
 	},
 ];

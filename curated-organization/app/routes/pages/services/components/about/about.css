@@ -8,11 +8,17 @@
 }
 
 .aboutBriefImg {
-	height: 420px;
-	background-size: cover;
-	background-position: center;
 	position: relative;
 	overflow: hidden;
+	height: 450px;
+}
+
+.aboutBriefPhoto {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	object-position: center 5%;
 }
 
 .aboutBriefImgOverlay {

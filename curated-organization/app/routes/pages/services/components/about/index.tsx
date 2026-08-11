@@ -2,7 +2,7 @@ import React from 'react';
 import './about.css';
 import napoCircularLogo from '~/assets/napo-circular-logo.png';
 import napoTitleLogo from '~/assets/napo-title-logo.png';
-import ceoImage from '~/assets/ceo_img.png';
+import ceoImage from '~/assets/ceo_img_2.png';
 
 const About = () => {
 	let imgUrl =

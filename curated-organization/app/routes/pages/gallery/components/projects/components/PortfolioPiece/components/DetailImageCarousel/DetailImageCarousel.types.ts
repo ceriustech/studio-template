@@ -1,5 +1,6 @@
-import type { DetailImage } from '../../../../../../gallery.types';
+import type { ImageMedia } from '../../../../../../gallery.types';
 
 export type DetailImageCarouselProps = {
-	images: DetailImage[];
+	images: ImageMedia[];
+	onOpenImage: (index: number) => void;
 };

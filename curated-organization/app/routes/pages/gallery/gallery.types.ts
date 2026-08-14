@@ -6,15 +6,23 @@ export type Category =
 	| 'living-space'
 	| 'garage';
 
-export type MediaSource = {
+export type VideoTag = 'before' | 'after';
+
+export type VideoMedia = {
 	src: string;
 	poster: string;
+	posterOffset: number;
+	tag: VideoTag;
+	duration: number;
+	captionsSrc?: string;
 	alt: string;
 };
 
-export type DetailImage = {
+export type ImageMedia = {
 	src: string;
 	alt: string;
+	caption: string;
+	fullSrc?: string;
 };
 
 export type PortfolioPiece = {
@@ -23,7 +31,6 @@ export type PortfolioPiece = {
 	category: Category;
 	location: string;
 	description: string;
-	beforeMedia: MediaSource;
-	afterMedia: MediaSource;
-	detailImages: DetailImage[];
+	videos: readonly [] | readonly [VideoMedia] | readonly [VideoMedia, VideoMedia];
+	images: ImageMedia[];
 };

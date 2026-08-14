@@ -5,7 +5,7 @@ import './detailImageCarousel.css';
 
 const WINDOW_SIZE = 3;
 
-const DetailImageCarousel = ({ images }: DetailImageCarouselProps) => {
+const DetailImageCarousel = ({ images, onOpenImage }: DetailImageCarouselProps) => {
 	const [startIndex, setStartIndex] = useState(0);
 	const total = images.length;
 
@@ -29,15 +29,25 @@ const DetailImageCarousel = ({ images }: DetailImageCarouselProps) => {
 				</button>
 			)}
 			<div className="detailGrid">
-				{visibleImages.map((image) => (
-					<div
-						key={image.src}
-						className="detailCell"
-						style={{ backgroundImage: `url('${image.src}')` }}
-					>
-						<img className="srOnly" src={image.src} alt={image.alt} />
-					</div>
-				))}
+				{visibleImages.map((image, relativeIndex) => {
+					const absoluteIndex = startIndex + relativeIndex;
+					return (
+						<button
+							type="button"
+							key={`${image.src}-${absoluteIndex}`}
+							className="detailCell"
+							aria-label={`Open photo — ${image.alt}`}
+							onClick={() => onOpenImage(absoluteIndex)}
+						>
+							<img
+								className="detailImage"
+								src={image.src}
+								alt={image.alt}
+								loading="lazy"
+							/>
+						</button>
+					);
+				})}
 			</div>
 			{canScroll && (
 				<button

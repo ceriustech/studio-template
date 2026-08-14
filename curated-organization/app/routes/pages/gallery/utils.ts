@@ -1,6 +1,4 @@
-import type { Category, PortfolioPiece } from './gallery.types';
-import beforeVideo from '~/assets/vid-1.mp4';
-import afterVideo from '~/assets/vid-2.mp4';
+import type { Category, PortfolioPiece, VideoMedia } from './gallery.types';
 
 const PIECES_PER_PAGE = 5;
 
@@ -13,8 +11,30 @@ export const CATEGORIES: { value: Category; label: string }[] = [
 	{ value: 'garage', label: 'Garage' },
 ];
 
-const BEFORE_VIDEO = beforeVideo;
-const AFTER_VIDEO = afterVideo;
+const BEFORE_VIDEO_SRC = '/gallery/videos/before.mp4';
+const AFTER_VIDEO_SRC = '/gallery/videos/after.mp4';
+const BEFORE_VIDEO_DURATION = 9;
+const AFTER_VIDEO_DURATION = 11;
+
+const photo = (id: string) => `/gallery/photos/${id}.jpg`;
+
+const beforeVideo = (poster: string, alt: string): VideoMedia => ({
+	src: BEFORE_VIDEO_SRC,
+	poster,
+	posterOffset: 0,
+	tag: 'before',
+	duration: BEFORE_VIDEO_DURATION,
+	alt,
+});
+
+const afterVideo = (poster: string, alt: string): VideoMedia => ({
+	src: AFTER_VIDEO_SRC,
+	poster,
+	posterOffset: 0,
+	tag: 'after',
+	duration: AFTER_VIDEO_DURATION,
+	alt,
+});
 
 export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 	{
@@ -24,42 +44,40 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Arlington, VA',
 		description:
 			'Complete wardrobe reorganization with custom shelf dividers, coordinated hangers, and a seasonal rotation system. The client went from dreading their morning routine to looking forward to it.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1742453161018-73e39a241541?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format',
-			alt: 'Master closet transformation — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1618236444721-4a8dba415c15?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format',
-			alt: 'Master closet transformation — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1742453161018-73e39a241541'), 'Master closet transformation — before'),
+			afterVideo(photo('photo-1618236444721-4a8dba415c15'), 'Master closet transformation — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format',
+				src: photo('photo-1614631446501-abcf76949eca'),
 				alt: 'Custom shelf dividers in the master closet',
+				caption: 'Custom shelf dividers in the master closet',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format',
+				src: photo('photo-1649361811423-a55616f7ab11'),
 				alt: 'Coordinated hangers and folded linens',
+				caption: 'Coordinated hangers and folded linens',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
+				src: photo('photo-1600585152220-90363fe7e115'),
 				alt: 'Seasonal rotation storage bins',
+				caption: 'Seasonal rotation storage bins',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format',
+				src: photo('photo-1614631446501-abcf76949eca'),
 				alt: 'Custom shelf dividers in the master closet',
+				caption: 'Custom shelf dividers in the master closet',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format',
+				src: photo('photo-1649361811423-a55616f7ab11'),
 				alt: 'Coordinated hangers and folded linens',
+				caption: 'Coordinated hangers and folded linens',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
+				src: photo('photo-1600585152220-90363fe7e115'),
 				alt: 'Seasonal rotation storage bins',
+				caption: 'Seasonal rotation storage bins',
 			},
 		],
 	},
@@ -70,30 +88,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Vienna, VA',
 		description:
 			'A cramped reach-in closet reimagined with double-hang rods, slim velvet hangers, and labeled bins for accessories. Everything now has a visible, dedicated home.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=900&q=80&auto=format',
-			alt: 'Reach-in closet refresh — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1618236444721-4a8dba415c15?w=900&q=80&auto=format',
-			alt: 'Reach-in closet refresh — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1600585152220-90363fe7e115'), 'Reach-in closet refresh — before'),
+			afterVideo(photo('photo-1618236444721-4a8dba415c15'), 'Reach-in closet refresh — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format',
+				src: photo('photo-1614631446501-abcf76949eca'),
 				alt: 'Double-hang rods in the reach-in closet',
+				caption: 'Double-hang rods in the reach-in closet',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format',
+				src: photo('photo-1649361811423-a55616f7ab11'),
 				alt: 'Labeled accessory bins',
+				caption: 'Labeled accessory bins',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
+				src: photo('photo-1600585152220-90363fe7e115'),
 				alt: 'Slim velvet hangers evenly spaced',
+				caption: 'Slim velvet hangers evenly spaced',
 			},
 		],
 	},
@@ -104,30 +117,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Fairfax, VA',
 		description:
 			'A growable closet system with adjustable-height rods and clearly labeled bins the kids can use themselves. Mornings are calmer and cleanup takes minutes.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1618236444721-4a8dba415c15?w=900&q=80&auto=format',
-			alt: 'Kids closet system — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1742453161018-73e39a241541?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format',
-			alt: 'Kids closet system — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1618236444721-4a8dba415c15'), 'Kids closet system — before'),
+			afterVideo(photo('photo-1742453161018-73e39a241541'), 'Kids closet system — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format',
+				src: photo('photo-1649361811423-a55616f7ab11'),
 				alt: 'Adjustable-height closet rods',
+				caption: 'Adjustable-height closet rods',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
+				src: photo('photo-1600585152220-90363fe7e115'),
 				alt: 'Labeled bins within reach of a child',
+				caption: 'Labeled bins within reach of a child',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format',
+				src: photo('photo-1614631446501-abcf76949eca'),
 				alt: 'Finished kids closet system',
+				caption: 'Finished kids closet system',
 			},
 		],
 	},
@@ -138,42 +146,40 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Alexandria, VA',
 		description:
 			'A family kitchen transformed with clear storage containers, labeled zones, and a pantry system designed around their weekly meal prep routine. Cooking went from stressful to streamlined.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80&auto=format',
-			alt: 'Kitchen + pantry overhaul — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=900&q=80&auto=format',
-			alt: 'Kitchen + pantry overhaul — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1556909114-f6e7ad7d3136'), 'Kitchen + pantry overhaul — before'),
+			afterVideo(photo('photo-1600585152220-90363fe7e115'), 'Kitchen + pantry overhaul — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format',
+				src: photo('photo-1614631446501-abcf76949eca'),
 				alt: 'Clear storage containers on kitchen shelves',
+				caption: 'Clear storage containers on kitchen shelves',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format',
+				src: photo('photo-1649361811423-a55616f7ab11'),
 				alt: 'Labeled pantry zones',
+				caption: 'Labeled pantry zones',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
+				src: photo('photo-1600585152220-90363fe7e115'),
 				alt: 'Weekly meal prep staging area',
+				caption: 'Weekly meal prep staging area',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format',
+				src: photo('photo-1614631446501-abcf76949eca'),
 				alt: 'Clear storage containers on kitchen shelves',
+				caption: 'Clear storage containers on kitchen shelves',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format',
+				src: photo('photo-1649361811423-a55616f7ab11'),
 				alt: 'Labeled pantry zones',
+				caption: 'Labeled pantry zones',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
+				src: photo('photo-1600585152220-90363fe7e115'),
 				alt: 'Weekly meal prep staging area',
+				caption: 'Weekly meal prep staging area',
 			},
 		],
 	},
@@ -184,30 +190,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Reston, VA',
 		description:
 			'Deep drawer organizers and a dedicated small-appliance zone freed up counter space in this narrow galley kitchen without any renovation.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=900&q=80&auto=format',
-			alt: 'Galley kitchen reset — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80&auto=format',
-			alt: 'Galley kitchen reset — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1600585152220-90363fe7e115'), 'Galley kitchen reset — before'),
+			afterVideo(photo('photo-1556909114-f6e7ad7d3136'), 'Galley kitchen reset — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format',
+				src: photo('photo-1649361811423-a55616f7ab11'),
 				alt: 'Deep drawer organizers',
+				caption: 'Deep drawer organizers',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format',
+				src: photo('photo-1614631446501-abcf76949eca'),
 				alt: 'Small-appliance storage zone',
+				caption: 'Small-appliance storage zone',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
+				src: photo('photo-1600585152220-90363fe7e115'),
 				alt: 'Cleared galley kitchen counter space',
+				caption: 'Cleared galley kitchen counter space',
 			},
 		],
 	},
@@ -218,30 +219,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'McLean, VA',
 		description:
 			'An open-concept kitchen edited for a cleaner sightline into the living room, with a dedicated coffee station and hidden charging drawer.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80&auto=format',
-			alt: 'Open-concept kitchen edit — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=900&q=80&auto=format',
-			alt: 'Open-concept kitchen edit — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1556909114-f6e7ad7d3136'), 'Open-concept kitchen edit — before'),
+			afterVideo(photo('photo-1600585152220-90363fe7e115'), 'Open-concept kitchen edit — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format',
+				src: photo('photo-1614631446501-abcf76949eca'),
 				alt: 'Coffee station on the kitchen counter',
+				caption: 'Coffee station on the kitchen counter',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format',
+				src: photo('photo-1649361811423-a55616f7ab11'),
 				alt: 'Hidden charging drawer',
+				caption: 'Hidden charging drawer',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
+				src: photo('photo-1600585152220-90363fe7e115'),
 				alt: 'Clear sightline from kitchen to living room',
+				caption: 'Clear sightline from kitchen to living room',
 			},
 		],
 	},
@@ -252,30 +248,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Great Falls, VA',
 		description:
 			'A dedicated baking zone within the pantry, with labeled canisters and a pull-out cutting board station for a home baker who ran out of room.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=900&q=80&auto=format',
-			alt: 'Baking-focused pantry build — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80&auto=format',
-			alt: 'Baking-focused pantry build — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1600585152220-90363fe7e115'), 'Baking-focused pantry build — before'),
+			afterVideo(photo('photo-1556909114-f6e7ad7d3136'), 'Baking-focused pantry build — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format',
+				src: photo('photo-1649361811423-a55616f7ab11'),
 				alt: 'Labeled baking canisters',
+				caption: 'Labeled baking canisters',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format',
+				src: photo('photo-1614631446501-abcf76949eca'),
 				alt: 'Pull-out cutting board station',
+				caption: 'Pull-out cutting board station',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
+				src: photo('photo-1600585152220-90363fe7e115'),
 				alt: 'Finished baking zone in the pantry',
+				caption: 'Finished baking zone in the pantry',
 			},
 		],
 	},
@@ -286,30 +277,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Falls Church, VA',
 		description:
 			'A wall-mounted family command center — mail sorter, calendar, and charging station — installed alongside a full cabinet reorganization.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80&auto=format',
-			alt: 'Family command center kitchen — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=900&q=80&auto=format',
-			alt: 'Family command center kitchen — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1556909114-f6e7ad7d3136'), 'Family command center kitchen — before'),
+			afterVideo(photo('photo-1600585152220-90363fe7e115'), 'Family command center kitchen — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format',
+				src: photo('photo-1614631446501-abcf76949eca'),
 				alt: 'Wall-mounted mail sorter and calendar',
+				caption: 'Wall-mounted mail sorter and calendar',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format',
+				src: photo('photo-1649361811423-a55616f7ab11'),
 				alt: 'Family charging station',
+				caption: 'Family charging station',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
+				src: photo('photo-1600585152220-90363fe7e115'),
 				alt: 'Reorganized kitchen cabinets',
+				caption: 'Reorganized kitchen cabinets',
 			},
 		],
 	},
@@ -320,30 +306,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Arlington, VA',
 		description:
 			'Vertical storage and a fold-down prep surface gave this small apartment kitchen room to breathe without losing an inch of floor space.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=900&q=80&auto=format',
-			alt: 'Small-space kitchen maximization — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80&auto=format',
-			alt: 'Small-space kitchen maximization — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1600585152220-90363fe7e115'), 'Small-space kitchen maximization — before'),
+			afterVideo(photo('photo-1556909114-f6e7ad7d3136'), 'Small-space kitchen maximization — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format',
+				src: photo('photo-1649361811423-a55616f7ab11'),
 				alt: 'Vertical storage shelving',
+				caption: 'Vertical storage shelving',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format',
+				src: photo('photo-1614631446501-abcf76949eca'),
 				alt: 'Fold-down prep surface',
+				caption: 'Fold-down prep surface',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
+				src: photo('photo-1600585152220-90363fe7e115'),
 				alt: 'Small apartment kitchen with clear floor space',
+				caption: 'Small apartment kitchen with clear floor space',
 			},
 		],
 	},
@@ -354,30 +335,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Alexandria, VA',
 		description:
 			'Every shelf in this walk-in pantry was reset with matching canisters, a zone map, and legible labels the whole family follows.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=900&q=80&auto=format',
-			alt: 'Walk-in pantry relabel — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=900&q=80&auto=format',
-			alt: 'Walk-in pantry relabel — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1600585152220-90363fe7e115'), 'Walk-in pantry relabel — before'),
+			afterVideo(photo('photo-1649361811423-a55616f7ab11'), 'Walk-in pantry relabel — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format',
+				src: photo('photo-1614631446501-abcf76949eca'),
 				alt: 'Matching pantry canisters',
+				caption: 'Matching pantry canisters',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format',
+				src: photo('photo-1649361811423-a55616f7ab11'),
 				alt: 'Pantry zone map',
+				caption: 'Pantry zone map',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
+				src: photo('photo-1600585152220-90363fe7e115'),
 				alt: 'Legible pantry shelf labels',
+				caption: 'Legible pantry shelf labels',
 			},
 		],
 	},
@@ -388,30 +364,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'McLean, VA',
 		description:
 			'A butler pantry fitted with open shelving for entertaining essentials, keeping serveware within arm’s reach of the dining room.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=900&q=80&auto=format',
-			alt: 'Butler pantry buildout — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=900&q=80&auto=format',
-			alt: 'Butler pantry buildout — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1649361811423-a55616f7ab11'), 'Butler pantry buildout — before'),
+			afterVideo(photo('photo-1600585152220-90363fe7e115'), 'Butler pantry buildout — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=600&q=80&auto=format',
+				src: photo('photo-1614631446501-abcf76949eca'),
 				alt: 'Open shelving for entertaining essentials',
+				caption: 'Open shelving for entertaining essentials',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
+				src: photo('photo-1600585152220-90363fe7e115'),
 				alt: 'Serveware staged near the dining room',
+				caption: 'Serveware staged near the dining room',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=600&q=80&auto=format',
+				src: photo('photo-1649361811423-a55616f7ab11'),
 				alt: 'Finished butler pantry buildout',
+				caption: 'Finished butler pantry buildout',
 			},
 		],
 	},
@@ -422,30 +393,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'McLean, VA',
 		description:
 			'A spare bedroom converted into a focused workspace with built-in file systems, cable management, and a minimalist desk setup. Remote work, finally organized.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1772157361267-bf6fe2100dd2?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format',
-			alt: 'Home office setup — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=900&q=80&auto=format',
-			alt: 'Home office setup — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1772157361267-bf6fe2100dd2'), 'Home office setup — before'),
+			afterVideo(photo('photo-1518455027359-f3f8164ba6bd'), 'Home office setup — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=600&q=80&auto=format',
+				src: photo('photo-1593062096033-9a26b09da705'),
 				alt: 'Built-in file systems in the home office',
+				caption: 'Built-in file systems in the home office',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1591382696684-38c427c7547a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format',
+				src: photo('photo-1591382696684-38c427c7547a'),
 				alt: 'Cable management under the desk',
+				caption: 'Cable management under the desk',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80&auto=format',
+				src: photo('photo-1611532736597-de2d4265fba3'),
 				alt: 'Minimalist desk setup',
+				caption: 'Minimalist desk setup',
 			},
 		],
 	},
@@ -456,30 +422,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Arlington, VA',
 		description:
 			'A media console cleared of tangled cables and mismatched boxes, replaced with a labeled system for remotes, games, and cords.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=900&q=80&auto=format',
-			alt: 'Living room media reset — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=900&q=80&auto=format',
-			alt: 'Living room media reset — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1611532736597-de2d4265fba3'), 'Living room media reset — before'),
+			afterVideo(photo('photo-1518455027359-f3f8164ba6bd'), 'Living room media reset — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=600&q=80&auto=format',
+				src: photo('photo-1593062096033-9a26b09da705'),
 				alt: 'Labeled remote and cord storage',
+				caption: 'Labeled remote and cord storage',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1591382696684-38c427c7547a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format',
+				src: photo('photo-1591382696684-38c427c7547a'),
 				alt: 'Board games organized on the console shelf',
+				caption: 'Board games organized on the console shelf',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80&auto=format',
+				src: photo('photo-1611532736597-de2d4265fba3'),
 				alt: 'Cleared living room media console',
+				caption: 'Cleared living room media console',
 			},
 		],
 	},
@@ -490,30 +451,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Vienna, VA',
 		description:
 			'Toy bins that double as end tables let this shared living/play space reset in minutes at the end of the day.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=900&q=80&auto=format',
-			alt: 'Playroom-to-living room edit — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=900&q=80&auto=format',
-			alt: 'Playroom-to-living room edit — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1518455027359-f3f8164ba6bd'), 'Playroom-to-living room edit — before'),
+			afterVideo(photo('photo-1611532736597-de2d4265fba3'), 'Playroom-to-living room edit — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1591382696684-38c427c7547a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format',
+				src: photo('photo-1591382696684-38c427c7547a'),
 				alt: 'Toy storage that doubles as an end table',
+				caption: 'Toy storage that doubles as an end table',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=600&q=80&auto=format',
+				src: photo('photo-1593062096033-9a26b09da705'),
 				alt: 'Shared living and play space',
+				caption: 'Shared living and play space',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80&auto=format',
+				src: photo('photo-1611532736597-de2d4265fba3'),
 				alt: 'Reset living room at the end of the day',
+				caption: 'Reset living room at the end of the day',
 			},
 		],
 	},
@@ -524,30 +480,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Fairfax, VA',
 		description:
 			'Floor-to-ceiling built-ins edited by color and category, turning a cluttered shelf wall into a considered display.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1591382696684-38c427c7547a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format',
-			alt: 'Built-in bookshelf edit — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=900&q=80&auto=format',
-			alt: 'Built-in bookshelf edit — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1591382696684-38c427c7547a'), 'Built-in bookshelf edit — before'),
+			afterVideo(photo('photo-1593062096033-9a26b09da705'), 'Built-in bookshelf edit — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80&auto=format',
+				src: photo('photo-1611532736597-de2d4265fba3'),
 				alt: 'Bookshelf edited by color',
+				caption: 'Bookshelf edited by color',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600&q=80&auto=format',
+				src: photo('photo-1518455027359-f3f8164ba6bd'),
 				alt: 'Built-ins organized by category',
+				caption: 'Built-ins organized by category',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=600&q=80&auto=format',
+				src: photo('photo-1593062096033-9a26b09da705'),
 				alt: 'Considered shelf-wall display',
+				caption: 'Considered shelf-wall display',
 			},
 		],
 	},
@@ -558,30 +509,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Reston, VA',
 		description:
 			'A dedicated drop zone by the front door — hooks, a bench, and labeled cubbies — so shoes, bags, and mail stop migrating into the living room.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=900&q=80&auto=format',
-			alt: 'Entryway drop-zone build — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1591382696684-38c427c7547a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format',
-			alt: 'Entryway drop-zone build — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1593062096033-9a26b09da705'), 'Entryway drop-zone build — before'),
+			afterVideo(photo('photo-1591382696684-38c427c7547a'), 'Entryway drop-zone build — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80&auto=format',
+				src: photo('photo-1611532736597-de2d4265fba3'),
 				alt: 'Entryway hooks and bench',
+				caption: 'Entryway hooks and bench',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600&q=80&auto=format',
+				src: photo('photo-1518455027359-f3f8164ba6bd'),
 				alt: 'Labeled entryway cubbies',
+				caption: 'Labeled entryway cubbies',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=600&q=80&auto=format',
+				src: photo('photo-1593062096033-9a26b09da705'),
 				alt: 'Clear living room after the entryway edit',
+				caption: 'Clear living room after the entryway edit',
 			},
 		],
 	},
@@ -592,30 +538,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Great Falls, VA',
 		description:
 			'Wall-mounted slat panels and labeled bins gave this two-car garage a place for tools, sports gear, and seasonal decor — and room to park both cars again.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1591382696684-38c427c7547a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format',
-			alt: 'Two-car garage system — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=900&q=80&auto=format',
-			alt: 'Two-car garage system — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1591382696684-38c427c7547a'), 'Two-car garage system — before'),
+			afterVideo(photo('photo-1611532736597-de2d4265fba3'), 'Two-car garage system — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600&q=80&auto=format',
+				src: photo('photo-1518455027359-f3f8164ba6bd'),
 				alt: 'Wall-mounted slat panels in the garage',
+				caption: 'Wall-mounted slat panels in the garage',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=600&q=80&auto=format',
+				src: photo('photo-1593062096033-9a26b09da705'),
 				alt: 'Labeled garage storage bins',
+				caption: 'Labeled garage storage bins',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80&auto=format',
+				src: photo('photo-1611532736597-de2d4265fba3'),
 				alt: 'Both cars parked in the organized garage',
+				caption: 'Both cars parked in the organized garage',
 			},
 		],
 	},
@@ -626,30 +567,25 @@ export const PORTFOLIO_PIECES: PortfolioPiece[] = [
 		location: 'Falls Church, VA',
 		description:
 			'A dedicated workshop corner with pegboard tool storage and a fold-out workbench, carved out of unused garage floor space.',
-		beforeMedia: {
-			src: BEFORE_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=900&q=80&auto=format',
-			alt: 'Workshop corner buildout — before',
-		},
-		afterMedia: {
-			src: AFTER_VIDEO,
-			poster:
-				'https://images.unsplash.com/photo-1591382696684-38c427c7547a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format',
-			alt: 'Workshop corner buildout — after',
-		},
-		detailImages: [
+		videos: [
+			beforeVideo(photo('photo-1611532736597-de2d4265fba3'), 'Workshop corner buildout — before'),
+			afterVideo(photo('photo-1591382696684-38c427c7547a'), 'Workshop corner buildout — after'),
+		],
+		images: [
 			{
-				src: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600&q=80&auto=format',
+				src: photo('photo-1518455027359-f3f8164ba6bd'),
 				alt: 'Pegboard tool storage',
+				caption: 'Pegboard tool storage',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=600&q=80&auto=format',
+				src: photo('photo-1593062096033-9a26b09da705'),
 				alt: 'Fold-out workbench',
+				caption: 'Fold-out workbench',
 			},
 			{
-				src: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80&auto=format',
+				src: photo('photo-1611532736597-de2d4265fba3'),
 				alt: 'Finished garage workshop corner',
+				caption: 'Finished garage workshop corner',
 			},
 		],
 	},

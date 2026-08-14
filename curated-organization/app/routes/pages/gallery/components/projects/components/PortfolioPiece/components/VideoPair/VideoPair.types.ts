@@ -1,6 +1,6 @@
-import type { MediaSource } from '../../../../../../gallery.types';
+import type { VideoMedia } from '../../../../../../gallery.types';
 
 export type VideoPairProps = {
-	before: MediaSource;
-	after: MediaSource;
+	videos: readonly VideoMedia[];
+	onOpenVideo: (index: number) => void;
 };

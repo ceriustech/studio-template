@@ -92,7 +92,7 @@ No setup tasks are required — this feature adds no new dependency, environment
 
 ### Verification for User Story 3
 
-- [ ] T015 [US3] Manually verify, per `quickstart.md` Scenario 1, that `app/routes/pages/booking/index.tsx` renders nothing below `<TwoPaths />` when `view === 'none'` (its initial value) and that `WhatToExpect` (rendered unconditionally in `app/root.tsx`, outside `Booking`) is the next visible section — no code change is required here beyond what T010 already implemented; this task exists to formally confirm that behavior as its own independently-testable increment, per this feature's user stories
+- [X] T015 [US3] Manually verify, per `quickstart.md` Scenario 1, that `app/routes/pages/booking/index.tsx` renders nothing below `<TwoPaths />` when `view === 'none'` (its initial value) and that `WhatToExpect` (rendered unconditionally in `app/root.tsx`, outside `Booking`) is the next visible section — no code change is required here beyond what T010 already implemented; this task exists to formally confirm that behavior as its own independently-testable increment, per this feature's user stories
 
 **Checkpoint**: All three of User Stories 1, 2, and 3 are independently confirmed working.
 

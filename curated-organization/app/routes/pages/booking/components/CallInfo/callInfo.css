@@ -1,0 +1,96 @@
+.callInfo {
+	padding: 100px 64px;
+	background: var(--warm-white);
+	text-align: center;
+}
+
+.callInfo .sectionEyebrow {
+	font-family: var(--sans);
+	font-size: 12px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--taupe);
+	margin-bottom: 14px;
+}
+
+.callInfo .sectionHeading {
+	font-family: var(--serif);
+	font-size: 36px;
+	font-weight: 400;
+	color: var(--charcoal);
+	line-height: 1.2;
+	margin-bottom: 14px;
+}
+
+.callIntro {
+	font-family: var(--sans);
+	font-size: 14px;
+	font-weight: 300;
+	color: var(--muted);
+	max-width: 440px;
+	margin: 0 auto;
+	line-height: 1.7;
+}
+
+.callPhone {
+	display: inline-block;
+	font-family: var(--serif);
+	font-size: 40px;
+	font-weight: 400;
+	color: var(--charcoal);
+	text-decoration: none;
+	border-bottom: 1px solid var(--border);
+	padding: 8px 4px 20px;
+	margin: 48px auto 24px;
+	transition: color 0.3s;
+}
+
+.callPhone:hover {
+	color: var(--brand-teal);
+}
+
+.callHours {
+	font-family: var(--sans);
+	font-size: 13px;
+	font-weight: 300;
+	color: var(--muted);
+	margin-bottom: 32px;
+}
+
+.callSwitchLink {
+	display: inline-block;
+	font-family: var(--sans);
+	font-size: 13px;
+	font-weight: 400;
+	color: var(--charcoal-soft);
+	text-decoration: underline;
+	transition: color 0.3s;
+}
+
+.callSwitchLink:hover {
+	color: var(--brand-teal);
+}
+
+.callPhone:focus-visible,
+.callSwitchLink:focus-visible {
+	outline: 2px solid var(--brand-teal);
+	outline-offset: 4px;
+}
+
+/* Responsive: clamp padding, matching questionnaire.css's RESPONSIVE block */
+@media (max-width: 960px) {
+	.callInfo {
+		padding-left: clamp(20px, 5vw, 64px);
+		padding-right: clamp(20px, 5vw, 64px);
+		padding-top: clamp(64px, 8vw, 100px);
+		padding-bottom: clamp(64px, 8vw, 100px);
+	}
+
+	.callInfo .sectionHeading {
+		font-size: clamp(30px, 5vw, 36px);
+	}
+
+	.callPhone {
+		font-size: clamp(28px, 6vw, 40px);
+	}
+}

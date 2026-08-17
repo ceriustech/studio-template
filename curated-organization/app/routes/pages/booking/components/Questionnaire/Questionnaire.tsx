@@ -1,17 +1,15 @@
 import { useState, type SubmitEvent } from 'react';
 import './questionnaire.css';
 import type { QuestionnaireProps } from './Questionnaire.types';
-import {
-	parseInquiry,
-	formatPhoneNumber,
-	SERVICE_LABELS,
-	INVESTMENT_LABELS,
-	DECISION_LABELS,
-	REFERRAL_LABELS,
-} from '../../utils';
+import { parseInquiry, formatPhoneNumber } from '../../utils';
+
+type RequiredFieldErrors = Partial<
+	Record<'firstName' | 'lastName' | 'email', string>
+>;
 
 const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 	const [phone, setPhone] = useState('');
+	const [errors, setErrors] = useState<RequiredFieldErrors>({});
 
 	const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -19,8 +17,17 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 		const formData = new FormData(event.currentTarget);
 		const parsed = parseInquiry(formData);
 
-		if (!parsed.success) return;
+		if (!parsed.success) {
+			const fieldErrors = parsed.error.flatten().fieldErrors;
+			setErrors({
+				firstName: fieldErrors.firstName?.[0],
+				lastName: fieldErrors.lastName?.[0],
+				email: fieldErrors.email?.[0],
+			});
+			return;
+		}
 
+		setErrors({});
 		onSubmit(parsed.data);
 	};
 
@@ -30,12 +37,12 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 				<p className="sectionEyebrow">New client intake</p>
 				<h2 className="sectionHeading">Tell us about your space</h2>
 				<p>
-					Your answers help us prepare for a productive consultation.
-					Everything here is confidential.
+					Just your contact details and anything you'd like us to know.
+					We'll cover the rest during your consultation.
 				</p>
 			</div>
 
-			<form className="formContainer" onSubmit={handleSubmit}>
+			<form className="formContainer" onSubmit={handleSubmit} noValidate>
 				<div className="formSectionLabel">About you</div>
 
 				<div className="formRowDouble">
@@ -49,7 +56,16 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 							type="text"
 							className="formInput"
 							placeholder="First name"
+							aria-invalid={Boolean(errors.firstName)}
+							aria-describedby={
+								errors.firstName ? 'firstName-error' : undefined
+							}
 						/>
+						{errors.firstName && (
+							<p id="firstName-error" role="alert" className="formError">
+								{errors.firstName}
+							</p>
+						)}
 					</div>
 					<div>
 						<label className="formLabel" htmlFor="lastName">
@@ -61,7 +77,16 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 							type="text"
 							className="formInput"
 							placeholder="Last name"
+							aria-invalid={Boolean(errors.lastName)}
+							aria-describedby={
+								errors.lastName ? 'lastName-error' : undefined
+							}
 						/>
+						{errors.lastName && (
+							<p id="lastName-error" role="alert" className="formError">
+								{errors.lastName}
+							</p>
+						)}
 					</div>
 				</div>
 
@@ -76,7 +101,14 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 							type="email"
 							className="formInput"
 							placeholder="youremail@example.com"
+							aria-invalid={Boolean(errors.email)}
+							aria-describedby={errors.email ? 'email-error' : undefined}
 						/>
+						{errors.email && (
+							<p id="email-error" role="alert" className="formError">
+								{errors.email}
+							</p>
+						)}
 					</div>
 					<div>
 						<label className="formLabel" htmlFor="phone">
@@ -96,109 +128,18 @@ const Questionnaire = ({ onSubmit }: QuestionnaireProps) => {
 					</div>
 				</div>
 
-				<div className="formRow">
-					<label className="formLabel" htmlFor="location">
-						Your location (city or zip code)
-					</label>
-					<input
-						id="location"
-						name="location"
-						type="text"
-						className="formInput"
-						placeholder="Arlington, VA 22201"
-					/>
-				</div>
-
 				<div className="formDivider" />
-				<div className="formSectionLabel">About your project</div>
-
-				<div className="formRow">
-					<label className="formLabel" htmlFor="service">
-						Which service are you interested in?
-					</label>
-					<select id="service" name="service" className="formSelect">
-						<option value="">Select a service</option>
-						{Object.entries(SERVICE_LABELS).map(([value, label]) => (
-							<option key={value} value={value}>
-								{label}
-							</option>
-						))}
-					</select>
-				</div>
-
-				<div className="formRow">
-					<label className="formLabel" htmlFor="deadline">
-						If you have a project deadline, please specify here:
-					</label>
-					<input
-						id="deadline"
-						name="deadline"
-						type="text"
-						className="formInput"
-						placeholder="e.g., move-in date, event date, or no rush"
-					/>
-				</div>
-
-				<div className="formRow">
-					<label className="formLabel" htmlFor="investmentTarget">
-						What is your rough investment target for this project?
-					</label>
-					<select
-						id="investmentTarget"
-						name="investmentTarget"
-						className="formSelect"
-					>
-						<option value="">Select a range</option>
-						{Object.entries(INVESTMENT_LABELS).map(([value, label]) => (
-							<option key={value} value={value}>
-								{label}
-							</option>
-						))}
-					</select>
-				</div>
-
-				<div className="formRow">
-					<label className="formLabel" htmlFor="decisionMakersReady">
-						Are all key decision-makers on board and available to join the
-						initial consultation?
-					</label>
-					<select
-						id="decisionMakersReady"
-						name="decisionMakersReady"
-						className="formSelect"
-					>
-						<option value="">Select one</option>
-						{Object.entries(DECISION_LABELS).map(([value, label]) => (
-							<option key={value} value={value}>
-								{label}
-							</option>
-						))}
-					</select>
-				</div>
-
-				<div className="formRow">
-					<label className="formLabel" htmlFor="referral">
-						How did you hear about us?
-					</label>
-					<select id="referral" name="referral" className="formSelect">
-						<option value="">Select one</option>
-						{Object.entries(REFERRAL_LABELS).map(([value, label]) => (
-							<option key={value} value={value}>
-								{label}
-							</option>
-						))}
-					</select>
-				</div>
+				<div className="formSectionLabel">Anything else</div>
 
 				<div className="formRow">
 					<label className="formLabel" htmlFor="notes">
-						Anything else you'd like us to know?
+						Anything you'd like us to know?
 					</label>
 					<textarea
 						id="notes"
 						name="notes"
 						className="formTextarea"
-						placeholder="Tell us about your goals, challenges, or any specific needs..."
+						placeholder="Goals, challenges, or anything that would help us prepare..."
 					/>
 				</div>
 

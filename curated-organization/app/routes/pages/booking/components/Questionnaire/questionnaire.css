@@ -75,8 +75,7 @@
 }
 
 .formInput,
-.formTextarea,
-.formSelect {
+.formTextarea {
 	width: 100%;
 	border: 1px solid var(--border);
 	border-radius: 2px;
@@ -100,9 +99,12 @@
 }
 
 .formInput:focus,
-.formTextarea:focus,
-.formSelect:focus {
+.formTextarea:focus {
 	border-color: var(--brand-teal);
+}
+
+.formInput[aria-invalid='true'] {
+	border-color: #b3392c;
 }
 
 .formTextarea {
@@ -112,15 +114,12 @@
 	line-height: 1.6;
 }
 
-.formSelect {
-	height: 48px;
-	padding: 0 16px;
-	appearance: none;
-	-webkit-appearance: none;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23B8B0A2' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-	background-repeat: no-repeat;
-	background-position: right 16px center;
-	cursor: pointer;
+.formError {
+	font-family: var(--sans);
+	font-size: 12px;
+	font-weight: 400;
+	color: #b3392c;
+	margin-top: 6px;
 }
 
 .formDivider {
@@ -178,7 +177,6 @@
 	}
 
 	.formInput,
-	.formSelect,
 	.formTextarea,
 	.formSubmit {
 		font-size: 16px;

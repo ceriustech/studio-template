@@ -84,3 +84,60 @@
 	background: var(--charcoal);
 	color: var(--warm-white);
 }
+
+.pathBtn:focus-visible,
+.pathOption:focus-visible {
+	outline: 2px solid var(--brand-teal);
+	outline-offset: 3px;
+}
+
+.pathOptions {
+	display: flex;
+	gap: 16px;
+	margin-top: -4px;
+	width: 50%;
+}
+
+.pathOption {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	flex: 1;
+	padding: 18px 16px;
+	border: 1px solid var(--border);
+	border-radius: 2px;
+	color: var(--charcoal);
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+.pathOption:hover {
+	background: var(--charcoal);
+	color: var(--warm-white);
+	border-color: var(--charcoal);
+}
+
+.pathOptionIcon {
+	font-size: 20px;
+	color: var(--taupe-dark);
+	transition: color 0.3s;
+}
+
+.pathOption:hover .pathOptionIcon {
+	color: var(--warm-white);
+}
+
+.pathOptionLabel {
+	font-family: var(--sans);
+	font-size: 12px;
+	font-weight: 500;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+	.pathOptions {
+		width: 100%;
+	}
+}

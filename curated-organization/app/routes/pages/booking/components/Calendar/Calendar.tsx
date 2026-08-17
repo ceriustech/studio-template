@@ -2,12 +2,6 @@ import { Component, type ReactNode } from 'react';
 import { InlineWidget, useCalendlyEventListener } from 'react-calendly';
 import './calendar.css';
 import type { CalendarProps } from './Calendar.types';
-import {
-	SERVICE_LABELS,
-	INVESTMENT_LABELS,
-	DECISION_LABELS,
-	REFERRAL_LABELS,
-} from '../../utils';
 
 const CALENDLY_URL = 'https://calendly.com/lifengineered-bilalmasters/30min';
 
@@ -47,22 +41,8 @@ const Calendar = ({ inquiry, onScheduled }: CalendarProps) => {
 				name: `${inquiry.firstName} ${inquiry.lastName}`.trim(),
 				email: inquiry.email,
 				customAnswers: {
-					a1: inquiry.service ? SERVICE_LABELS[inquiry.service] : '',
-					a2: inquiry.deadline ?? '',
-					a3: inquiry.investmentTarget
-						? INVESTMENT_LABELS[inquiry.investmentTarget]
-						: '',
-					a4: inquiry.decisionMakersReady
-						? DECISION_LABELS[inquiry.decisionMakersReady]
-						: '',
-					a5: inquiry.referral ? REFERRAL_LABELS[inquiry.referral] : '',
-					a6: [
-						inquiry.phone && `Phone: ${inquiry.phone}`,
-						inquiry.location && `Location: ${inquiry.location}`,
-						inquiry.notes && `Notes: ${inquiry.notes}`,
-					]
-						.filter(Boolean)
-						.join('\n'),
+					a1: inquiry.phone ? `Phone: ${inquiry.phone}` : '',
+					a2: inquiry.notes ?? '',
 				},
 			}
 		: undefined;

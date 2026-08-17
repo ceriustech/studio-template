@@ -1,22 +1,38 @@
 import { useState } from 'react';
 import Hero from './components/hero';
 import TwoPaths from './components/two-paths';
+import CallInfo from './components/CallInfo/CallInfo';
 import Questionnaire from './components/Questionnaire/Questionnaire';
 import Calendar from './components/Calendar/Calendar';
 import type { Inquiry } from './utils';
 
+type BookingView = 'none' | 'call' | 'questionnaire' | 'calendar';
+
 const Booking = () => {
+	const [view, setView] = useState<BookingView>('none');
 	const [inquiry, setInquiry] = useState<Inquiry | null>(null);
-	const [showCalendar, setShowCalendar] = useState(false);
 
 	return (
 		<main>
 			<Hero />
-			<TwoPaths onBookAgain={() => setShowCalendar(true)} />
-			{inquiry || showCalendar ? (
+			<TwoPaths
+				onSelectCall={() => setView('call')}
+				onSelectEmail={() => setView('questionnaire')}
+				onBookAgain={() => setView('calendar')}
+			/>
+			{view === 'call' && (
+				<CallInfo onPreferEmail={() => setView('questionnaire')} />
+			)}
+			{view === 'questionnaire' && (
+				<Questionnaire
+					onSubmit={(data) => {
+						setInquiry(data);
+						setView('calendar');
+					}}
+				/>
+			)}
+			{view === 'calendar' && (
 				<Calendar inquiry={inquiry} onScheduled={() => {}} />
-			) : (
-				<Questionnaire onSubmit={setInquiry} />
 			)}
 		</main>
 	);

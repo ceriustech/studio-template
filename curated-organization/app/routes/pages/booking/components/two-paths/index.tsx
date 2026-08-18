@@ -1,8 +1,13 @@
 import './two-paths.css';
 import PathCard from './components/PathCard/PathCard';
 import type { TwoPathsProps } from './TwoPaths.types';
+import { FaPhoneSquareAlt, FaEnvelope } from 'react-icons/fa';
 
-const TwoPaths = ({ onSelectCall, onSelectEmail, onBookAgain }: TwoPathsProps) => {
+const TwoPaths = ({
+	onSelectCall,
+	onSelectEmail,
+	onBookAgain,
+}: TwoPathsProps) => {
 	return (
 		<div className="twoPaths">
 			<PathCard
@@ -11,8 +16,12 @@ const TwoPaths = ({ onSelectCall, onSelectEmail, onBookAgain }: TwoPathsProps) =
 				description="New to Curated? Reach out however works best for you."
 				kind="options"
 				options={[
-					{ icon: '☎', label: 'Call us', onClick: onSelectCall },
-					{ icon: '✉', label: 'Email us', onClick: onSelectEmail },
+					{
+						icon: <FaPhoneSquareAlt />,
+						label: 'Call us',
+						onClick: onSelectCall,
+					},
+					{ icon: <FaEnvelope />, label: 'Email us', onClick: onSelectEmail },
 				]}
 			/>
 			<PathCard

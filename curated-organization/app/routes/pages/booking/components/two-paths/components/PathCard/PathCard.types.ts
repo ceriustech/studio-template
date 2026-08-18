@@ -1,5 +1,5 @@
 export interface PathOption {
-	icon: string;
+	icon: React.ReactNode;
 	label: string;
 	onClick: () => void;
 }

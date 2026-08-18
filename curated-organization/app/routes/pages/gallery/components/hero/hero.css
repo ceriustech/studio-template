@@ -30,10 +30,10 @@
 
 .galleryHero .sectionEyebrow {
 	font-family: var(--sans);
-	font-size: 12px;
+	font-size: 1rem;
 	letter-spacing: 0.2em;
 	text-transform: uppercase;
-	color: var(--taupe);
+	color: var(--charcoal);
 	margin-bottom: 16px;
 	position: relative;
 }
@@ -104,7 +104,7 @@
 	}
 
 	.galleryHero .sectionEyebrow {
-		font-size: 9px;
+		font-size: 0.75rem;
 	}
 
 	.galleryHero p {

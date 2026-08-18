@@ -39,7 +39,7 @@ const services: Omit<ServiceItemProps, 'reversed'>[] = [
 		eyebrow: '03',
 		heading: 'Business + office',
 		description:
-			'Want to reword the description to “Organized workspaces drive productivity. We design systems for home-based businesses that reflect your brand and keep operations running efficiently.',
+			'An organized environment fuels focus and momentum. We design custom organizational systems for home offices and commercial spaces that reflect your brand identity and keep operations running effortlessly.',
 		imageUrl:
 			'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=1000&q=80&auto=format',
 		items: [

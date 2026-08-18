@@ -16,7 +16,7 @@ const Footer: React.FC<FooterProps> = () => {
 						Your home curated to your lifestyle - because time is your biggest
 						luxury.
 						<br />
-						Serving the NOVA / DMV area.
+						Based in the NOVA / DMV area.
 					</p>
 					<div className="footerLogos">
 						<img

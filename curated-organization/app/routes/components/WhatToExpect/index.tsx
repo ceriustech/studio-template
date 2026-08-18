@@ -19,7 +19,7 @@ const steps: WhatToExpectStep[] = [
 		number: '03',
 		title: 'Custom proposal',
 		description:
-			"Within 48 hours you'll receive a tailored plan and quote for your project",
+			'Following our discussion, we’ll curate a custom project plan and detailed quote for your review',
 	},
 ];
 

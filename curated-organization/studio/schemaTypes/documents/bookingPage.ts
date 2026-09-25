@@ -1,0 +1,146 @@
+import {defineField, defineType} from 'sanity'
+import {icons} from '@sanity/icons'
+
+export const bookingPage = defineType({
+	name: 'bookingPage',
+	title: 'Booking page',
+	type: 'document',
+	icon: icons.calendar,
+	description:
+		'Business phone/hours live in Site Settings so they stay consistent with the rest of the site. The Calendly URL and embed styling stay code-defined.',
+	groups: [
+		{name: 'hero', title: 'Hero'},
+		{name: 'twoPaths', title: 'Two paths'},
+		{name: 'callInfo', title: 'Call info'},
+		{name: 'questionnaire', title: 'Questionnaire'},
+		{name: 'calendar', title: 'Calendar'},
+		{name: 'whatToExpect', title: 'What to expect'},
+		{name: 'seo', title: 'SEO'},
+	],
+	fields: [
+		defineField({
+			name: 'hero',
+			title: 'Hero',
+			type: 'heroSection',
+			group: 'hero',
+		}),
+		defineField({
+			name: 'twoPaths',
+			title: 'Path cards',
+			type: 'array',
+			group: 'twoPaths',
+			of: [{type: 'pathCard'}],
+			validation: (rule) => rule.max(2),
+		}),
+		defineField({
+			name: 'callInfo',
+			title: 'Call info',
+			type: 'object',
+			group: 'callInfo',
+			fields: [
+				defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+				defineField({name: 'heading', title: 'Heading', type: 'string'}),
+				defineField({name: 'intro', title: 'Intro', type: 'text', rows: 2}),
+				defineField({
+					name: 'switchToEmailLabel',
+					title: 'Switch-to-email link text',
+					type: 'string',
+				}),
+			],
+		}),
+		defineField({
+			name: 'questionnaire',
+			title: 'Questionnaire',
+			type: 'object',
+			group: 'questionnaire',
+			fields: [
+				defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+				defineField({name: 'heading', title: 'Heading', type: 'string'}),
+				defineField({name: 'intro', title: 'Intro', type: 'text', rows: 2}),
+				defineField({
+					name: 'aboutYouSectionLabel',
+					title: '"About you" section label',
+					type: 'string',
+				}),
+				defineField({name: 'firstNameLabel', title: 'First name — label', type: 'string'}),
+				defineField({name: 'firstNamePlaceholder', title: 'First name — placeholder', type: 'string'}),
+				defineField({name: 'lastNameLabel', title: 'Last name — label', type: 'string'}),
+				defineField({name: 'lastNamePlaceholder', title: 'Last name — placeholder', type: 'string'}),
+				defineField({name: 'emailLabel', title: 'Email — label', type: 'string'}),
+				defineField({name: 'emailPlaceholder', title: 'Email — placeholder', type: 'string'}),
+				defineField({name: 'phoneLabel', title: 'Phone — label', type: 'string'}),
+				defineField({name: 'phonePlaceholder', title: 'Phone — placeholder', type: 'string'}),
+				defineField({
+					name: 'anythingElseSectionLabel',
+					title: '"Anything else" section label',
+					type: 'string',
+				}),
+				defineField({name: 'notesLabel', title: 'Notes — label', type: 'string'}),
+				defineField({name: 'notesPlaceholder', title: 'Notes — placeholder', type: 'string'}),
+				defineField({name: 'submitLabel', title: 'Submit button label', type: 'string'}),
+				defineField({name: 'submitNote', title: 'Submit note', type: 'string'}),
+				defineField({
+					name: 'validationMessages',
+					title: 'Validation messages',
+					description: 'Shown inline when required fields fail validation on submit.',
+					type: 'object',
+					fields: [
+						defineField({name: 'firstNameRequired', title: 'First name required', type: 'string'}),
+						defineField({name: 'lastNameRequired', title: 'Last name required', type: 'string'}),
+						defineField({name: 'emailRequired', title: 'Email required', type: 'string'}),
+						defineField({name: 'emailInvalid', title: 'Email invalid', type: 'string'}),
+					],
+				}),
+			],
+		}),
+		defineField({
+			name: 'calendar',
+			title: 'Calendar',
+			type: 'object',
+			group: 'calendar',
+			fields: [
+				defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+				defineField({name: 'heading', title: 'Heading', type: 'string'}),
+				defineField({
+					name: 'errorIcon',
+					title: 'Error fallback icon',
+					description: 'Shown if the Calendly widget fails to load (e.g. an emoji).',
+					type: 'string',
+				}),
+				defineField({
+					name: 'errorTitle',
+					title: 'Error fallback title',
+					description: 'Shown if the Calendly widget fails to load.',
+					type: 'string',
+				}),
+				defineField({name: 'errorDescription', title: 'Error fallback description', type: 'text', rows: 2}),
+			],
+		}),
+		defineField({
+			name: 'whatToExpect',
+			title: 'What to expect',
+			type: 'object',
+			group: 'whatToExpect',
+			description: 'Rendered globally under this page in place of the site CTA.',
+			fields: [
+				defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+				defineField({name: 'heading', title: 'Heading', type: 'string'}),
+				defineField({
+					name: 'steps',
+					title: 'Steps',
+					type: 'array',
+					of: [{type: 'step'}],
+				}),
+			],
+		}),
+		defineField({
+			name: 'seo',
+			title: 'SEO',
+			type: 'seo',
+			group: 'seo',
+		}),
+	],
+	preview: {
+		prepare: () => ({title: 'Booking page'}),
+	},
+})

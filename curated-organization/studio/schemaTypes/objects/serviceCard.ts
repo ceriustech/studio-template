@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {icons} from '@sanity/icons'
+import {altTextField} from '../fields/altText'
 
 export const serviceCard = defineType({
 	name: 'serviceCard',
@@ -25,12 +26,7 @@ export const serviceCard = defineType({
 			title: 'Image',
 			type: 'image',
 			options: {hotspot: true},
-			validation: (rule) => rule.required(),
-		}),
-		defineField({
-			name: 'alt',
-			title: 'Alt text',
-			type: 'string',
+			fields: [altTextField],
 			validation: (rule) => rule.required(),
 		}),
 	],

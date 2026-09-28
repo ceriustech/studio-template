@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {icons} from '@sanity/icons'
+import {altTextField} from '../fields/altText'
 
 export const seo = defineType({
 	name: 'seo',
@@ -32,6 +33,7 @@ export const seo = defineType({
 			title: 'Social share image',
 			type: 'image',
 			options: {hotspot: true},
+			fields: [altTextField],
 		}),
 	],
 })

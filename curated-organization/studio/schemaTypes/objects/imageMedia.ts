@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {icons} from '@sanity/icons'
+import {altTextField} from '../fields/altText'
 
 export const imageMedia = defineType({
 	name: 'imageMedia',
@@ -12,12 +13,7 @@ export const imageMedia = defineType({
 			title: 'Image',
 			type: 'image',
 			options: {hotspot: true},
-			validation: (rule) => rule.required(),
-		}),
-		defineField({
-			name: 'alt',
-			title: 'Alt text',
-			type: 'string',
+			fields: [altTextField],
 			validation: (rule) => rule.required(),
 		}),
 		defineField({
@@ -34,6 +30,6 @@ export const imageMedia = defineType({
 		}),
 	],
 	preview: {
-		select: {title: 'caption', subtitle: 'alt', media: 'image'},
+		select: {title: 'caption', subtitle: 'image.alt', media: 'image'},
 	},
 })

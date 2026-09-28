@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {icons} from '@sanity/icons'
+import {altTextField} from '../fields/altText'
 
 export const heroSection = defineType({
 	name: 'heroSection',
@@ -31,7 +32,7 @@ export const heroSection = defineType({
 			title: 'Slide images',
 			description: 'Leave empty for heroes without an image carousel.',
 			type: 'array',
-			of: [{type: 'image', options: {hotspot: true}}],
+			of: [{type: 'image', options: {hotspot: true}, fields: [altTextField]}],
 		}),
 		defineField({
 			name: 'linkLabel',

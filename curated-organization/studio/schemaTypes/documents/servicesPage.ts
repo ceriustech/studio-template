@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {icons} from '@sanity/icons'
+import {altTextField} from '../fields/altText'
 
 export const servicesPage = defineType({
 	name: 'servicesPage',
@@ -28,7 +29,13 @@ export const servicesPage = defineType({
 			description:
 				'Credential badges shown alongside this section are pulled from Site Settings, not authored here.',
 			fields: [
-				defineField({name: 'photo', title: 'Founder photo', type: 'image', options: {hotspot: true}}),
+				defineField({
+					name: 'photo',
+					title: 'Founder photo',
+					type: 'image',
+					options: {hotspot: true},
+					fields: [altTextField],
+				}),
 				defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
 				defineField({name: 'heading', title: 'Heading', type: 'string'}),
 				defineField({name: 'bio', title: 'Bio', type: 'text', rows: 6}),

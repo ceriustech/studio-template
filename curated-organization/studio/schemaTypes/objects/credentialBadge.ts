@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {icons} from '@sanity/icons'
+import {altTextField} from '../fields/altText'
 
 export const credentialBadge = defineType({
 	name: 'credentialBadge',
@@ -18,6 +19,7 @@ export const credentialBadge = defineType({
 			name: 'image',
 			title: 'Logo',
 			type: 'image',
+			fields: [altTextField],
 			validation: (rule) => rule.required(),
 		}),
 	],

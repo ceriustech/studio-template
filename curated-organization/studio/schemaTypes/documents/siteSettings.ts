@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {icons} from '@sanity/icons'
+import {altTextField} from '../fields/altText'
 
 export const siteSettings = defineType({
 	name: 'siteSettings',
@@ -31,6 +32,7 @@ export const siteSettings = defineType({
 			name: 'logo',
 			title: 'Logo',
 			type: 'image',
+			fields: [altTextField],
 			group: 'brand',
 		}),
 		defineField({

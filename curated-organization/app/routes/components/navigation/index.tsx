@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router';
 import { Menu, X } from 'lucide-react';
-import { NAVBAR_DATA, QUERIES } from '../../../constants';
-import curatedLogo from '~/assets/curated-logo.png';
+import { QUERIES } from '../../../constants';
+import { PAGE_ROUTES_DATA } from '../../constants';
+import { isInternalUrl } from '~/lib/utils';
 import type { NavigationProps } from './navigation.types';
 
 const MOBILE_MENU_ID = 'mobile-nav-menu';
+const BOOKING_PATH = PAGE_ROUTES_DATA.BOOKING.path;
 
-const Navigation: React.FC<NavigationProps> = ({ items = NAVBAR_DATA }) => {
+const Navigation: React.FC<NavigationProps> = ({ brand, links, bookNowLabel }) => {
 	const location = useLocation();
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 	const navRef = React.useRef<HTMLElement>(null);
@@ -56,10 +58,16 @@ const Navigation: React.FC<NavigationProps> = ({ items = NAVBAR_DATA }) => {
 	return (
 		<header className="nav" role="navigation" aria-label="Primary">
 			<Link to="/" className="navBrand" aria-label="Curated Professional Organizing">
-				<img className="navBrandLogo" src={curatedLogo} alt="" width={40} height={40} />
+				<img
+					className="navBrandLogo"
+					src={brand.logo.src}
+					alt={brand.logo.alt}
+					width={brand.logo.width}
+					height={brand.logo.height}
+				/>
 				<div className="navBrandText">
-					<div className="navBrandName">CURATED</div>
-					<div className="navBrandTagline">Professional Organizing</div>
+					<div className="navBrandName">{brand.name}</div>
+					{brand.tagline && <div className="navBrandTagline">{brand.tagline}</div>}
 				</div>
 			</Link>
 
@@ -82,21 +90,27 @@ const Navigation: React.FC<NavigationProps> = ({ items = NAVBAR_DATA }) => {
 				aria-label="Main links"
 				data-open={isMenuOpen}
 			>
-				{items
-					.filter((item) => item.url !== '/booking')
-					.map((item) => (
-						<Link
-							key={item.url}
-							to={item.url}
-							className={isActive(item.url) ? 'active' : undefined}
-							aria-current={isActive(item.url) ? 'page' : undefined}
-							onClick={closeMenu}
-						>
-							{item.name.charAt(0).toUpperCase() + item.name.slice(1).toLowerCase()}
-						</Link>
-					))}
-				<Link to="/booking" className="navCta" aria-label="Book now" onClick={closeMenu}>
-					Book now
+				{links
+					.filter((link) => link.url !== BOOKING_PATH)
+					.map((link) =>
+						isInternalUrl(link.url) ? (
+							<Link
+								key={link.url}
+								to={link.url}
+								className={isActive(link.url) ? 'active' : undefined}
+								aria-current={isActive(link.url) ? 'page' : undefined}
+								onClick={closeMenu}
+							>
+								{link.label}
+							</Link>
+						) : (
+							<a key={link.url} href={link.url} onClick={closeMenu}>
+								{link.label}
+							</a>
+						),
+					)}
+				<Link to={BOOKING_PATH} className="navCta" aria-label={bookNowLabel} onClick={closeMenu}>
+					{bookNowLabel}
 				</Link>
 			</nav>
 		</header>

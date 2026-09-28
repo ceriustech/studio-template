@@ -5,16 +5,20 @@ import {
 	Outlet,
 	Scripts,
 	ScrollRestoration,
-	useLocation,
+	useMatches,
+	useRouteLoaderData,
 } from 'react-router';
 
 import type { Route } from './+types/root';
+import type { loader } from './root.loader.server';
 import Navigation from './routes/components/navigation';
 import Footer from './routes/components/Footer';
 import Cta from './routes/components/Cta';
 import WhatToExpect from './routes/components/WhatToExpect';
-import { PAGE_ROUTES_DATA } from './routes/constants';
 import './app.css';
+
+const hidesSiteCta = (handle: unknown): boolean =>
+	typeof handle === 'object' && handle !== null && 'hideSiteCta' in handle && handle.hideSiteCta === true;
 
 const META_DATA = [
 	{ httpEquiv: 'Content-type', content: 'text/html; charset=utf-8' },
@@ -34,6 +38,13 @@ const META_DATA = [
 	{ property: 'og:description', content: 'Professional organizing services' },
 ];
 
+export { loader } from './root.loader.server';
+
+// Global content rarely changes mid-visit; it's fetched once per document load.
+export function shouldRevalidate() {
+	return false;
+}
+
 export const meta: Route.MetaFunction = () => META_DATA;
 
 export const links: Route.LinksFunction = () => [
@@ -50,8 +61,9 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-	const location = useLocation();
-	const isBookingRoute = location.pathname === PAGE_ROUTES_DATA.BOOKING.path;
+	const hideSiteCta = useMatches().some((match) => hidesSiteCta(match.handle));
+	// Undefined only when the root loader didn't run (e.g. a 405); render the page without global chrome.
+	const global = useRouteLoaderData<typeof loader>('root');
 
 	return (
 		<html lang="en">
@@ -62,10 +74,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
-				<Navigation />
+				{global && (
+					<Navigation brand={global.brand} links={global.navLinks} bookNowLabel={global.bookNowLabel} />
+				)}
 				{children}
-				{isBookingRoute ? <WhatToExpect /> : <Cta />}
-				<Footer />
+				{global && (hideSiteCta ? <WhatToExpect /> : <Cta {...global.cta} />)}
+				{global && <Footer brandName={global.brand.name} content={global.footer} navLinks={global.navLinks} />}
 				<ScrollRestoration />
 				<Scripts />
 			</body>

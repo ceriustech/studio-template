@@ -11,6 +11,9 @@ import { PAGE_ROUTES_DATA } from './routes/constants';
 
 const routes = Object.values(PAGE_ROUTES_DATA);
 
-const ROUTES: RouteConfig = [...routes.map((r) => route(r.path, r.component))];
+const ROUTES: RouteConfig = [
+	...routes.map((r) => route(r.path, r.component)),
+	route('*', 'routes/pages/not-found/index.tsx'),
+];
 
 export default ROUTES;

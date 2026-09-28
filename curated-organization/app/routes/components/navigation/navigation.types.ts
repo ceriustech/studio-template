@@ -1,10 +1,7 @@
-export interface NavItem {
-	url: string;
-	name: string;
-}
-
-export type NavItems = NavItem[];
+import type { BrandContent, LinkItem } from '~/types/global';
 
 export interface NavigationProps {
-	items?: NavItems;
+	brand: BrandContent;
+	links: LinkItem[];
+	bookNowLabel: string;
 }

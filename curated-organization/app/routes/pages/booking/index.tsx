@@ -5,6 +5,9 @@ import CallInfo from './components/CallInfo/CallInfo';
 import Questionnaire from './components/Questionnaire/Questionnaire';
 import Calendar from './components/Calendar/Calendar';
 import type { Inquiry } from './utils';
+import type { RouteHandle } from '~/types/global';
+
+export const handle: RouteHandle = { hideSiteCta: true };
 
 type BookingView = 'none' | 'call' | 'questionnaire' | 'calendar';
 

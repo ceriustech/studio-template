@@ -12,6 +12,7 @@ type CmsImage = {
 	crop?: Maybe<{ top: number; bottom: number; left: number; right: number }>;
 	hotspot?: Maybe<{ x: number; y: number; width: number; height: number }>;
 	dimensions?: Maybe<{ width: number; height: number; aspectRatio: number }>;
+	alt?: Maybe<string>;
 };
 type CmsLink = { label?: Maybe<string>; url?: Maybe<string> };
 type CmsHoursLine = { label?: Maybe<string>; value?: Maybe<string> };
@@ -70,7 +71,12 @@ function mapFooter(settings: CmsSiteSettings | null): FooterContent {
 	if (!settings) return fallback;
 
 	const logos = (settings.footerLogos ?? [])
-		.map((credential) => toImage(credential.image, { height: 32, alt: text(credential.label) ?? '' }))
+		.map((credential) =>
+			toImage(credential.image, {
+				height: 32,
+				alt: text(credential.image?.alt) ?? text(credential.label) ?? '',
+			}),
+		)
 		.filter((logo): logo is ImageItem => logo !== null);
 	const hours = (settings.footerHours ?? []).flatMap((line) => {
 		const label = text(line.label);

@@ -190,7 +190,7 @@ As a visitor, I want the header navigation to look and behave the same as before
 **Footer**
 
 - **FR-015**: The footer MUST show the brand description, credential logos, connect links, social links, hours and copyright text from Site settings.
-- **FR-016**: Every credential logo MUST have alternative text, using the credential's label from Site settings.
+- **FR-016**: Every credential logo MUST have alternative text, using the logo's alt text from Site settings, or the credential's label when alt text is empty.
 - **FR-017**: The footer's "Navigate" column MUST render from the same navigation links as the header, replacing its hardcoded links.
 - **FR-018**: When Site settings provides a destination for a link, the rendered link MUST use that destination. No placeholder `#` link may render for content that came from the studio.
 - **FR-018a**: Built-in fallback content MUST leave out any link that has no real destination (today's `#` placeholders). If that leaves a fallback list empty, its column is not rendered.
@@ -230,7 +230,7 @@ As a visitor, I want the header navigation to look and behave the same as before
   - Principle III requires generated content types and forbids hand-written ones; the ticket defers type generation to its own ticket.
   - Principle III names a public-safe `client.ts`, while this ticket's client is server-only.
 - **Existing schema**: The Site settings and Site CTA document types already exist in the studio. The Site settings fields are brand name, tagline, logo, "Book now" label, navigation links, footer description, footer logos, connect links, social links, footer hours and copyright. This ticket makes no schema changes.
-- **Credential logo alt text**: Credential logos have no separate alt text field, so the credential's label is used as its alternative text. If the label turns out too short to describe the logo, adding an alt field is a separate schema change.
+- **Credential logo alt text**: COT-029 added a required `alt` field to every credential logo. The footer uses it, and falls back to the credential's label for content published before COT-029.
 - **Link labels render as entered**: Navigation link labels render exactly as the editor types them. Today's code reformats all-caps labels (for example "HOME" to "Home"); that reformatting is dropped, because the editor now controls the text directly. Fallback labels keep today's displayed casing.
 - **Footer Navigate column changes slightly**: It currently lists Services, Gallery and "Book", and omits Home. It will now show the same links as the header, which is the intended outcome of sharing one list.
 - **Freshness**: A visitor sees newly published global content on their next full page load. Content may take a short time to propagate through the content service's cache, which SC-001's 5-minute window allows for.

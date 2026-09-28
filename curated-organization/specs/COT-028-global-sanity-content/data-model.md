@@ -20,6 +20,7 @@ type CmsImage = {
 	crop?: { top: number; bottom: number; left: number; right: number };
 	hotspot?: { x: number; y: number; width: number; height: number };
 	dimensions?: { width: number; height: number; aspectRatio: number };
+	alt?: string; // COT-029; only read for credential logos
 };
 type CmsLink = { label?: string; url?: string };            // navLink + contactLink share this shape
 type CmsHoursLine = { label?: string; value?: string };
@@ -94,7 +95,7 @@ Each row falls back independently of the others.
 | `navLinks` | At least one item passes link validation (R8), after dropping invalid items | Fallback nav links |
 | `bookNowLabel` | Non-empty | `"Book now"` |
 | `footer.description` | Non-empty | Fallback description |
-| `footer.logos` | At least one credential has an image asset; the label becomes the alt text (FR-016) | Fallback logos |
+| `footer.logos` | At least one credential has an image asset; the image's `alt` (COT-029) becomes the alt text, falling back to the label (FR-016) | Fallback logos |
 | `footer.connectLinks` | At least one valid item | Fallback: `[]` (every placeholder is `#`, so the column isn't rendered) |
 | `footer.socialLinks` | At least one valid item | Fallback: `[]` |
 | `footer.hours` | At least one item with both label and value | Fallback hours |

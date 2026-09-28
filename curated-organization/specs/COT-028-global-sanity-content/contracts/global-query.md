@@ -13,7 +13,7 @@ It is defined with `defineQuery` (constitution III). One request returns both si
     bookNowLabel,
     navLinks[]{ label, url },
     footerBrandDescription,
-    footerLogos[]{ label, image{ asset, crop, hotspot, "dimensions": asset->metadata.dimensions } },
+    footerLogos[]{ label, image{ asset, crop, hotspot, alt, "dimensions": asset->metadata.dimensions } },
     connectLinks[]{ label, url },
     socialLinks[]{ label, url },
     footerHours[]{ label, value },

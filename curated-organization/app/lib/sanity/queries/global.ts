@@ -8,7 +8,7 @@ export const GLOBAL_QUERY = defineQuery(`{
 		bookNowLabel,
 		navLinks[]{ label, url },
 		footerBrandDescription,
-		footerLogos[]{ label, image{ asset, crop, hotspot, "dimensions": asset->metadata.dimensions } },
+		footerLogos[]{ label, image{ asset, crop, hotspot, alt, "dimensions": asset->metadata.dimensions } },
 		connectLinks[]{ label, url },
 		socialLinks[]{ label, url },
 		footerHours[]{ label, value },

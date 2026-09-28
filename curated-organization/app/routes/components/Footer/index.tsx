@@ -1,88 +1,81 @@
 import React from 'react';
 import { Link } from 'react-router';
 import './footer.css';
-import type { FooterProps } from './Footer.types';
-import { PAGE_ROUTES_DATA } from '../../constants';
-import napoCircularLogo from '~/assets/napo-circular-logo.png';
-import napoTitleLogo from '~/assets/napo-title-logo.png';
+import type { FooterLinkProps, FooterProps } from './Footer.types';
+import { isInternalUrl } from '~/lib/utils';
 
-const Footer: React.FC<FooterProps> = () => {
+const FooterLink = ({ link }: FooterLinkProps) =>
+	isInternalUrl(link.url) ? <Link to={link.url}>{link.label}</Link> : <a href={link.url}>{link.label}</a>;
+
+const Footer: React.FC<FooterProps> = ({ brandName, content, navLinks }) => {
+	const descriptionLines = content.description?.split('\n') ?? [];
+
 	return (
 		<footer className="footer">
 			<div className="footerGrid">
 				<div>
-					<div className="footerBrandName">CURATED</div>
-					<p className="footerBrandDesc">
-						Your home curated to your lifestyle - because time is your biggest
-						luxury.
-						<br />
-						Based in the NOVA / DMV area.
-					</p>
+					<div className="footerBrandName">{brandName}</div>
+					{descriptionLines.length > 0 && (
+						<p className="footerBrandDesc">
+							{descriptionLines.map((line, index) => (
+								<React.Fragment key={index}>
+									{index > 0 && <br />}
+									{line}
+								</React.Fragment>
+							))}
+						</p>
+					)}
 					<div className="footerLogos">
-						<img
-							src={napoCircularLogo}
-							alt="The Board of Certification for Professional Organizers"
-							width={32}
-							height={32}
-						/>
-						<img
-							src={napoTitleLogo}
-							alt="NAPO — National Association of Productivity and Organizing Professionals member"
-							width={64}
-							height={32}
-						/>
+						{content.logos.map((logo) => (
+							<img key={logo.src} src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} />
+						))}
 					</div>
 				</div>
 				<div>
 					<h3 className="footerHeading">Navigate</h3>
 					<ul className="footerLinks">
-						<li>
-							<Link to={PAGE_ROUTES_DATA.SERVICES.path}>Services</Link>
-						</li>
-						<li>
-							<Link to={PAGE_ROUTES_DATA.GALLERY.path}>Gallery</Link>
-						</li>
-						<li>
-							<Link to={PAGE_ROUTES_DATA.BOOKING.path}>Book</Link>
-						</li>
+						{navLinks.map((link) => (
+							<li key={link.url}>
+								<FooterLink link={link} />
+							</li>
+						))}
 					</ul>
 				</div>
-				<div>
-					<h3 className="footerHeading">Connect</h3>
-					<ul className="footerLinks">
-						<li>
-							<a href="#">Email</a>
-						</li>
-						<li>
-							<a href="#">Phone</a>
-						</li>
-						<li>
-							<a href="#">Instagram</a>
-						</li>
-					</ul>
-				</div>
+				{content.connectLinks.length > 0 && (
+					<div>
+						<h3 className="footerHeading">Connect</h3>
+						<ul className="footerLinks">
+							{content.connectLinks.map((link) => (
+								<li key={link.url}>
+									<FooterLink link={link} />
+								</li>
+							))}
+						</ul>
+					</div>
+				)}
 				<div>
 					<h3 className="footerHeading">Hours</h3>
 					<ul className="footerLinks">
-						<li>
-							<a href="#">Mon – Fri: 9am – 5pm</a>
-						</li>
-						<li>
-							<a href="#">Sat: By appointment</a>
-						</li>
-						<li>
-							<a href="#">Sun: Closed</a>
-						</li>
+						{content.hours.map((line) => (
+							<li key={line.label}>
+								<span>
+									{line.label}: {line.value}
+								</span>
+							</li>
+						))}
 					</ul>
 				</div>
 			</div>
 			<div className="footerDivider" />
 			<div className="footerBottom">
-				<span>© 2026 Curated Organization. All rights reserved.</span>
-				<div className="footerSocial">
-					<a href="#">Instagram</a>
-					<a href="#">Facebook</a>
-				</div>
+				{content.copyright && <span>{content.copyright}</span>}
+				{content.socialLinks.length > 0 && (
+					<div className="footerSocial">
+						{content.socialLinks.map((link) => (
+							<FooterLink key={link.url} link={link} />
+						))}
+					</div>
+				)}
 			</div>
 		</footer>
 	);

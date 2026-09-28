@@ -31,24 +31,4 @@ export const QUERIES = {
 type BreakpointKey = keyof typeof BREAKPOINTS;
 type QueryKey = keyof typeof QUERIES;
 
-const NAVBAR_DATA: NAVIGATION[] = [
-	{
-		url: '/',
-		name: 'HOME',
-	},
-	{
-		url: '/services',
-		name: 'SERVICES',
-	},
-	{
-		url: '/gallery',
-		name: 'GALLERY',
-	},
-	{
-		url: '/booking',
-		name: 'BOOKING',
-	},
-];
-
-export { NAVBAR_DATA };
 export type { BreakpointKey, QueryKey };

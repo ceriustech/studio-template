@@ -59,7 +59,8 @@
 	margin-bottom: 10px;
 }
 
-.footerLinks a {
+.footerLinks a,
+.footerLinks span {
 	font-family: var(--sans);
 	font-size: 13px;
 	font-weight: 300;

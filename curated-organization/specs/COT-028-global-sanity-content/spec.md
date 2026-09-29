@@ -42,7 +42,7 @@ Navigation
 - The active-link state, mobile menu and existing accessibility attributes behave exactly as they do now.
 
 Footer
-- The brand description, credential logos (with alt text), connect links, social links, hours and copyright text come from `siteSettings`.
+- The brand description, credential logos (with alt text), connect links, hours and copyright text come from `siteSettings`.
 - The \"Navigate\" column renders from `siteSettings.navLinks` instead of hardcoded links.
 - No placeholder `href=\"#\"` links render when the CMS provides URLs.
 
@@ -83,7 +83,7 @@ As the site owner, I want to change the navigation, footer and call-to-action co
 2. **Given** the Site settings document lists navigation links in a particular order, **When** a visitor loads any page, **Then** the header's links and the footer's "Navigate" column show those links in that same order, each pointing to its configured destination.
 3. **Given** the editor adds a new navigation link and publishes, **When** a visitor next loads the site, **Then** the new link appears in both the header and the footer without any code change.
 4. **Given** the Site settings document has a "Book now" label, **When** a visitor loads any page, **Then** the header's booking button shows that label.
-5. **Given** the Site settings document has a footer description, credential logos, connect links, social links, hours and copyright text, **When** a visitor loads any page, **Then** the footer shows all of them, and every credential logo has alternative text.
+5. **Given** the Site settings document has a footer description, credential logos, connect links, hours and copyright text, **When** a visitor loads any page, **Then** the footer shows all of them, and every credential logo has alternative text.
 6. **Given** the Site CTA document is published with a background image, heading, subheading, button label and button destination, **When** a visitor loads a page that shows the CTA, **Then** the CTA shows that content, and the background image respects the crop and focal point the editor set.
 
 ---
@@ -142,14 +142,14 @@ As a visitor, I want the header navigation to look and behave the same as before
 
 - **Configuration missing entirely**: if the content-service settings are absent from the server environment, the site behaves as if the service were unreachable. It renders every global section from built-in content and logs the problem; the server does not crash or refuse to start.
 - **Slow content service**: if the content service responds slowly, the page waits no longer than a short, fixed limit before rendering with built-in content, so a slow service can't stall every page.
-- **Empty lists**: if the editor leaves a list empty (navigation links, connect links, social links, hours or credential logos), that list uses its built-in content. It never renders as an empty column or an empty nav bar.
-- **Incomplete list items**: a navigation, connect or social link missing its label or destination is left out, and the remaining valid items still render. If no valid items remain, the list uses its built-in content.
+- **Empty lists**: if the editor leaves a list empty (navigation links, connect links, hours or credential logos), that list uses its built-in content. It never renders as an empty column or an empty nav bar.
+- **Incomplete list items**: a navigation or connect link missing its label or destination is left out, and the remaining valid items still render. If no valid items remain, the list uses its built-in content.
 - **Missing images**: if the logo or the CTA background image is not set, that image falls back to today's built-in image while the rest of the section keeps the editor's content.
 - **Editor publishes mid-visit**: a visitor who is already browsing keeps seeing the global content that loaded with their first page until they do a full page load. Moving between pages within the site does not refetch it.
 - **Unpublished drafts**: content that is saved but not published in the studio never appears on the live site.
 - **External or unusual destinations**: navigation and footer links whose destination is a full web address, `mailto:` or `tel:` link open that destination correctly. Internal paths navigate within the site.
 - **Duplicate booking link**: if the editor's navigation links include the Booking page, the header hides it from its link list, and "Book now" stays the header's only booking entry, as today. The footer's "Navigate" column still shows it (see FR-012a).
-- **Placeholder links in built-in content**: today's footer connect and social links point nowhere (`#`). The built-in fallback leaves out any link without a real destination, so visitors never see links that go nowhere (see FR-018a).
+- **Placeholder links in built-in content**: today's footer connect links point nowhere (`#`). The built-in fallback leaves out any link without a real destination, so visitors never see links that go nowhere (see FR-018a).
 
 ## Requirements *(mandatory)*
 
@@ -173,7 +173,7 @@ As a visitor, I want the header navigation to look and behave the same as before
   - "Book now" label (requires the label)
   - Footer description
   - Footer credential logos (requires at least one logo with an image)
-  - Footer connect links, footer social links and footer hours (each requires at least one valid item)
+  - Footer connect links and footer hours (each requires at least one valid item)
   - Copyright text
   - Site CTA (requires a heading, a button label and a background image)
 - **FR-009**: Built-in fallback content MUST be the content the site shows today, moved out of the components unchanged.
@@ -189,9 +189,9 @@ As a visitor, I want the header navigation to look and behave the same as before
 
 **Footer**
 
-- **FR-015**: The footer MUST show the brand description, credential logos, connect links, social links, hours and copyright text from Site settings.
+- **FR-015**: The footer MUST show the brand description, credential logos, connect links, hours and copyright text from Site settings.
 - **FR-016**: Every credential logo MUST have alternative text, using the logo's alt text from Site settings, or the credential's label when alt text is empty.
-- **FR-017**: The footer's "Navigate" column MUST render from the same navigation links as the header, replacing its hardcoded links.
+- **FR-017**: The footer's "Navigate" column MUST render from its own footer link list in Site settings (`footerNavLinks`), replacing its hardcoded links. *Revised after release: it originally shared the header's navigation links.*
 - **FR-018**: When Site settings provides a destination for a link, the rendered link MUST use that destination. No placeholder `#` link may render for content that came from the studio.
 - **FR-018a**: Built-in fallback content MUST leave out any link that has no real destination (today's `#` placeholders). If that leaves a fallback list empty, its column is not rendered.
 - **FR-019**: Footer hours MUST render as plain text, not as links.
@@ -204,7 +204,7 @@ As a visitor, I want the header navigation to look and behave the same as before
 
 ### Key Entities
 
-- **Site settings**: The single, site-wide document holding brand identity (name, tagline, logo), the "Book now" label, the ordered navigation links, and footer content (description, credential logos, connect links, social links, hours, copyright). Shared by the header and footer on every page.
+- **Site settings**: The single, site-wide document holding brand identity (name, tagline, logo), the "Book now" label, the ordered navigation links, and footer content (description, credential logos, connect links, hours, copyright). Shared by the header and footer on every page.
 - **Site CTA**: The single, site-wide call-to-action banner: background image, heading, subheading, button label and button destination. Shown on every page that does not opt out.
 - **Navigation link**: A label and a destination (an internal path or an external address). One ordered list drives both the header links and the footer's "Navigate" column.
 - **Built-in fallback content**: The copy, links and images the site shows today. It is used per section whenever published content is unavailable or incomplete.
@@ -229,7 +229,7 @@ As a visitor, I want the header navigation to look and behave the same as before
 - **Constitution exceptions**: This ticket knowingly departs from the project constitution in two places, and both need to be logged as approved exceptions in the plan's Complexity Tracking:
   - Principle III requires generated content types and forbids hand-written ones; the ticket defers type generation to its own ticket.
   - Principle III names a public-safe `client.ts`, while this ticket's client is server-only.
-- **Existing schema**: The Site settings and Site CTA document types already exist in the studio. The Site settings fields are brand name, tagline, logo, "Book now" label, navigation links, footer description, footer logos, connect links, social links, footer hours and copyright. This ticket makes no schema changes.
+- **Existing schema**: The Site settings and Site CTA document types already exist in the studio. The Site settings fields are brand name, tagline, logo, "Book now" label, navigation links, footer description, footer logos, connect links, footer hours and copyright. This ticket makes no schema changes.
 - **Credential logo alt text**: COT-029 added a required `alt` field to every credential logo. The footer uses it, and falls back to the credential's label for content published before COT-029.
 - **Link labels render as entered**: Navigation link labels render exactly as the editor types them. Today's code reformats all-caps labels (for example "HOME" to "Home"); that reformatting is dropped, because the editor now controls the text directly. Fallback labels keep today's displayed casing.
 - **Footer Navigate column changes slightly**: It currently lists Services, Gallery and "Book", and omits Home. It will now show the same links as the header, which is the intended outcome of sharing one list.

@@ -94,28 +94,6 @@
 	font-weight: 300;
 }
 
-.footerSocial {
-	display: flex;
-	gap: 20px;
-}
-
-.footerSocial a {
-	color: var(--taupe-dark);
-	text-decoration: none;
-	font-size: 12px;
-	letter-spacing: 0.05em;
-	transition: color 0.2s;
-}
-
-.footerSocial a:hover {
-	color: var(--cream);
-}
-
-.footerSocial a:focus-visible {
-	outline: 2px solid var(--cream);
-	outline-offset: 2px;
-}
-
 /* Responsive: Tablet (768px and below) */
 @media (max-width: 768px) {
 	.footerGrid {

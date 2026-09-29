@@ -79,7 +79,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				)}
 				{children}
 				{global && (hideSiteCta ? <WhatToExpect /> : <Cta {...global.cta} />)}
-				{global && <Footer brandName={global.brand.name} content={global.footer} navLinks={global.navLinks} />}
+				{global && <Footer brandName={global.brand.name} content={global.footer} />}
 				<ScrollRestoration />
 				<Scripts />
 			</body>

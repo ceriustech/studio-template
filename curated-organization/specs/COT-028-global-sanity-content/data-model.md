@@ -34,8 +34,8 @@ type CmsSiteSettings = {
 	navLinks?: CmsLink[];
 	footerBrandDescription?: string;
 	footerLogos?: CmsCredential[];
+	footerNavLinks?: CmsLink[];
 	connectLinks?: CmsLink[];
-	socialLinks?: CmsLink[];
 	footerHours?: CmsHoursLine[];
 	copyrightText?: string;
 };
@@ -62,8 +62,8 @@ type BrandContent = { name: string; tagline?: string; logo: ImageItem };
 type FooterContent = {
 	description?: string;          // may contain \n; the component renders the line breaks
 	logos: ImageItem[];
+	navigateLinks: LinkItem[];     // footer "Navigate" column
 	connectLinks: LinkItem[];      // may be empty → column not rendered (FR-018a)
-	socialLinks: LinkItem[];       // may be empty → not rendered
 	hours: { label: string; value: string }[];
 	copyright?: string;
 };
@@ -97,7 +97,6 @@ Each row falls back independently of the others.
 | `footer.description` | Non-empty | Fallback description |
 | `footer.logos` | At least one credential has an image asset; the image's `alt` (COT-029) becomes the alt text, falling back to the label (FR-016) | Fallback logos |
 | `footer.connectLinks` | At least one valid item | Fallback: `[]` (every placeholder is `#`, so the column isn't rendered) |
-| `footer.socialLinks` | At least one valid item | Fallback: `[]` |
 | `footer.hours` | At least one item with both label and value | Fallback hours |
 | `footer.copyright` | Non-empty | Fallback copyright |
 | `cta` | `heading`, `buttonLabel` and `backgroundImage.asset` are all present. `buttonLink` must pass link validation, otherwise it defaults to the Booking path. | Fallback CTA |
@@ -116,7 +115,7 @@ These are today's hardcoded values, moved unchanged. The one exception is that `
 | bookNowLabel | `Book now` |
 | footer.description | `Your home curated to your lifestyle - because time is your biggest luxury.\nBased in the NOVA / DMV area.` |
 | footer.logos | NAPO circular (32×32) and NAPO title (64×32) local assets, with today's alt text |
-| footer.connectLinks / socialLinks | `[]` |
+| footer.connectLinks | `[]` |
 | footer.hours | `Mon – Fri` / `9am – 5pm`; `Sat` / `By appointment`; `Sun` / `Closed` |
 | footer.copyright | `© 2026 Curated Organization. All rights reserved.` |
 | cta | Today's Unsplash background (position `50% 50%`), "Ready to transform your space?", "Your complimentary 30-minute consultation starts here", "Book a consultation", `/booking` |

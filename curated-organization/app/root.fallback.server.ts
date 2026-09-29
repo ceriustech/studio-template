@@ -33,9 +33,13 @@ export const FALLBACK_GLOBAL_CONTENT: GlobalContent = {
 				height: 32,
 			},
 		],
-		// Today's connect/social links are "#" placeholders, so the fallback omits them.
+		navigateLinks: [
+			{ label: 'Services', url: '/services' },
+			{ label: 'Gallery', url: '/gallery' },
+			{ label: 'Book', url: '/booking' },
+		],
+		// Today's connect links are "#" placeholders, so the fallback omits them.
 		connectLinks: [],
-		socialLinks: [],
 		hours: [
 			{ label: 'Mon – Fri', value: '9am – 5pm' },
 			{ label: 'Sat', value: 'By appointment' },

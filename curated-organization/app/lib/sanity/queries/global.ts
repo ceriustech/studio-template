@@ -9,8 +9,8 @@ export const GLOBAL_QUERY = defineQuery(`{
 		navLinks[]{ label, url },
 		footerBrandDescription,
 		footerLogos[]{ label, image{ asset, crop, hotspot, alt, "dimensions": asset->metadata.dimensions } },
+		footerNavLinks[]{ label, url },
 		connectLinks[]{ label, url },
-		socialLinks[]{ label, url },
 		footerHours[]{ label, value },
 		copyrightText
 	},

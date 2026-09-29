@@ -25,8 +25,8 @@ type CmsSiteSettings = {
 	navLinks?: Maybe<CmsLink[]>;
 	footerBrandDescription?: Maybe<string>;
 	footerLogos?: Maybe<CmsCredential[]>;
+	footerNavLinks?: Maybe<CmsLink[]>;
 	connectLinks?: Maybe<CmsLink[]>;
-	socialLinks?: Maybe<CmsLink[]>;
 	footerHours?: Maybe<CmsHoursLine[]>;
 	copyrightText?: Maybe<string>;
 };
@@ -87,8 +87,8 @@ function mapFooter(settings: CmsSiteSettings | null): FooterContent {
 	return {
 		description: text(settings.footerBrandDescription) ?? fallback.description,
 		logos: orFallback(logos, fallback.logos),
+		navigateLinks: orFallback(toLinks(settings.footerNavLinks), fallback.navigateLinks),
 		connectLinks: orFallback(toLinks(settings.connectLinks), fallback.connectLinks),
-		socialLinks: orFallback(toLinks(settings.socialLinks), fallback.socialLinks),
 		hours: orFallback(hours, fallback.hours),
 		copyright: text(settings.copyrightText) ?? fallback.copyright,
 	};

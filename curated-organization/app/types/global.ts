@@ -9,8 +9,8 @@ export type HoursItem = { label: string; value: string };
 export type FooterContent = {
 	description?: string;
 	logos: ImageItem[];
+	navigateLinks: LinkItem[];
 	connectLinks: LinkItem[];
-	socialLinks: LinkItem[];
 	hours: HoursItem[];
 	copyright?: string;
 };

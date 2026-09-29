@@ -7,7 +7,7 @@ import { isInternalUrl } from '~/lib/utils';
 const FooterLink = ({ link }: FooterLinkProps) =>
 	isInternalUrl(link.url) ? <Link to={link.url}>{link.label}</Link> : <a href={link.url}>{link.label}</a>;
 
-const Footer: React.FC<FooterProps> = ({ brandName, content, navLinks }) => {
+const Footer: React.FC<FooterProps> = ({ brandName, content }) => {
 	const descriptionLines = content.description?.split('\n') ?? [];
 
 	return (
@@ -34,7 +34,7 @@ const Footer: React.FC<FooterProps> = ({ brandName, content, navLinks }) => {
 				<div>
 					<h3 className="footerHeading">Navigate</h3>
 					<ul className="footerLinks">
-						{navLinks.map((link) => (
+						{content.navigateLinks.map((link) => (
 							<li key={link.url}>
 								<FooterLink link={link} />
 							</li>
@@ -69,13 +69,6 @@ const Footer: React.FC<FooterProps> = ({ brandName, content, navLinks }) => {
 			<div className="footerDivider" />
 			<div className="footerBottom">
 				{content.copyright && <span>{content.copyright}</span>}
-				{content.socialLinks.length > 0 && (
-					<div className="footerSocial">
-						{content.socialLinks.map((link) => (
-							<FooterLink key={link.url} link={link} />
-						))}
-					</div>
-				)}
 			</div>
 		</footer>
 	);

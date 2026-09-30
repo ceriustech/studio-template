@@ -97,14 +97,16 @@ function mapFooter(settings: CmsSiteSettings | null): FooterContent {
 function mapCta(cta: CmsSiteCta | null): CtaContent {
 	const heading = text(cta?.heading);
 	const buttonLabel = text(cta?.buttonLabel);
-	if (!cta?.backgroundImage?.asset || !heading || !buttonLabel) return FALLBACK.cta;
+	if (!cta || !heading || !buttonLabel) return FALLBACK.cta;
 
 	const buttonLink = { label: buttonLabel, url: cta.buttonLink };
 	return {
-		background: {
-			src: urlFor(cta.backgroundImage).width(1800).auto('format').url(),
-			position: hotspotPosition(cta.backgroundImage),
-		},
+		background: cta.backgroundImage?.asset
+			? {
+					src: urlFor(cta.backgroundImage).width(1800).auto('format').url(),
+					position: hotspotPosition(cta.backgroundImage),
+				}
+			: FALLBACK.cta.background,
 		heading,
 		subheading: text(cta.subheading),
 		buttonLabel,

@@ -175,7 +175,7 @@ As a visitor, I want the header navigation to look and behave the same as before
   - Footer credential logos (requires at least one logo with an image)
   - Footer connect links and footer hours (each requires at least one valid item)
   - Copyright text
-  - Site CTA (requires a heading, a button label and a background image)
+  - Site CTA (requires a heading and a button label; the background image is optional and falls back on its own)
 - **FR-009**: Built-in fallback content MUST be the content the site shows today, moved out of the components unchanged.
 - **FR-010**: The header and footer MUST still appear on the site's error and "not found" pages.
 

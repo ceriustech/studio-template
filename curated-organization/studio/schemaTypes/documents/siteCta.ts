@@ -12,9 +12,9 @@ export const siteCta = defineType({
 		defineField({
 			name: 'backgroundImage',
 			title: 'Background image',
+			description: 'Optional. The site uses its default background when this is empty.',
 			type: 'image',
 			options: {hotspot: true},
-			validation: (rule) => rule.required(),
 		}),
 		defineField({
 			name: 'heading',

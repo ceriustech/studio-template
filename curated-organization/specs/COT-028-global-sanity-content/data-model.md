@@ -99,7 +99,7 @@ Each row falls back independently of the others.
 | `footer.connectLinks` | At least one valid item | Fallback: `[]` (every placeholder is `#`, so the column isn't rendered) |
 | `footer.hours` | At least one item with both label and value | Fallback hours |
 | `footer.copyright` | Non-empty | Fallback copyright |
-| `cta` | `heading`, `buttonLabel` and `backgroundImage.asset` are all present. `buttonLink` must pass link validation, otherwise it defaults to the Booking path. | Fallback CTA |
+| `cta` | `heading` and `buttonLabel` are present. Without `backgroundImage.asset`, only the background falls back. `buttonLink` must pass link validation, otherwise it defaults to the Booking path. | Fallback CTA |
 
 If the whole fetch fails, the client is not configured, or both documents are `null`, every row takes its "Otherwise" value.
 

@@ -32,7 +32,6 @@ export const structure: StructureResolver = (S) =>
 			S.divider(),
 
 			S.documentTypeListItem('portfolioPiece').title('Portfolio pieces'),
-			S.documentTypeListItem('testimonial').title('Testimonials'),
 
 			S.divider(),
 
@@ -42,6 +41,6 @@ export const structure: StructureResolver = (S) =>
 			S.divider(),
 
 			...S.documentTypeListItems().filter(
-				(listItem) => !SINGLETONS.includes(listItem.getId() as string) && listItem.getId() !== 'portfolioPiece' && listItem.getId() !== 'testimonial',
+				(listItem) => !SINGLETONS.includes(listItem.getId() as string) && listItem.getId() !== 'portfolioPiece',
 			),
 		])

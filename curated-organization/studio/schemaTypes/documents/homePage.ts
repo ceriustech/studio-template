@@ -83,7 +83,7 @@ export const homePage = defineType({
 			title: 'Testimonials',
 			type: 'array',
 			group: 'testimonials',
-			of: [{type: 'reference', to: [{type: 'testimonial'}]}],
+			of: [{type: 'testimonial'}],
 		}),
 		defineField({
 			name: 'seo',

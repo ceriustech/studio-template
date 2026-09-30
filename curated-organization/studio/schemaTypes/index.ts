@@ -12,13 +12,13 @@ import {credentialBadge} from './objects/credentialBadge'
 import {contactLink} from './objects/contactLink'
 import {hoursLine} from './objects/hoursLine'
 import {navLink} from './objects/navLink'
+import {testimonial} from './objects/testimonial'
 
 import {homePage} from './documents/homePage'
 import {servicesPage} from './documents/servicesPage'
 import {galleryPage} from './documents/galleryPage'
 import {bookingPage} from './documents/bookingPage'
 import {portfolioPiece} from './documents/portfolioPiece'
-import {testimonial} from './documents/testimonial'
 import {siteSettings} from './documents/siteSettings'
 import {siteCta} from './documents/siteCta'
 
@@ -38,6 +38,7 @@ export const schemaTypes = [
 	contactLink,
 	hoursLine,
 	navLink,
+	testimonial,
 
 	// documents
 	homePage,
@@ -45,7 +46,6 @@ export const schemaTypes = [
 	galleryPage,
 	bookingPage,
 	portfolioPiece,
-	testimonial,
 	siteSettings,
 	siteCta,
 ]

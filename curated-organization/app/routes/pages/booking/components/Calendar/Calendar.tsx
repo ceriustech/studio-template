@@ -3,7 +3,7 @@ import { InlineWidget, useCalendlyEventListener } from 'react-calendly';
 import './calendar.css';
 import type { CalendarProps } from './Calendar.types';
 
-const CALENDLY_URL = 'https://calendly.com/lifengineered-bilalmasters/30min';
+const CALENDLY_URL = process.env.CALENDLY_URL;
 
 class CalendlyErrorBoundary extends Component<
 	{ children: ReactNode },

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router';
 import Hero from './components/hero';
 import TwoPaths from './components/two-paths';
 import CallInfo from './components/CallInfo/CallInfo';
@@ -9,6 +10,11 @@ import type { RouteHandle } from '~/types/global';
 
 export const handle: RouteHandle = { hideSiteCta: true };
 
+// Runs on the server only, so the browser never reads process.env.
+export function loader() {
+	return { calendlyUrl: process.env.CALENDLY_URL || null };
+}
+
 type BookingView = 'none' | 'call' | 'questionnaire' | 'calendar';
 
 const VIEW_SECTION_ID: Record<Exclude<BookingView, 'none'>, string> = {
@@ -18,6 +24,7 @@ const VIEW_SECTION_ID: Record<Exclude<BookingView, 'none'>, string> = {
 };
 
 const Booking = () => {
+	const { calendlyUrl } = useLoaderData<typeof loader>();
 	const [view, setView] = useState<BookingView>('none');
 	const [inquiry, setInquiry] = useState<Inquiry | null>(null);
 
@@ -49,7 +56,7 @@ const Booking = () => {
 				/>
 			)}
 			{view === 'calendar' && (
-				<Calendar inquiry={inquiry} onScheduled={() => {}} />
+				<Calendar calendlyUrl={calendlyUrl} inquiry={inquiry} onScheduled={() => {}} />
 			)}
 		</main>
 	);

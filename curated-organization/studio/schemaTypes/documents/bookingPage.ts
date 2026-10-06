@@ -15,7 +15,7 @@ export const bookingPage = defineType({
 		{name: 'questionnaire', title: 'Questionnaire'},
 		{name: 'calendar', title: 'Calendar'},
 		{name: 'whatToExpect', title: 'What to expect'},
-		{name: 'seo', title: 'SEO'},
+		{name: 'seo', title: 'Search & sharing'},
 	],
 	fields: [
 		defineField({
@@ -135,7 +135,7 @@ export const bookingPage = defineType({
 		}),
 		defineField({
 			name: 'seo',
-			title: 'SEO',
+			title: 'Search & sharing',
 			type: 'seo',
 			group: 'seo',
 		}),

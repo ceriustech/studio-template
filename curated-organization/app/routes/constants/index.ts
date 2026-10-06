@@ -20,7 +20,7 @@ const getSocialMeta = (
 	description: string,
 	path: string = '',
 ) => [
-	{ title: `Notifi${title ? ` | ${title}` : ''}` },
+	{ title: `Curated Organization${title ? ` | ${title}` : ''}` },
 	{ name: 'description', content: description },
 	{ property: 'og:title', content: title || 'Curated Organization' },
 	{ property: 'og:description', content: 'Professional organizing services' },

@@ -1,9 +1,9 @@
 import { getSanityClient } from '~/lib/sanity/client.server';
 import { urlFor } from '~/lib/sanity/image.server';
 import { GLOBAL_QUERY } from '~/lib/sanity/queries/global';
-import type { CtaContent, FooterContent, GlobalContent, ImageItem, LinkItem } from '~/types/global';
+import type { CtaContent, FooterContent, GlobalContent, ImageItem, LinkItem, SeoContent } from '~/types/global';
 import { PAGE_ROUTES_DATA } from './routes/constants';
-import { FALLBACK_GLOBAL_CONTENT as FALLBACK } from './root.fallback.server';
+import { BACKUP_BUSINESS_NAME, FALLBACK_GLOBAL_CONTENT as FALLBACK } from './root.fallback.server';
 
 // Hand-written until the TypeGen ticket. GROQ returns null for any field an editor left blank.
 type Maybe<T> = T | null | undefined;
@@ -17,8 +17,10 @@ type CmsImage = {
 type CmsLink = { label?: Maybe<string>; url?: Maybe<string> };
 type CmsHoursLine = { label?: Maybe<string>; value?: Maybe<string> };
 type CmsCredential = { label?: Maybe<string>; image?: Maybe<CmsImage> };
+type CmsSeo = { title?: Maybe<string>; description?: Maybe<string>; image?: Maybe<CmsImage> };
 type CmsSiteSettings = {
 	brandName?: Maybe<string>;
+	businessName?: Maybe<string>;
 	brandTagline?: Maybe<string>;
 	logo?: Maybe<CmsImage>;
 	bookNowLabel?: Maybe<string>;
@@ -29,6 +31,7 @@ type CmsSiteSettings = {
 	connectLinks?: Maybe<CmsLink[]>;
 	footerHours?: Maybe<CmsHoursLine[]>;
 	copyrightText?: Maybe<string>;
+	defaultSeo?: Maybe<CmsSeo>;
 };
 type CmsSiteCta = {
 	backgroundImage?: Maybe<CmsImage>;
@@ -114,6 +117,30 @@ function mapCta(cta: CmsSiteCta | null): CtaContent {
 	};
 }
 
+// Mirrors composeTitle() in studio/components/seoTitle.ts so the Studio preview matches the live title.
+const withBusinessName = (title: string, businessName: string) =>
+	title.toLowerCase().includes(businessName.toLowerCase()) ? title : `${title} | ${businessName}`;
+
+function mapSeo(settings: CmsSiteSettings | null): SeoContent {
+	const seo = settings?.defaultSeo;
+	const businessName = text(settings?.businessName) ?? BACKUP_BUSINESS_NAME;
+	const image = seo?.image;
+
+	return {
+		title: withBusinessName(text(seo?.title) ?? FALLBACK.seo.title, businessName),
+		description: text(seo?.description)?.replace(/\s*\n\s*/g, ' ') ?? FALLBACK.seo.description,
+		...(image?.asset?._ref && {
+			image: {
+				// JPEG rather than auto format: some link-preview scrapers can't read WebP/AVIF.
+				src: urlFor(image).width(1200).height(630).fit('crop').format('jpg').url(),
+				alt: text(image.alt) ?? '',
+				width: 1200,
+				height: 630,
+			},
+		}),
+	};
+}
+
 function mapGlobal(result: GlobalQueryResult | null): GlobalContent {
 	const settings = result?.settings ?? null;
 	const brandName = text(settings?.brandName);
@@ -130,6 +157,7 @@ function mapGlobal(result: GlobalQueryResult | null): GlobalContent {
 		bookNowLabel: text(settings?.bookNowLabel) ?? FALLBACK.bookNowLabel,
 		footer: mapFooter(settings),
 		cta: mapCta(result?.cta ?? null),
+		seo: mapSeo(settings),
 	};
 }
 

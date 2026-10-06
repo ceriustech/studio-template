@@ -12,7 +12,7 @@ export const siteSettings = defineType({
 		{name: 'brand', title: 'Brand & navigation'},
 		{name: 'footer', title: 'Footer'},
 		{name: 'contact', title: 'Business contact'},
-		{name: 'seo', title: 'Default SEO'},
+		{name: 'seo', title: 'Default search & sharing'},
 	],
 	fields: [
 		defineField({
@@ -21,6 +21,14 @@ export const siteSettings = defineType({
 			type: 'string',
 			group: 'brand',
 			validation: (rule) => rule.required(),
+		}),
+		defineField({
+			name: 'businessName',
+			title: 'Business name',
+			description:
+				'Your full business name, e.g. "Curated Organization". It\'s added to the end of every page title in Google and the browser tab.',
+			type: 'string',
+			group: 'brand',
 		}),
 		defineField({
 			name: 'brandTagline',
@@ -127,9 +135,21 @@ export const siteSettings = defineType({
 		}),
 		defineField({
 			name: 'defaultSeo',
-			title: 'Default SEO (site-wide fallback)',
+			title: 'Default search & sharing',
+			description: "Used on any page that doesn't have its own.",
 			type: 'seo',
 			group: 'seo',
+			// Required here only; page-level search & sharing stays optional and falls back to this.
+			validation: (rule) =>
+				rule.custom((value: {title?: string; description?: string} | undefined) => {
+					const errors = [
+						...(value?.title?.trim() ? [] : [{message: 'Add a default page title.', path: ['title']}]),
+						...(value?.description?.trim()
+							? []
+							: [{message: 'Add a default page summary.', path: ['description']}]),
+					]
+					return errors.length > 0 ? errors : true
+				}),
 		}),
 	],
 	preview: {

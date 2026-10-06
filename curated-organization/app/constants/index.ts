@@ -32,3 +32,5 @@ type BreakpointKey = keyof typeof BREAKPOINTS;
 type QueryKey = keyof typeof QUERIES;
 
 export type { BreakpointKey, QueryKey };
+
+export const SITE_URL = 'https://curatedorganization.com';

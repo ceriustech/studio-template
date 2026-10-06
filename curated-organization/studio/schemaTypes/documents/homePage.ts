@@ -13,7 +13,7 @@ export const homePage = defineType({
 		{name: 'process', title: 'Process'},
 		{name: 'beforeAfter', title: 'Before/after'},
 		{name: 'testimonials', title: 'Testimonials'},
-		{name: 'seo', title: 'SEO'},
+		{name: 'seo', title: 'Search & sharing'},
 	],
 	fields: [
 		defineField({
@@ -87,7 +87,7 @@ export const homePage = defineType({
 		}),
 		defineField({
 			name: 'seo',
-			title: 'SEO',
+			title: 'Search & sharing',
 			type: 'seo',
 			group: 'seo',
 		}),

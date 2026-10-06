@@ -12,7 +12,9 @@ export const GLOBAL_QUERY = defineQuery(`{
 		footerNavLinks[]{ label, url },
 		connectLinks[]{ label, url },
 		footerHours[]{ label, value },
-		copyrightText
+		copyrightText,
+		businessName,
+		defaultSeo{ title, description, image{ asset, crop, hotspot, alt } }
 	},
 	"cta": *[_id == "siteCta"][0]{
 		backgroundImage{ asset, crop, hotspot, "dimensions": asset->metadata.dimensions },

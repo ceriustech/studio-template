@@ -23,12 +23,15 @@ export type CtaContent = {
 	buttonHref: string;
 };
 
+export type SeoContent = { title: string; description: string; image?: ImageItem };
+
 export type GlobalContent = {
 	brand: BrandContent;
 	navLinks: LinkItem[];
 	bookNowLabel: string;
 	footer: FooterContent;
 	cta: CtaContent;
+	seo: SeoContent;
 };
 
 export type RouteHandle = { hideSiteCta?: boolean };

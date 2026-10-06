@@ -3,6 +3,9 @@ import napoCircularLogo from '~/assets/napo-circular-logo.png';
 import napoTitleLogo from '~/assets/napo-title-logo.png';
 import type { GlobalContent } from '~/types/global';
 
+// Title suffix when Site Settings has no business name. Mirrors studio/components/seoTitle.ts.
+export const BACKUP_BUSINESS_NAME = 'Curated Organization';
+
 export const FALLBACK_GLOBAL_CONTENT: GlobalContent = {
 	brand: {
 		name: 'CURATED',
@@ -56,5 +59,9 @@ export const FALLBACK_GLOBAL_CONTENT: GlobalContent = {
 		subheading: 'Your complimentary 30-minute consultation starts here',
 		buttonLabel: 'Book a consultation',
 		buttonHref: '/booking',
+	},
+	seo: {
+		title: 'Curated Organization',
+		description: 'Professional organizing services',
 	},
 };

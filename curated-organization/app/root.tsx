@@ -11,6 +11,7 @@ import {
 
 import type { Route } from './+types/root';
 import type { loader } from './root.loader.server';
+import { buildMeta } from './lib/seo';
 import Navigation from './routes/components/navigation';
 import Footer from './routes/components/Footer';
 import Cta from './routes/components/Cta';
@@ -20,24 +21,6 @@ import './app.css';
 const hidesSiteCta = (handle: unknown): boolean =>
 	typeof handle === 'object' && handle !== null && 'hideSiteCta' in handle && handle.hideSiteCta === true;
 
-const META_DATA = [
-	{ httpEquiv: 'Content-type', content: 'text/html; charset=utf-8' },
-	{
-		name: 'viewport',
-		content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0',
-	},
-	{ title: 'Curated Organization' },
-	{ name: 'description', content: 'Professional organizing services' },
-	{
-		name: 'keywords',
-		content:
-			'curated organization, professional organizing, home organization, office organization, home office organization, decluttering, space optimization, time management, productivity, efficiency, organization tips, organization services, organization solutions, organization strategies, organization techniques, organization tools, organization resources, organization guides, organization checklists, organization templates, organization apps, organization software, organization systems, organization methods, organization principles, organization best practices',
-	},
-	{ property: 'og:url', content: 'https://curatedorganization.com' },
-	{ property: 'og:title', content: 'Curated Organization' },
-	{ property: 'og:description', content: 'Professional organizing services' },
-];
-
 export { loader } from './root.loader.server';
 
 // Global content rarely changes mid-visit; it's fetched once per document load.
@@ -45,7 +28,9 @@ export function shouldRevalidate() {
 	return false;
 }
 
-export const meta: Route.MetaFunction = () => META_DATA;
+// Inherited by every route without its own meta. Undefined loaderData means the root loader didn't run.
+export const meta: Route.MetaFunction = ({ loaderData, location }) =>
+	loaderData ? buildMeta(loaderData.seo, location.pathname) : [];
 
 export const links: Route.LinksFunction = () => [
 	{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },

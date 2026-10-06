@@ -9,7 +9,7 @@ export const galleryPage = defineType({
 	description: 'Portfolio pieces are managed as their own documents and queried by category, not listed here.',
 	groups: [
 		{name: 'hero', title: 'Hero'},
-		{name: 'seo', title: 'SEO'},
+		{name: 'seo', title: 'Search & sharing'},
 	],
 	fields: [
 		defineField({
@@ -20,7 +20,7 @@ export const galleryPage = defineType({
 		}),
 		defineField({
 			name: 'seo',
-			title: 'SEO',
+			title: 'Search & sharing',
 			type: 'seo',
 			group: 'seo',
 		}),

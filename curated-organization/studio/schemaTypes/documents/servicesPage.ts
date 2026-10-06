@@ -12,7 +12,7 @@ export const servicesPage = defineType({
 		{name: 'about', title: 'About'},
 		{name: 'services', title: 'Services'},
 		{name: 'pricing', title: 'Pricing'},
-		{name: 'seo', title: 'SEO'},
+		{name: 'seo', title: 'Search & sharing'},
 	],
 	fields: [
 		defineField({
@@ -73,7 +73,7 @@ export const servicesPage = defineType({
 		}),
 		defineField({
 			name: 'seo',
-			title: 'SEO',
+			title: 'Search & sharing',
 			type: 'seo',
 			group: 'seo',
 		}),

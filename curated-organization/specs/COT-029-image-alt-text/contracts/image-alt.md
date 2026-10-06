@@ -16,7 +16,7 @@ logo{ asset, crop, hotspot, alt, "dimensions": asset->metadata.dimensions }
 | Services founder photo | `about.photo.alt` |
 | Site logo | `logo.alt` |
 | Credential badges | `footerLogos[].image.alt`, `credentialBadges[].image.alt` |
-| Social share image | `seo.ogImage.alt`, `defaultSeo.ogImage.alt` |
+| Social share image | `seo.image.alt`, `defaultSeo.image.alt` (renamed from `ogImage` in COT-030) |
 | `imageMedia` (gallery, before/after) | `<field>.image.alt` (also used for `fullImage`) |
 | Service card / services item | `image.alt` |
 | Video poster | `videoMedia.alt` (unchanged) |

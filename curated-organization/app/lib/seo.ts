@@ -1,6 +1,15 @@
 import type { MetaDescriptor } from 'react-router';
 import { SITE_URL } from '~/constants';
-import type { SeoContent } from '~/types/global';
+import type { PageSeo, SeoContent } from '~/types/global';
+
+// Field-by-field: a page's own value wins, anything it leaves empty uses the site default.
+export function mergeSeo(defaults: SeoContent, page: PageSeo = {}): SeoContent {
+	return {
+		title: page.title ?? defaults.title,
+		description: page.description ?? defaults.description,
+		...((page.image ?? defaults.image) && { image: page.image ?? defaults.image }),
+	};
+}
 
 // Charset and viewport are rendered once by Layout in root.tsx, so they aren't emitted here.
 export function buildMeta(seo: SeoContent, pathname: string): MetaDescriptor[] {

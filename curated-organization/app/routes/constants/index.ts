@@ -36,18 +36,6 @@ const PAGE_ROUTES_DATA: Record<string, Routes> = {
 		path: '/',
 		name: 'Home',
 		component: 'routes/pages/home/index.tsx',
-		metaData: [
-			...BASE_META,
-			...getSocialMeta(
-				'Curated Organization | Professional Home Organizing in NOVA & DMV',
-				'Transform your home into a sanctuary of simplicity. Curated Organization offers luxury professional organizing services in Northern Virginia and the DMV area.',
-			),
-			{
-				name: 'keywords',
-				content:
-					'professional organizer northern virginia, home organization NOVA, luxury organizing services DMV, decluttering services arlington va, closet organization alexandria va, professional organizer near me, home organizing McLean VA, residential organizing washington dc area',
-			},
-		],
 	},
 	SERVICES: {
 		id: 'services',

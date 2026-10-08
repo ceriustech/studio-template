@@ -1,7 +1,11 @@
 export type ProcessStep = {
-  number: string;
-  title: string;
-  description: string;
+	number: string;
+	title: string;
+	description?: string;
 };
 
-export type ProcessProps = {};
+export type ProcessProps = {
+	eyebrow?: string;
+	heading: string;
+	steps: ProcessStep[];
+};

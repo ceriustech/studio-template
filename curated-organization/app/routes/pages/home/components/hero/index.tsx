@@ -1,55 +1,58 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
+import type { HeroProps } from './Hero.types';
 import './hero.css';
-
-const SLIDE_IMAGES = [
-	'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=1800&q=80&auto=format',
-	'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format',
-	'https://images.unsplash.com/photo-1618236444721-4a8dba415c15?w=900&q=80&auto=format',
-];
 
 const SLIDE_INTERVAL_MS = 10000;
 
-const Hero: React.FC = () => {
-	const strapline = 'THE SANCTUARY OF SIMPLICITY';
-	const headline = 'CURATED';
-	const descriptor =
-		'Your home curated to your lifestyle - because time is your biggest luxury';
-	const ctaLabel = 'DISCOVER YOUR SPACE';
-	const ctaUrl = '/booking';
-
+const Hero: React.FC<HeroProps> = ({ eyebrow, heading, body, link, slides }) => {
 	const [activeSlide, setActiveSlide] = useState(0);
+	const slideCount = slides.length;
 
 	useEffect(() => {
+		if (slideCount < 2) return;
+
 		const timer = setInterval(() => {
-			setActiveSlide((current) => (current + 1) % SLIDE_IMAGES.length);
+			setActiveSlide((current) => (current + 1) % slideCount);
 		}, SLIDE_INTERVAL_MS);
 
 		return () => clearInterval(timer);
-	}, []);
+	}, [slideCount]);
 
 	return (
 		<section className="hero" aria-labelledby="hero-headline">
-			{SLIDE_IMAGES.map((image, index) => (
-				<div
-					key={image}
-					className={
-						index === activeSlide ? 'heroSlide heroSlideActive' : 'heroSlide'
-					}
-					style={{ backgroundImage: `url(${image})` }}
-					aria-hidden="true"
-				/>
-			))}
+			{slides.map((slide, index) => {
+				const isActive = index === activeSlide % slideCount;
+				// Only the visible slide is exposed to assistive tech, and only when it has alt text.
+				const a11y =
+					isActive && slide.alt
+						? { role: 'img', 'aria-label': slide.alt }
+						: { 'aria-hidden': true };
+
+				return (
+					<div
+						key={slide.src}
+						className={isActive ? 'heroSlide heroSlideActive' : 'heroSlide'}
+						style={{
+							backgroundImage: `url(${slide.src})`,
+							backgroundPosition: slide.position,
+						}}
+						{...a11y}
+					/>
+				);
+			})}
 			<div className="heroOverlay" />
 			<div className="heroContent">
-				<div className="heroStrapline">{strapline}</div>
+				{eyebrow && <div className="heroStrapline">{eyebrow}</div>}
 				<h1 id="hero-headline" className="heroHeadline">
-					{headline}
+					{heading}
 				</h1>
-				<div className="heroDescriptor">{descriptor}</div>
-				<Link className="heroCta" to={ctaUrl}>
-					{ctaLabel}
-				</Link>
+				{body && <div className="heroDescriptor">{body}</div>}
+				{link && (
+					<Link className="heroCta" to={link.url}>
+						{link.label}
+					</Link>
+				)}
 			</div>
 			<div className="heroScroll"></div>
 		</section>

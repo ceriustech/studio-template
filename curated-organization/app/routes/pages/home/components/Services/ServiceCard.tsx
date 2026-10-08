@@ -2,12 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import type { ServiceCardProps } from './Services.types';
 
-const ServiceCard: React.FC<ServiceCardProps> = ({
-	title,
-	description,
-	imageUrl,
-	altText,
-}) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, image }) => {
 	return (
 		<div className="serviceCard">
 			<Link
@@ -17,14 +12,17 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 			>
 				<div
 					className="serviceCardImg"
-					role={altText ? 'img' : undefined}
-					aria-label={altText}
-					style={{ backgroundImage: `url('${imageUrl}')` }}
+					role="img"
+					aria-label={image.alt || title}
+					style={{
+						backgroundImage: `url('${image.src}')`,
+						backgroundPosition: image.position,
+					}}
 				/>
 			</Link>
 			<div className="serviceCardBody">
 				<h3 className="serviceCardTitle">{title}</h3>
-				<p className="serviceCardDesc">{description}</p>
+				{description && <p className="serviceCardDesc">{description}</p>}
 			</div>
 		</div>
 	);

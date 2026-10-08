@@ -1,17 +1,17 @@
 import { getSanityClient } from '~/lib/sanity/client.server';
 import {
+	nonNull,
 	orFallback,
 	text,
 	toBackground,
 	toLink,
-	toShareImage,
-	withBusinessName,
+	toPageSeo,
 	type CmsImage,
 	type CmsSeo,
 	type Maybe,
 } from '~/lib/sanity/mappers.server';
 import { BACKUP_BUSINESS_NAME } from '~/root.fallback.server';
-import type { BackgroundImage, PageSeo } from '~/types/global';
+import type { BackgroundImage } from '~/types/global';
 import { FALLBACK_HOME_CONTENT as FALLBACK } from './home.fallback.server';
 import { HOME_QUERY } from './home.query';
 import type { HomeContent } from './home.types';
@@ -51,8 +51,6 @@ type CmsHomePage = {
 	seo?: Maybe<CmsSeo>;
 };
 type HomeQueryResult = { page: CmsHomePage | null; businessName: Maybe<string> };
-
-const nonNull = <T>(value: T | null | undefined): value is T => value != null;
 
 // Each section has an anchor (its heading). Without it the section's text uses its backup in full;
 // with it, empty optional fields are hidden. Lists and images fall back on their own.
@@ -164,19 +162,6 @@ function mapTestimonials(items: Maybe<Maybe<CmsTestimonial>[]>): HomeContent['te
 	);
 }
 
-// Same rules as the root default (COT-030), but empty keys are left out so they fall back to it.
-function mapPageSeo(seo: Maybe<CmsSeo>, businessName: Maybe<string>): PageSeo {
-	const title = text(seo?.title);
-	const description = text(seo?.description)?.replace(/\s*\n\s*/g, ' ');
-	const image = toShareImage(seo?.image);
-
-	return {
-		...(title && { title: withBusinessName(title, text(businessName) ?? BACKUP_BUSINESS_NAME) }),
-		...(description && { description }),
-		...(image && { image }),
-	};
-}
-
 function mapHome({ page, businessName }: HomeQueryResult & { page: CmsHomePage }): HomeContent {
 	return {
 		hero: mapHero(page.hero),
@@ -185,7 +170,7 @@ function mapHome({ page, businessName }: HomeQueryResult & { page: CmsHomePage }
 		process: mapProcess(page.process),
 		beforeAfter: mapBeforeAfter(page.beforeAfter),
 		testimonials: mapTestimonials(page.testimonials),
-		seo: mapPageSeo(page.seo, businessName),
+		seo: toPageSeo(page.seo, text(businessName) ?? BACKUP_BUSINESS_NAME),
 	};
 }
 

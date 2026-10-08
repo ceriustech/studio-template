@@ -1,4 +1,4 @@
-import type { BackgroundImage, ImageItem, LinkItem } from '~/types/global';
+import type { BackgroundImage, ImageItem, LinkItem, PageSeo } from '~/types/global';
 import { urlFor } from './image.server';
 
 // Hand-written until the TypeGen ticket. GROQ returns null for any field an editor left blank.
@@ -16,6 +16,8 @@ export type CmsSeo = { title?: Maybe<string>; description?: Maybe<string>; image
 const LINK_PREFIXES = ['/', 'http://', 'https://', 'mailto:', 'tel:'];
 
 export const text = (value: Maybe<string>) => value?.trim() || undefined;
+
+export const nonNull = <T>(value: T | null | undefined): value is T => value != null;
 
 const isLinkUrl = (url: Maybe<string>): url is string =>
 	LINK_PREFIXES.some((prefix) => url?.startsWith(prefix));
@@ -75,3 +77,16 @@ export const orFallback = <T>(items: T[], fallback: T[]) => (items.length > 0 ? 
 // Mirrors composeTitle() in studio/components/seoTitle.ts so the Studio preview matches the live title.
 export const withBusinessName = (title: string, businessName: string) =>
 	title.toLowerCase().includes(businessName.toLowerCase()) ? title : `${title} | ${businessName}`;
+
+// Same rules as the root default (COT-030), but empty keys are left out so they fall back to it.
+export function toPageSeo(seo: Maybe<CmsSeo>, businessName: string): PageSeo {
+	const title = text(seo?.title);
+	const description = text(seo?.description)?.replace(/\s*\n\s*/g, ' ');
+	const image = toShareImage(seo?.image);
+
+	return {
+		...(title && { title: withBusinessName(title, businessName) }),
+		...(description && { description }),
+		...(image && { image }),
+	};
+}

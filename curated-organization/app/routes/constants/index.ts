@@ -42,19 +42,6 @@ const PAGE_ROUTES_DATA: Record<string, Routes> = {
 		path: '/services',
 		name: 'Services',
 		component: 'routes/pages/services/index.tsx',
-		metaData: [
-			...BASE_META,
-			...getSocialMeta(
-				'Services & Pricing | Curated Organization',
-				'Home organizing, unpacking and move-in services, and office organization tailored to your space. Transparent pricing with complimentary consultations in NOVA and DMV.',
-				'services',
-			),
-			{
-				name: 'keywords',
-				content:
-					'home organizing services, move-in unpacking service northern virginia, office organization DMV, pantry organization, closet organization, garage organization, professional organizing pricing, whole home organization NOVA',
-			},
-		],
 	},
 	GALLERY: {
 		id: 'gallery',

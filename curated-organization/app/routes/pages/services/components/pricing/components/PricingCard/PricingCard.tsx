@@ -14,15 +14,15 @@ const PricingCard: React.FC<PricingCardProps> = ({
 }) => {
 	return (
 		<div className={featured ? 'pricingCard featured' : 'pricingCard'}>
-			<div className="pricingCardEyebrow">{eyebrow}</div>
+			{eyebrow && <div className="pricingCardEyebrow">{eyebrow}</div>}
 			<h3 className="pricingCardName">{title}</h3>
 			{price && <div className="pricingCardPrice">{price}</div>}
 			<div className="pricingCardDivider" />
 			{description && <p className="pricingCardDescription">{description}</p>}
-			{features && (
+			{features && features.length > 0 && (
 				<ul className="pricingCardFeatures">
-					{features.map((feature) => (
-						<li key={feature}>
+					{features.map((feature, index) => (
+						<li key={index}>
 							<span className="pricingCheck">✓</span>
 							{feature}
 						</li>

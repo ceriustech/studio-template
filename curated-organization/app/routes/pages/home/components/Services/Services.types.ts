@@ -1,8 +1,16 @@
-export type ServiceCardProps = {
-  title: string;
-  description: string;
-  imageUrl: string;
-  altText?: string;
+import type { BackgroundImage, LinkItem } from '~/types/global';
+
+export type ServiceCardItem = {
+	title: string;
+	description?: string;
+	image: BackgroundImage;
 };
 
-export type ServicesProps = {};
+export type ServiceCardProps = ServiceCardItem;
+
+export type ServicesProps = {
+	eyebrow?: string;
+	heading: string;
+	link?: LinkItem;
+	cards: ServiceCardItem[];
+};

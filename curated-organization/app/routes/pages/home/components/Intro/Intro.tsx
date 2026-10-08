@@ -1,24 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router';
+import type { IntroProps } from './Intro.types';
 import './intro.css';
 
-const Intro: React.FC = () => {
-	const eyebrow = 'Our approach';
-	const heading = 'Functional Luxury';
-	const body =
-		'We believe an organized home is a form of self-care. Our approach merges refined aesthetics with practical systems — spaces that look beautiful and work effortlessly for the way you actually live.';
-	const linkText = 'Learn more about us →';
-	const linkHref = '/services';
-
+const Intro: React.FC<IntroProps> = ({ eyebrow, heading, body, link }) => {
 	return (
 		<section className="intro">
 			<div className="introInner">
-				<p className="sectionEyebrow">{eyebrow}</p>
+				{eyebrow && <p className="sectionEyebrow">{eyebrow}</p>}
 				<h2 className="sectionHeading">{heading}</h2>
-				<p className="introText">{body}</p>
-				<Link className="textLink" to={linkHref}>
-					{linkText}
-				</Link>
+				{body && <p className="introText">{body}</p>}
+				{link && (
+					<Link className="textLink" to={link.url}>
+						{link.label} <span aria-hidden="true">→</span>
+					</Link>
+				)}
 			</div>
 		</section>
 	);

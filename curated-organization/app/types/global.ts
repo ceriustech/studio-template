@@ -2,6 +2,9 @@ export type LinkItem = { label: string; url: string };
 
 export type ImageItem = { src: string; alt: string; width: number; height: number };
 
+// For CSS background images. alt '' = decorative.
+export type BackgroundImage = { src: string; alt: string; position: string };
+
 export type BrandContent = { name: string; tagline?: string; logo: ImageItem };
 
 export type HoursItem = { label: string; value: string };
@@ -24,6 +27,9 @@ export type CtaContent = {
 };
 
 export type SeoContent = { title: string; description: string; image?: ImageItem };
+
+// A page's own search & sharing values; each defined key overrides the site default.
+export type PageSeo = Partial<SeoContent>;
 
 export type GlobalContent = {
 	brand: BrandContent;

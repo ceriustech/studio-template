@@ -1,23 +1,27 @@
 import { getSanityClient } from '~/lib/sanity/client.server';
 import { urlFor } from '~/lib/sanity/image.server';
+import {
+	hotspotPosition,
+	isValidLink,
+	orFallback,
+	text,
+	toImage,
+	toLinks,
+	toShareImage,
+	withBusinessName,
+	type CmsImage,
+	type CmsLink,
+	type CmsSeo,
+	type Maybe,
+} from '~/lib/sanity/mappers.server';
 import { GLOBAL_QUERY } from '~/lib/sanity/queries/global';
-import type { CtaContent, FooterContent, GlobalContent, ImageItem, LinkItem, SeoContent } from '~/types/global';
+import type { CtaContent, FooterContent, GlobalContent, ImageItem, SeoContent } from '~/types/global';
 import { PAGE_ROUTES_DATA } from './routes/constants';
 import { BACKUP_BUSINESS_NAME, FALLBACK_GLOBAL_CONTENT as FALLBACK } from './root.fallback.server';
 
 // Hand-written until the TypeGen ticket. GROQ returns null for any field an editor left blank.
-type Maybe<T> = T | null | undefined;
-type CmsImage = {
-	asset?: Maybe<{ _ref: string }>;
-	crop?: Maybe<{ top: number; bottom: number; left: number; right: number }>;
-	hotspot?: Maybe<{ x: number; y: number; width: number; height: number }>;
-	dimensions?: Maybe<{ width: number; height: number; aspectRatio: number }>;
-	alt?: Maybe<string>;
-};
-type CmsLink = { label?: Maybe<string>; url?: Maybe<string> };
 type CmsHoursLine = { label?: Maybe<string>; value?: Maybe<string> };
 type CmsCredential = { label?: Maybe<string>; image?: Maybe<CmsImage> };
-type CmsSeo = { title?: Maybe<string>; description?: Maybe<string>; image?: Maybe<CmsImage> };
 type CmsSiteSettings = {
 	brandName?: Maybe<string>;
 	businessName?: Maybe<string>;
@@ -41,33 +45,6 @@ type CmsSiteCta = {
 	buttonLink?: Maybe<string>;
 };
 type GlobalQueryResult = { settings: CmsSiteSettings | null; cta: CmsSiteCta | null };
-
-const LINK_PREFIXES = ['/', 'http://', 'https://', 'mailto:', 'tel:'];
-
-const text = (value: Maybe<string>) => value?.trim() || undefined;
-
-const isValidLink = (link: CmsLink): link is { label: string; url: string } =>
-	Boolean(text(link.label)) && LINK_PREFIXES.some((prefix) => link.url?.startsWith(prefix));
-
-const toLinks = (links: Maybe<CmsLink[]>): LinkItem[] =>
-	(links ?? []).filter(isValidLink).map((link) => ({ label: link.label.trim(), url: link.url }));
-
-const hotspotPosition = (image: CmsImage) =>
-	image.hotspot ? `${image.hotspot.x * 100}% ${image.hotspot.y * 100}%` : '50% 50%';
-
-type ImageOptions = { height: number; alt: string; square?: boolean };
-
-// Requests 2× pixels for high-density screens; renders at the given height.
-const toImage = (image: Maybe<CmsImage>, { height, alt, square }: ImageOptions): ImageItem | null => {
-	if (!image?.asset?._ref) return null;
-	const aspectRatio = square ? 1 : (image.dimensions?.aspectRatio ?? 1);
-	const width = Math.round(height * aspectRatio);
-	const builder = urlFor(image).height(height * 2).auto('format');
-	const src = (square ? builder.width(width * 2).fit('crop') : builder).url();
-	return { src, alt, width, height };
-};
-
-const orFallback = <T>(items: T[], fallback: T[]) => (items.length > 0 ? items : fallback);
 
 function mapFooter(settings: CmsSiteSettings | null): FooterContent {
 	const fallback = FALLBACK.footer;
@@ -117,27 +94,15 @@ function mapCta(cta: CmsSiteCta | null): CtaContent {
 	};
 }
 
-// Mirrors composeTitle() in studio/components/seoTitle.ts so the Studio preview matches the live title.
-const withBusinessName = (title: string, businessName: string) =>
-	title.toLowerCase().includes(businessName.toLowerCase()) ? title : `${title} | ${businessName}`;
-
 function mapSeo(settings: CmsSiteSettings | null): SeoContent {
 	const seo = settings?.defaultSeo;
 	const businessName = text(settings?.businessName) ?? BACKUP_BUSINESS_NAME;
-	const image = seo?.image;
+	const image = toShareImage(seo?.image);
 
 	return {
 		title: withBusinessName(text(seo?.title) ?? FALLBACK.seo.title, businessName),
 		description: text(seo?.description)?.replace(/\s*\n\s*/g, ' ') ?? FALLBACK.seo.description,
-		...(image?.asset?._ref && {
-			image: {
-				// JPEG rather than auto format: some link-preview scrapers can't read WebP/AVIF.
-				src: urlFor(image).width(1200).height(630).fit('crop').format('jpg').url(),
-				alt: text(image.alt) ?? '',
-				width: 1200,
-				height: 630,
-			},
-		}),
+		...(image && { image }),
 	};
 }
 

@@ -1,5 +1,5 @@
 export type PricingCardProps = {
-	eyebrow: string;
+	eyebrow?: string;
 	title: string;
 	price?: string;
 	description?: string;

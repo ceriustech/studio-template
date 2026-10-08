@@ -1,15 +1,13 @@
 import React from 'react';
 import './hero.css';
+import type { HeroProps } from './Hero.types';
 
-const Hero = () => {
+const Hero: React.FC<HeroProps> = ({ eyebrow, heading, body }) => {
 	return (
 		<section className="servicesHero">
-			<p className="sectionEyebrow">Our services</p>
-			<h1>Tailored Flow, Elevated Living</h1>
-			<p>
-				Our all-inclusive organizing services are tailored to your lifestyle,
-				your space, and your goals. Every project begins with listening.
-			</p>
+			{eyebrow && <p className="sectionEyebrow">{eyebrow}</p>}
+			<h1>{heading}</h1>
+			{body && <p>{body}</p>}
 		</section>
 	);
 };

@@ -1,9 +1,14 @@
-export type ServiceItemProps = {
-	eyebrow: string;
+import type { BackgroundImage } from '~/types/global';
+
+export type ServiceEntry = {
+	eyebrow?: string;
 	heading: string;
-	description: string;
-	imageUrl: string;
+	description?: string;
+	image: BackgroundImage;
 	items: string[];
-	ctaLabel: string;
+	ctaLabel?: string;
+};
+
+export type ServiceItemProps = ServiceEntry & {
 	reversed?: boolean;
 };

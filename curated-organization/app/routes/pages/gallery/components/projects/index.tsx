@@ -7,24 +7,28 @@ import {
 	getSectionPieces,
 	isValidCategory,
 } from '../../utils';
+import type { ProjectsProps } from './Projects.types';
 import './projects.css';
 
-const Projects = () => {
+const Projects = ({ pieces }: ProjectsProps) => {
 	const [searchParams] = useSearchParams();
 	const categoryParam = searchParams.get('category');
 
 	if (!isValidCategory(categoryParam)) {
 		return (
 			<section className="projects">
-				{CATEGORIES.map((category) => (
-					<CategorySection
-						key={category.value}
-						category={category.value}
-						label={category.label}
-						pieces={getSectionPieces(category.value)}
-						totalCount={getCategoryPieces(category.value).length}
-					/>
-				))}
+				{CATEGORIES.map((category) => {
+					const categoryPieces = getCategoryPieces(pieces, category.value);
+					return (
+						<CategorySection
+							key={category.value}
+							category={category.value}
+							label={category.label}
+							pieces={getSectionPieces(categoryPieces)}
+							totalCount={categoryPieces.length}
+						/>
+					);
+				})}
 			</section>
 		);
 	}
@@ -34,7 +38,11 @@ const Projects = () => {
 
 	return (
 		<section className="projects">
-			<FilteredCategory category={categoryParam} page={page} />
+			<FilteredCategory
+				category={categoryParam}
+				page={page}
+				pieces={getCategoryPieces(pieces, categoryParam)}
+			/>
 		</section>
 	);
 };

@@ -1,17 +1,11 @@
 import { Link } from 'react-router';
 import PortfolioPiece from '../PortfolioPiece/PortfolioPiece';
-import {
-	clampPage,
-	getCategoryPieces,
-	getTotalPages,
-	paginate,
-} from '../../../../utils';
+import { clampPage, getTotalPages, paginate } from '../../../../utils';
 import type { FilteredCategoryProps } from './FilteredCategory.types';
 import './filteredCategory.css';
 
-const FilteredCategory = ({ category, page }: FilteredCategoryProps) => {
-	const allPieces = getCategoryPieces(category);
-	const totalPages = getTotalPages(category);
+const FilteredCategory = ({ category, page, pieces: allPieces }: FilteredCategoryProps) => {
+	const totalPages = getTotalPages(allPieces.length);
 	const currentPage = clampPage(page, totalPages);
 	const pieces = paginate(allPieces, currentPage);
 	const showPagination = allPieces.length > 5;

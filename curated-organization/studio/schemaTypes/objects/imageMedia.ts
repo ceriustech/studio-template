@@ -21,13 +21,6 @@ export const imageMedia = defineType({
 			title: 'Caption',
 			type: 'string',
 		}),
-		defineField({
-			name: 'fullImage',
-			title: 'Full-resolution override',
-			description: 'Optional. Used for the lightbox view when it should differ from the gallery thumbnail.',
-			type: 'image',
-			options: {hotspot: true},
-		}),
 	],
 	preview: {
 		select: {title: 'caption', subtitle: 'image.alt', media: 'image'},

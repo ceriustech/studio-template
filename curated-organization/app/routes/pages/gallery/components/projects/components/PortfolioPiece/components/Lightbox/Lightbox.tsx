@@ -128,9 +128,6 @@ const Lightbox = ({ videos, images, open, onClose, onNavigate, returnFocusRef }:
 							aria-label={`${TAG_LABEL[activeVideo.tag]} video — ${activeVideo.alt}`}
 						>
 							<source src={activeVideo.src} type="video/mp4" />
-							{activeVideo.captionsSrc && (
-								<track kind="captions" src={activeVideo.captionsSrc} />
-							)}
 						</video>
 						{!hasStartedPlaying && (
 							<button

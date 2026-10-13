@@ -1,5 +1,6 @@
 import { Play } from 'lucide-react';
 import type { VideoPanelProps } from './VideoPanel.types';
+import { useVideoDuration } from './useVideoDuration';
 import './videoPanel.css';
 
 const TAG_LABEL: Record<VideoPanelProps['media']['tag'], string> = {
@@ -16,6 +17,7 @@ const formatDuration = (seconds: number): string => {
 
 const VideoPanel = ({ media, onOpen }: VideoPanelProps) => {
 	const label = TAG_LABEL[media.tag];
+	const duration = useVideoDuration(media.src);
 
 	return (
 		<button
@@ -29,7 +31,7 @@ const VideoPanel = ({ media, onOpen }: VideoPanelProps) => {
 			<span className="videoPanelPlay" aria-hidden="true">
 				<Play size={20} fill="currentColor" />
 			</span>
-			<span className="videoPanelDuration">{formatDuration(media.duration)}</span>
+			{duration !== null && <span className="videoPanelDuration">{formatDuration(duration)}</span>}
 		</button>
 	);
 };

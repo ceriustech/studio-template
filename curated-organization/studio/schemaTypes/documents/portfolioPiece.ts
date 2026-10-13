@@ -15,13 +15,6 @@ export const portfolioPiece = defineType({
 			validation: (rule) => rule.required(),
 		}),
 		defineField({
-			name: 'slug',
-			title: 'Slug',
-			type: 'slug',
-			options: {source: 'title'},
-			validation: (rule) => rule.required(),
-		}),
-		defineField({
 			name: 'category',
 			title: 'Category',
 			type: 'string',

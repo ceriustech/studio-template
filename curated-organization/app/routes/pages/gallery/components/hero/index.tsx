@@ -1,11 +1,13 @@
+import React from 'react';
 import './hero.css';
+import type { HeroProps } from './Hero.types';
 
-const Hero = () => {
+const Hero: React.FC<HeroProps> = ({ eyebrow, heading, body }) => {
 	return (
 		<section className="galleryHero">
-			<p className="sectionEyebrow">YOUR TRANSFORMATION</p>
-			<h1>See the difference</h1>
-			<p>Real spaces, Real results. From Dysfunction to Function.</p>
+			{eyebrow && <p className="sectionEyebrow">{eyebrow}</p>}
+			<h1>{heading}</h1>
+			{body && <p>{body}</p>}
 		</section>
 	);
 };

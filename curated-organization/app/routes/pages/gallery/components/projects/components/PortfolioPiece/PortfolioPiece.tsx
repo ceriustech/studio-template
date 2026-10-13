@@ -27,7 +27,7 @@ const PortfolioPiece = ({ piece, headerControls, footer }: PortfolioPieceProps) 
 				</div>
 				<div className="projectMeta">
 					<span className="projectTag">{getCategoryLabel(piece.category)}</span>
-					<span className="projectLocation">{piece.location}</span>
+					{piece.location && <span className="projectLocation">{piece.location}</span>}
 				</div>
 			</div>
 			<VideoPair
@@ -38,10 +38,12 @@ const PortfolioPiece = ({ piece, headerControls, footer }: PortfolioPieceProps) 
 				images={piece.images}
 				onOpenImage={(index) => openLightbox({ set: 'image', index })}
 			/>
-			<div className="projectFooter">
-				<p className="projectCaption">{piece.description}</p>
-				{footer}
-			</div>
+			{(piece.description || footer) && (
+				<div className="projectFooter">
+					{piece.description && <p className="projectCaption">{piece.description}</p>}
+					{footer}
+				</div>
+			)}
 			<Lightbox
 				videos={piece.videos}
 				images={piece.images}

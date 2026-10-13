@@ -48,19 +48,6 @@ const PAGE_ROUTES_DATA: Record<string, Routes> = {
 		path: '/gallery',
 		name: 'Gallery',
 		component: 'routes/pages/gallery/index.tsx',
-		metaData: [
-			...BASE_META,
-			...getSocialMeta(
-				'Before & After Gallery | Curated Organization',
-				'See real transformations from our professional organizing projects across Northern Virginia. Closets, kitchens, offices, and whole-home makeovers.',
-				'gallery',
-			),
-			{
-				name: 'keywords',
-				content:
-					'before and after organization, home organization transformation, closet makeover northern virginia, kitchen organization before after, professional organizer portfolio, organizing results NOVA DMV',
-			},
-		],
 	},
 	BOOKING: {
 		id: 'booking',

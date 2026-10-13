@@ -23,29 +23,11 @@ export const videoMedia = defineType({
 			validation: (rule) => rule.required(),
 		}),
 		defineField({
-			name: 'posterOffset',
-			title: 'Poster focal offset',
-			description: 'Optional vertical offset (%) used to reposition the poster crop.',
-			type: 'number',
-		}),
-		defineField({
 			name: 'tag',
 			title: 'Before / after',
 			type: 'string',
 			options: {list: VIDEO_TAGS, layout: 'radio'},
 			validation: (rule) => rule.required(),
-		}),
-		defineField({
-			name: 'duration',
-			title: 'Duration (seconds)',
-			type: 'number',
-			validation: (rule) => rule.required().positive(),
-		}),
-		defineField({
-			name: 'captions',
-			title: 'Captions (.vtt)',
-			type: 'file',
-			options: {accept: '.vtt'},
 		}),
 		defineField({
 			name: 'alt',

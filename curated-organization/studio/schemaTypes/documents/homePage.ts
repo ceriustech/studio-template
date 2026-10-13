@@ -25,7 +25,7 @@ export const homePage = defineType({
 		defineField({
 			name: 'intro',
 			title: 'Intro',
-			description: 'Uses the same eyebrow/heading/body/link shape as a hero; no images needed here.',
+			description: 'Small line, heading, body and an optional link.',
 			type: 'heroSection',
 			group: 'intro',
 		}),

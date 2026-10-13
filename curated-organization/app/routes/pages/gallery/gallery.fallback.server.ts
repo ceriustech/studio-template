@@ -7,24 +7,18 @@ const FALLBACK_IMAGE_URL =
 
 const BEFORE_VIDEO_SRC = '/gallery/videos/before.mp4';
 const AFTER_VIDEO_SRC = '/gallery/videos/after.mp4';
-const BEFORE_VIDEO_DURATION = 9;
-const AFTER_VIDEO_DURATION = 11;
 
 const beforeVideo = (alt: string): VideoMedia => ({
 	src: BEFORE_VIDEO_SRC,
 	poster: FALLBACK_IMAGE_URL,
-	posterOffset: 0,
 	tag: 'before',
-	duration: BEFORE_VIDEO_DURATION,
 	alt,
 });
 
 const afterVideo = (alt: string): VideoMedia => ({
 	src: AFTER_VIDEO_SRC,
 	poster: FALLBACK_IMAGE_URL,
-	posterOffset: 0,
 	tag: 'after',
-	duration: AFTER_VIDEO_DURATION,
 	alt,
 });
 

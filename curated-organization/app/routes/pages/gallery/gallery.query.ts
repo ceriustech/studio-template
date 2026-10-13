@@ -14,16 +14,12 @@ export const GALLERY_QUERY = defineQuery(`{
 		videos[]{
 			"src": video.asset->url,
 			poster{ asset, crop, hotspot },
-			posterOffset,
 			tag,
-			duration,
-			"captionsSrc": captions.asset->url,
 			alt
 		},
 		images[]{
 			image{ asset, crop, hotspot, alt },
-			caption,
-			fullImage{ asset, crop, hotspot }
+			caption
 		}
 	},
 	"businessName": *[_id == "siteSettings"][0].businessName

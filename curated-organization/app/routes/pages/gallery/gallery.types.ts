@@ -14,10 +14,7 @@ export type VideoTag = 'before' | 'after';
 export type VideoMedia = {
 	src: string;
 	poster: string;
-	posterOffset: number;
 	tag: VideoTag;
-	duration: number;
-	captionsSrc?: string;
 	alt: string;
 };
 

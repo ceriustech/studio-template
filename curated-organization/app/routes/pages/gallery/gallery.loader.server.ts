@@ -26,16 +26,12 @@ type CmsHero = { eyebrow?: Maybe<string>; heading?: Maybe<string>; body?: Maybe<
 type CmsVideo = {
 	src?: Maybe<string>;
 	poster?: Maybe<CmsImage>;
-	posterOffset?: Maybe<number>;
 	tag?: Maybe<string>;
-	duration?: Maybe<number>;
-	captionsSrc?: Maybe<string>;
 	alt?: Maybe<string>;
 };
 type CmsImageMedia = {
 	image?: Maybe<CmsImage>;
 	caption?: Maybe<string>;
-	fullImage?: Maybe<CmsImage>;
 };
 type CmsPortfolioPiece = {
 	_id: string;
@@ -77,16 +73,12 @@ function mapVideo(video: Maybe<CmsVideo>, title: string): VideoMedia | null {
 	const src = text(video?.src);
 	const tag = video?.tag;
 	const poster = video?.poster;
-	const duration = video?.duration;
-	if (!src || !isVideoTag(tag) || !hasAsset(poster) || !duration || duration <= 0) return null;
+	if (!src || !isVideoTag(tag) || !hasAsset(poster)) return null;
 
 	return {
 		src,
 		poster: posterUrl(poster),
-		posterOffset: video?.posterOffset ?? 0,
 		tag,
-		duration,
-		captionsSrc: text(video?.captionsSrc),
 		alt: text(video?.alt) ?? `${title} — ${TAG_LABEL[tag]}`,
 	};
 }
@@ -103,13 +95,13 @@ function toVideoPair(videos: VideoMedia[]): VideoMedia[] {
 function mapImages(images: Maybe<Maybe<CmsImageMedia>[]>, title: string): ImageMedia[] {
 	return (images ?? [])
 		.flatMap((entry) => (entry && hasAsset(entry.image) ? [{ ...entry, image: entry.image }] : []))
-		.map(({ image, caption: rawCaption, fullImage }, index) => {
+		.map(({ image, caption: rawCaption }, index) => {
 			const caption = text(rawCaption);
 			return {
 				src: thumbnailUrl(image),
 				alt: text(image.alt) ?? caption ?? `${title} photo ${index + 1}`,
 				caption,
-				fullSrc: fullUrl(hasAsset(fullImage) ? fullImage : image),
+				fullSrc: fullUrl(image),
 			};
 		});
 }

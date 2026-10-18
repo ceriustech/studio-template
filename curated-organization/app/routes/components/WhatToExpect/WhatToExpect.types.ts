@@ -1,7 +1,11 @@
 export type WhatToExpectStep = {
 	number: string;
 	title: string;
-	description: string;
+	description?: string;
 };
 
-export type WhatToExpectProps = {};
+export type WhatToExpectProps = {
+	eyebrow?: string;
+	heading: string;
+	steps: WhatToExpectStep[];
+};

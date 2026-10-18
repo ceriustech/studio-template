@@ -8,7 +8,7 @@ const PathCard = (props: PathCardProps) => {
 		<div className="pathCard">
 			<div className="pathIcon">{icon}</div>
 			<div className="pathTitle">{title}</div>
-			<p className="pathDesc">{description}</p>
+			{description && <p className="pathDesc">{description}</p>}
 			{props.kind === 'cta' ? (
 				<a
 					href={props.ctaHref}
@@ -30,9 +30,9 @@ const PathCard = (props: PathCardProps) => {
 				</a>
 			) : (
 				<div className="pathOptions">
-					{props.options.map((option) => (
+					{props.options.map((option, index) => (
 						<a
-							key={option.label}
+							key={index}
 							href="#"
 							className="pathOption"
 							onClick={(event) => {

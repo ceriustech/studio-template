@@ -2,20 +2,18 @@ import { Component, type ReactNode } from 'react';
 import { InlineWidget, useCalendlyEventListener } from 'react-calendly';
 import './calendar.css';
 import type { CalendarProps } from './Calendar.types';
+import type { CalendarUnavailableContent } from '../../booking.types';
 
-const CalendlyUnavailable = () => (
+const CalendlyUnavailable = ({ icon, title, description }: CalendarUnavailableContent) => (
 	<div className="calendlyEmbed">
-		<div className="calendlyIcon">📅</div>
-		<div className="calendlyEmbedTitle">Calendly scheduling widget</div>
-		<p className="calendlyEmbedDesc">
-			Embedded inline. Visitor selects a 30-minute consultation slot.
-			Styled to match site colors as closely as Calendly allows.
-		</p>
+		{icon && <div className="calendlyIcon">{icon}</div>}
+		<div className="calendlyEmbedTitle">{title}</div>
+		{description && <p className="calendlyEmbedDesc">{description}</p>}
 	</div>
 );
 
 class CalendlyErrorBoundary extends Component<
-	{ children: ReactNode },
+	{ children: ReactNode; unavailable: CalendarUnavailableContent },
 	{ hasError: boolean }
 > {
 	state = { hasError: false };
@@ -25,13 +23,13 @@ class CalendlyErrorBoundary extends Component<
 	}
 
 	render() {
-		if (this.state.hasError) return <CalendlyUnavailable />;
+		if (this.state.hasError) return <CalendlyUnavailable {...this.props.unavailable} />;
 
 		return this.props.children;
 	}
 }
 
-const Calendar = ({ calendlyUrl, inquiry, onScheduled }: CalendarProps) => {
+const Calendar = ({ content, calendlyUrl, inquiry, onScheduled }: CalendarProps) => {
 	useCalendlyEventListener({ onEventScheduled: onScheduled });
 
 	const prefill = inquiry
@@ -47,10 +45,10 @@ const Calendar = ({ calendlyUrl, inquiry, onScheduled }: CalendarProps) => {
 
 	return (
 		<section className="calendarSection" id="calendly">
-			<p className="sectionEyebrow">Select a time</p>
-			<h2 className="sectionHeading">Choose your consultation slot</h2>
+			{content.eyebrow && <p className="sectionEyebrow">{content.eyebrow}</p>}
+			<h2 className="sectionHeading">{content.heading}</h2>
 			{calendlyUrl ? (
-				<CalendlyErrorBoundary>
+				<CalendlyErrorBoundary unavailable={content.unavailable}>
 					<InlineWidget
 						url={calendlyUrl}
 						styles={{ minWidth: '320px', height: '700px' }}
@@ -65,7 +63,7 @@ const Calendar = ({ calendlyUrl, inquiry, onScheduled }: CalendarProps) => {
 					/>
 				</CalendlyErrorBoundary>
 			) : (
-				<CalendlyUnavailable />
+				<CalendlyUnavailable {...content.unavailable} />
 			)}
 		</section>
 	);

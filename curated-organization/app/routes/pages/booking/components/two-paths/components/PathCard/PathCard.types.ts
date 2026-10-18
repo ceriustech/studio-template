@@ -7,7 +7,7 @@ export interface PathOption {
 export type PathCardProps = {
 	icon: string;
 	title: string;
-	description: string;
+	description?: string;
 } & (
 	| {
 			kind: 'cta';

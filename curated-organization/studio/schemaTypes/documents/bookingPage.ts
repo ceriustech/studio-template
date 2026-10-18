@@ -1,13 +1,25 @@
 import {defineField, defineType} from 'sanity'
 import {icons} from '@sanity/icons'
 
+const CALENDLY_HOSTS = ['calendly.com', 'www.calendly.com']
+
+// Mirrors isCalendlyUrl() in app/routes/pages/booking/utils.ts; keep the two in sync.
+function isCalendlyUrl(value: string): boolean {
+	try {
+		const url = new URL(value)
+		return url.protocol === 'https:' && CALENDLY_HOSTS.includes(url.hostname)
+	} catch {
+		return false
+	}
+}
+
 export const bookingPage = defineType({
 	name: 'bookingPage',
 	title: 'Booking page',
 	type: 'document',
 	icon: icons.calendar,
 	description:
-		'Business phone/hours live in Site Settings so they stay consistent with the rest of the site. The Calendly URL and embed styling stay code-defined.',
+		'Business phone/hours live in Site Settings so they stay consistent with the rest of the site. The Calendly link is set on the Calendar tab; the embed styling stays code-defined.',
 	groups: [
 		{name: 'hero', title: 'Hero'},
 		{name: 'twoPaths', title: 'Two paths'},
@@ -99,6 +111,21 @@ export const bookingPage = defineType({
 			type: 'object',
 			group: 'calendar',
 			fields: [
+				defineField({
+					name: 'calendlyUrl',
+					title: 'Calendly scheduling link',
+					description:
+						'The Calendly event visitors book. Overrides the link the developer set; leave blank to use it.',
+					type: 'url',
+					validation: (rule) =>
+						rule
+							.uri({scheme: ['https']})
+							.custom((value: string | undefined) =>
+								!value || isCalendlyUrl(value)
+									? true
+									: 'Use your Calendly link, e.g. https://calendly.com/your-name',
+							),
+				}),
 				defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
 				defineField({name: 'heading', title: 'Heading', type: 'string'}),
 				defineField({

@@ -1,23 +1,18 @@
 import './callInfo.css';
 import type { CallInfoProps } from './CallInfo.types';
 
-const BUSINESS_PHONE = '(703) 555-0182';
-const BUSINESS_PHONE_TEL = 'tel:+17035550182';
-const BUSINESS_HOURS = 'Mon-Fri, 9am-5pm ET · Sat by appointment';
+const CallInfo = ({ content, onPreferEmail }: CallInfoProps) => {
+	const { eyebrow, heading, intro, switchToEmailLabel, phone, hours } = content;
 
-const CallInfo = ({ onPreferEmail }: CallInfoProps) => {
 	return (
 		<section className="callInfo" id="call">
-			<p className="sectionEyebrow">Give us a call</p>
-			<h2 className="sectionHeading">We'd love to hear from you</h2>
-			<p className="callIntro">
-				Call and we'll talk through your space, answer questions, and find a
-				time that works — no forms required.
-			</p>
-			<a href={BUSINESS_PHONE_TEL} className="callPhone">
-				{BUSINESS_PHONE}
+			{eyebrow && <p className="sectionEyebrow">{eyebrow}</p>}
+			<h2 className="sectionHeading">{heading}</h2>
+			{intro && <p className="callIntro">{intro}</p>}
+			<a href={`tel:${phone.tel}`} className="callPhone">
+				{phone.display}
 			</a>
-			<p className="callHours">{BUSINESS_HOURS}</p>
+			{hours && <p className="callHours">{hours}</p>}
 			<a
 				href="#questionnaire"
 				className="callSwitchLink"
@@ -26,7 +21,7 @@ const CallInfo = ({ onPreferEmail }: CallInfoProps) => {
 					onPreferEmail();
 				}}
 			>
-				Prefer to write? Send us your details instead →
+				{switchToEmailLabel}
 			</a>
 		</section>
 	);

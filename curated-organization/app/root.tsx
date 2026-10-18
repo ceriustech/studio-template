@@ -11,6 +11,7 @@ import {
 
 import type { Route } from './+types/root';
 import type { loader } from './root.loader.server';
+import type { loader as bookingLoader } from './routes/pages/booking/booking.loader.server';
 import { buildMeta } from './lib/seo';
 import Navigation from './routes/components/navigation';
 import Footer from './routes/components/Footer';
@@ -18,7 +19,10 @@ import Cta from './routes/components/Cta';
 import WhatToExpect from './routes/components/WhatToExpect';
 import './app.css';
 
-const hidesSiteCta = (handle: unknown): boolean =>
+// React Router's default id for the booking route (routes.ts doesn't set ids).
+const BOOKING_ROUTE_ID = 'routes/pages/booking/index';
+
+const hidesSiteCta =(handle: unknown): boolean =>
 	typeof handle === 'object' && handle !== null && 'hideSiteCta' in handle && handle.hideSiteCta === true;
 
 export { loader } from './root.loader.server';
@@ -49,6 +53,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 	const hideSiteCta = useMatches().some((match) => hidesSiteCta(match.handle));
 	// Undefined only when the root loader didn't run (e.g. a 405); render the page without global chrome.
 	const global = useRouteLoaderData<typeof loader>('root');
+	// "What to expect" content comes from the booking loader; undefined if that route errored.
+	const booking = useRouteLoaderData<typeof bookingLoader>(BOOKING_ROUTE_ID);
 
 	return (
 		<html lang="en">
@@ -63,7 +69,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 					<Navigation brand={global.brand} links={global.navLinks} bookNowLabel={global.bookNowLabel} />
 				)}
 				{children}
-				{global && (hideSiteCta ? <WhatToExpect /> : <Cta {...global.cta} />)}
+				{global &&
+					(hideSiteCta ? booking && <WhatToExpect {...booking.whatToExpect} /> : <Cta {...global.cta} />)}
 				{global && <Footer brandName={global.brand.name} content={global.footer} />}
 				<ScrollRestoration />
 				<Scripts />

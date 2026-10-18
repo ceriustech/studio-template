@@ -1,19 +1,25 @@
 import { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router';
+import { buildMeta, mergeSeo } from '~/lib/seo';
+import type { RouteHandle } from '~/types/global';
+import type { Route } from './+types/index';
 import Hero from './components/hero';
 import TwoPaths from './components/two-paths';
 import CallInfo from './components/CallInfo/CallInfo';
 import Questionnaire from './components/Questionnaire/Questionnaire';
 import Calendar from './components/Calendar/Calendar';
 import type { Inquiry } from './utils';
-import type { RouteHandle } from '~/types/global';
 
+export { loader } from './booking.loader.server';
+
+// Root's Layout shows "What to expect" (from this route's loader data) in place of the site CTA.
 export const handle: RouteHandle = { hideSiteCta: true };
 
-// Runs on the server only, so the browser never reads process.env.
-export function loader() {
-	return { calendlyUrl: process.env.CALENDLY_URL || null };
-}
+// Replaces root's meta, so it emits the full set: the Booking page's own values over the root default.
+// Undefined root data means the root loader didn't run, matching root's own guard.
+export const meta: Route.MetaFunction = ({ loaderData, matches, location }) => {
+	const defaults = matches[0]?.loaderData?.seo;
+	return defaults ? buildMeta(mergeSeo(defaults, loaderData?.seo), location.pathname) : [];
+};
 
 type BookingView = 'none' | 'call' | 'questionnaire' | 'calendar';
 
@@ -23,8 +29,8 @@ const VIEW_SECTION_ID: Record<Exclude<BookingView, 'none'>, string> = {
 	calendar: 'calendly',
 };
 
-const Booking = () => {
-	const { calendlyUrl } = useLoaderData<typeof loader>();
+const Booking = ({ loaderData }: Route.ComponentProps) => {
+	const { hero, pathCards, callInfo, questionnaire, calendar, calendlyUrl } = loaderData;
 	const [view, setView] = useState<BookingView>('none');
 	const [inquiry, setInquiry] = useState<Inquiry | null>(null);
 
@@ -38,17 +44,19 @@ const Booking = () => {
 
 	return (
 		<main>
-			<Hero />
+			<Hero {...hero} />
 			<TwoPaths
+				cards={pathCards}
 				onSelectCall={() => setView('call')}
 				onSelectEmail={() => setView('questionnaire')}
 				onBookAgain={() => setView('calendar')}
 			/>
 			{view === 'call' && (
-				<CallInfo onPreferEmail={() => setView('questionnaire')} />
+				<CallInfo content={callInfo} onPreferEmail={() => setView('questionnaire')} />
 			)}
 			{view === 'questionnaire' && (
 				<Questionnaire
+					content={questionnaire}
 					onSubmit={(data) => {
 						setInquiry(data);
 						setView('calendar');
@@ -56,7 +64,7 @@ const Booking = () => {
 				/>
 			)}
 			{view === 'calendar' && (
-				<Calendar calendlyUrl={calendlyUrl} inquiry={inquiry} onScheduled={() => {}} />
+				<Calendar content={calendar} calendlyUrl={calendlyUrl} inquiry={inquiry} onScheduled={() => {}} />
 			)}
 		</main>
 	);

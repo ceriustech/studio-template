@@ -21,6 +21,13 @@ const showsExtra = ({document, path}: ConditionalPropertyCallbackContext, extra:
 	return Object.hasOwn(fields, field) && fields[field].includes(extra)
 }
 
+const hasValue = (value: unknown) => (Array.isArray(value) ? value.length > 0 : Boolean(value))
+
+// Hidden fields are still validated, so leftover data on a page that doesn't use an extra
+// stays visible until it's cleared; otherwise it could block publishing with no way to fix it.
+const hidesExtra = (context: ConditionalPropertyCallbackContext, extra: HeroExtra) =>
+	!showsExtra(context, extra) && !hasValue(context.value)
+
 export const heroSection = defineType({
 	name: 'heroSection',
 	title: 'Hero section',
@@ -52,20 +59,21 @@ export const heroSection = defineType({
 			description: 'Leave empty for heroes without an image carousel.',
 			type: 'array',
 			of: [{type: 'image', options: {hotspot: true}, fields: [altTextField]}],
-			hidden: (context) => !showsExtra(context, 'images'),
+			hidden: (context) => hidesExtra(context, 'images'),
 		}),
 		defineField({
 			name: 'linkLabel',
 			title: 'Link/button label',
 			type: 'string',
-			hidden: (context) => !showsExtra(context, 'link'),
+			hidden: (context) => hidesExtra(context, 'link'),
 		}),
 		defineField({
 			name: 'linkHref',
 			title: 'Link/button destination',
 			type: 'string',
 			description: 'Internal path (e.g. /booking) or external URL.',
-			hidden: (context) => !showsExtra(context, 'link') || !context.parent?.linkLabel,
+			hidden: (context) =>
+				showsExtra(context, 'link') ? !context.parent?.linkLabel : !hasValue(context.value),
 		}),
 	],
 })

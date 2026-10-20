@@ -4,6 +4,7 @@ import {icons} from '@sanity/icons'
 import type {StructureBuilder} from 'sanity/structure'
 
 const SINGLETONS = ['homePage', 'servicesPage', 'galleryPage', 'bookingPage', 'siteSettings', 'siteCta']
+const COLLECTIONS = ['portfolioPiece', 'testimonial']
 
 function createSingleton(S: StructureBuilder, typeName: string, title: string, icon?: ComponentType) {
 	return S.listItem()
@@ -35,12 +36,17 @@ export const structure: StructureResolver = (S) =>
 
 			S.divider(),
 
+			S.documentTypeListItem('testimonial').title('Testimonials').icon(icons.comment),
+
+			S.divider(),
+
 			createSingleton(S, 'siteSettings', 'Site settings', icons.cog),
 			createSingleton(S, 'siteCta', 'Site CTA', icons.launch),
 
 			S.divider(),
 
 			...S.documentTypeListItems().filter(
-				(listItem) => !SINGLETONS.includes(listItem.getId() as string) && listItem.getId() !== 'portfolioPiece',
+				(listItem) =>
+					!SINGLETONS.includes(listItem.getId() as string) && !COLLECTIONS.includes(listItem.getId() as string),
 			),
 		])

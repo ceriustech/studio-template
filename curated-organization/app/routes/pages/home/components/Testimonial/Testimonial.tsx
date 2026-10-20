@@ -11,11 +11,9 @@ const Testimonial: React.FC<TestimonialProps> = ({ items }) => {
 
 	return (
 		<section className="testimonial">
-			<div
-				className="testimonialStars"
-				aria-label={`${active.rating} out of 5 stars`}
-			>
-				{'★ '.repeat(active.rating).trim()}
+			{/* Every testimonial is shown as 5 stars. */}
+			<div className="testimonialStars" role="img" aria-label="5 out of 5 stars">
+				★ ★ ★ ★ ★
 			</div>
 			<div className="testimonialQuoteMark" aria-hidden="true">
 				"

@@ -4,7 +4,7 @@ import {icons} from '@sanity/icons'
 export const testimonial = defineType({
 	name: 'testimonial',
 	title: 'Testimonial',
-	type: 'object',
+	type: 'document',
 	icon: icons.comment,
 	fields: [
 		defineField({
@@ -17,6 +17,7 @@ export const testimonial = defineType({
 		defineField({
 			name: 'clientName',
 			title: 'Client name',
+			description: 'Name only. The site adds the dash before it and the comma before the location.',
 			type: 'string',
 			validation: (rule) => rule.required(),
 		}),
@@ -24,17 +25,6 @@ export const testimonial = defineType({
 			name: 'clientLocation',
 			title: 'Client location',
 			type: 'string',
-		}),
-		defineField({
-			name: 'rating',
-			title: 'Rating',
-			type: 'number',
-			options: {
-				list: [1, 2, 3, 4, 5],
-				layout: 'radio',
-			},
-			initialValue: 5,
-			validation: (rule) => rule.required().min(1).max(5),
 		}),
 	],
 	preview: {

@@ -21,8 +21,8 @@ export const HOME_QUERY = defineQuery(`{
 			beforeImage{ image{ asset, crop, hotspot, alt } },
 			afterImage{ image{ asset, crop, hotspot, alt } }
 		},
-		testimonials[]{ quote, clientName, clientLocation, rating },
 		seo{ title, description, image{ asset, crop, hotspot, alt } }
 	},
+	"testimonials": *[_type == "testimonial"] | order(_createdAt desc, _id asc){ quote, clientName, clientLocation },
 	"businessName": *[_id == "siteSettings"][0].businessName
 }`);

@@ -39,7 +39,6 @@ type CmsTestimonial = {
 	quote?: Maybe<string>;
 	clientName?: Maybe<string>;
 	clientLocation?: Maybe<string>;
-	rating?: Maybe<number>;
 };
 type CmsHomePage = {
 	hero?: Maybe<CmsHero>;
@@ -47,10 +46,13 @@ type CmsHomePage = {
 	servicesTeaser?: Maybe<CmsServicesTeaser>;
 	process?: Maybe<CmsProcess>;
 	beforeAfter?: Maybe<CmsBeforeAfter>;
-	testimonials?: Maybe<Maybe<CmsTestimonial>[]>;
 	seo?: Maybe<CmsSeo>;
 };
-type HomeQueryResult = { page: CmsHomePage | null; businessName: Maybe<string> };
+type HomeQueryResult = {
+	page: CmsHomePage | null;
+	testimonials: Maybe<Maybe<CmsTestimonial>[]>;
+	businessName: Maybe<string>;
+};
 
 // Each section has an anchor (its heading). Without it the section's text uses its backup in full;
 // with it, empty optional fields are hidden. Lists and images fall back on their own.
@@ -147,29 +149,26 @@ function mapBeforeAfter(section: Maybe<CmsBeforeAfter>): HomeContent['beforeAfte
 	};
 }
 
-const toRating = (rating: Maybe<number>) =>
-	typeof rating === 'number' && Number.isInteger(rating) && rating >= 1 && rating <= 5 ? rating : 5;
-
 function mapTestimonials(items: Maybe<Maybe<CmsTestimonial>[]>): HomeContent['testimonials'] {
 	return orFallback(
 		(items ?? []).flatMap((item) => {
 			const quote = text(item?.quote);
 			const clientName = text(item?.clientName);
 			if (!quote || !clientName) return [];
-			return [{ quote, clientName, clientLocation: text(item?.clientLocation), rating: toRating(item?.rating) }];
+			return [{ quote, clientName, clientLocation: text(item?.clientLocation) }];
 		}),
 		FALLBACK.testimonials,
 	);
 }
 
-function mapHome({ page, businessName }: HomeQueryResult & { page: CmsHomePage }): HomeContent {
+function mapHome({ page, testimonials, businessName }: HomeQueryResult & { page: CmsHomePage }): HomeContent {
 	return {
 		hero: mapHero(page.hero),
 		intro: mapIntro(page.intro),
 		services: mapServices(page.servicesTeaser),
 		process: mapProcess(page.process),
 		beforeAfter: mapBeforeAfter(page.beforeAfter),
-		testimonials: mapTestimonials(page.testimonials),
+		testimonials: mapTestimonials(testimonials),
 		seo: toPageSeo(page.seo, text(businessName) ?? BACKUP_BUSINESS_NAME),
 	};
 }
@@ -182,7 +181,8 @@ export async function loader(): Promise<HomeContent> {
 		const result = await client.fetch<HomeQueryResult>(HOME_QUERY);
 		if (!result?.page) {
 			console.warn('[home] homePage not found, serving fallback content');
-			return FALLBACK;
+			// Testimonials are their own documents, so they don't depend on the Home page existing.
+			return { ...FALLBACK, testimonials: mapTestimonials(result?.testimonials) };
 		}
 		return mapHome({ ...result, page: result.page });
 	} catch (error) {

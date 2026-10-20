@@ -12,7 +12,6 @@ export const homePage = defineType({
 		{name: 'services', title: 'Services teaser'},
 		{name: 'process', title: 'Process'},
 		{name: 'beforeAfter', title: 'Before/after'},
-		{name: 'testimonials', title: 'Testimonials'},
 		{name: 'seo', title: 'Search & sharing'},
 	],
 	fields: [
@@ -77,13 +76,6 @@ export const homePage = defineType({
 				defineField({name: 'linkLabel', title: 'Link label', type: 'string'}),
 				defineField({name: 'linkHref', title: 'Link destination', type: 'string'}),
 			],
-		}),
-		defineField({
-			name: 'testimonials',
-			title: 'Testimonials',
-			type: 'array',
-			group: 'testimonials',
-			of: [{type: 'testimonial'}],
 		}),
 		defineField({
 			name: 'seo',

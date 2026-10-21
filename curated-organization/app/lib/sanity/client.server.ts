@@ -17,7 +17,9 @@ export function getSanityClient(): SanityClient | null {
 	const projectId = process.env.SANITY_PROJECT_ID;
 	if (!projectId) {
 		if (!warnedUnconfigured) {
-			console.warn('[sanity] Sanity is not configured (SANITY_PROJECT_ID missing), serving fallback content');
+			console.warn(
+				'[sanity] Sanity is not configured (SANITY_PROJECT_ID missing), serving fallback content',
+			);
 			warnedUnconfigured = true;
 		}
 		return null;
@@ -27,7 +29,7 @@ export function getSanityClient(): SanityClient | null {
 		projectId,
 		dataset: process.env.SANITY_DATASET || 'production',
 		apiVersion: '2026-09-01',
-		useCdn: true,
+		useCdn: false,
 		perspective: 'published',
 		// Keeps a slow Sanity response from stalling every page render.
 		timeout: 2000,

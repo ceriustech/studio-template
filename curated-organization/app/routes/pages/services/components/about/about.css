@@ -148,4 +148,8 @@
 		font-size: 22px;
 		margin-bottom: 0;
 	}
+
+	.aboutLogoLabel {
+		display: none;
+	}
 }

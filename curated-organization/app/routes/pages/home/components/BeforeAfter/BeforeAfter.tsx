@@ -41,6 +41,7 @@ const BeforeAfter: React.FC<BeforeAfterProps> = ({
 						<Link
 							key={key}
 							to="/gallery"
+							prefetch="intent"
 							aria-label={`View full gallery — ${tag}`}
 							className={`baCell ${fallback[key] ? 'baCellPlaceholder' : ''}`}
 							style={
@@ -75,7 +76,7 @@ const BeforeAfter: React.FC<BeforeAfterProps> = ({
 				{caption && <p className="baCaption">{caption}</p>}
 				{link && (
 					<div className="baFooter">
-						<Link className="textLink" to={link.url}>
+						<Link className="textLink" to={link.url} prefetch="intent">
 							{link.label} <span aria-hidden="true">→</span>
 						</Link>
 					</div>

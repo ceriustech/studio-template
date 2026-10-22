@@ -5,7 +5,7 @@ import type { FooterLinkProps, FooterProps } from './Footer.types';
 import { isInternalUrl } from '~/lib/utils';
 
 const FooterLink = ({ link }: FooterLinkProps) =>
-	isInternalUrl(link.url) ? <Link to={link.url}>{link.label}</Link> : <a href={link.url}>{link.label}</a>;
+	isInternalUrl(link.url) ? <Link to={link.url} prefetch="intent">{link.label}</Link> : <a href={link.url}>{link.label}</a>;
 
 const Footer: React.FC<FooterProps> = ({ brandName, content }) => {
 	const descriptionLines = content.description?.split('\n') ?? [];

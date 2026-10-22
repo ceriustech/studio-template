@@ -16,7 +16,7 @@ const Cta: React.FC<CtaProps> = ({ background, heading, subheading, buttonLabel,
 			<div className="ctaContent">
 				<h2 className="sectionHeading">{heading}</h2>
 				{subheading && <p className="ctaSub">{subheading}</p>}
-				<Link className="ctaBtn" to={buttonHref}>
+				<Link className="ctaBtn" to={buttonHref} prefetch="intent">
 					{buttonLabel}
 				</Link>
 			</div>

@@ -11,7 +11,7 @@ const Intro: React.FC<IntroProps> = ({ eyebrow, heading, body, link }) => {
 				<h2 className="sectionHeading">{heading}</h2>
 				{body && <p className="introText">{body}</p>}
 				{link && (
-					<Link className="textLink" to={link.url}>
+					<Link className="textLink" to={link.url} prefetch="intent">
 						{link.label} <span aria-hidden="true">→</span>
 					</Link>
 				)}

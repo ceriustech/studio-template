@@ -20,7 +20,7 @@ const Services: React.FC<ServicesProps> = ({ eyebrow, heading, link, cards }) =>
 
 			{link && (
 				<div className="servicesFooter">
-					<Link to={link.url} className="textLink">
+					<Link to={link.url} prefetch="intent" className="textLink">
 						{link.label} <span aria-hidden="true">→</span>
 					</Link>
 				</div>

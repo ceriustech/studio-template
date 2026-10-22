@@ -40,7 +40,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
 					</ul>
 				)}
 				{ctaLabel && (
-					<Link to="/booking" className="serviceCta">
+					<Link to="/booking" prefetch="intent" className="serviceCta">
 						{ctaLabel}
 					</Link>
 				)}

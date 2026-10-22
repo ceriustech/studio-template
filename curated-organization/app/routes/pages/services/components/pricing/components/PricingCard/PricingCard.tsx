@@ -30,7 +30,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
 				</ul>
 			)}
 			{ctaLabel && (
-				<Link to="/booking" className="pricingCardCta">
+				<Link to="/booking" prefetch="intent" className="pricingCardCta">
 					{ctaLabel}
 				</Link>
 			)}

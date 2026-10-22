@@ -49,7 +49,7 @@ const Hero: React.FC<HeroProps> = ({ eyebrow, heading, body, link, slides }) => 
 				</h1>
 				{body && <div className="heroDescriptor">{body}</div>}
 				{link && (
-					<Link className="heroCta" to={link.url}>
+					<Link className="heroCta" to={link.url} prefetch="intent">
 						{link.label}
 					</Link>
 				)}

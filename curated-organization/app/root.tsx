@@ -32,6 +32,12 @@ export function shouldRevalidate() {
 	return false;
 }
 
+// Inherited by every route, including client-navigation data requests: a page revisited within a minute
+// comes from the browser cache, and an older copy shows instantly while a fresh one loads in the background.
+// Skipped in dev so edits to loaders and fallbacks show up on the next navigation.
+export const headers: Route.HeadersFunction = (): Record<string, string> =>
+	import.meta.env.DEV ? {} : { 'Cache-Control': 'public, max-age=60, stale-while-revalidate=600' };
+
 // Inherited by every route without its own meta. Undefined loaderData means the root loader didn't run.
 export const meta: Route.MetaFunction = ({ loaderData, location }) =>
 	loaderData ? buildMeta(loaderData.seo, location.pathname) : [];

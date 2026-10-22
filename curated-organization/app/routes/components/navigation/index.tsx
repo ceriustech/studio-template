@@ -57,7 +57,7 @@ const Navigation: React.FC<NavigationProps> = ({ brand, links, bookNowLabel }) =
 
 	return (
 		<header className="nav" role="navigation" aria-label="Primary">
-			<Link to="/" className="navBrand" aria-label="Curated Professional Organizing">
+			<Link to="/" prefetch="intent" className="navBrand" aria-label="Curated Professional Organizing">
 				<img
 					className="navBrandLogo"
 					src={brand.logo.src}
@@ -97,6 +97,7 @@ const Navigation: React.FC<NavigationProps> = ({ brand, links, bookNowLabel }) =
 							<Link
 								key={link.url}
 								to={link.url}
+								prefetch="intent"
 								className={isActive(link.url) ? 'active' : undefined}
 								aria-current={isActive(link.url) ? 'page' : undefined}
 								onClick={closeMenu}
@@ -109,7 +110,7 @@ const Navigation: React.FC<NavigationProps> = ({ brand, links, bookNowLabel }) =
 							</a>
 						),
 					)}
-				<Link to={BOOKING_PATH} className="navCta" aria-label={bookNowLabel} onClick={closeMenu}>
+				<Link to={BOOKING_PATH} prefetch="intent" className="navCta" aria-label={bookNowLabel} onClick={closeMenu}>
 					{bookNowLabel}
 				</Link>
 			</nav>

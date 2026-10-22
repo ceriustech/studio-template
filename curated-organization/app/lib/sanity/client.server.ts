@@ -29,7 +29,8 @@ export function getSanityClient(): SanityClient | null {
 		projectId,
 		dataset: process.env.SANITY_DATASET || 'production',
 		apiVersion: '2026-09-01',
-		useCdn: false,
+		// Published content only, so the CDN is safe and roughly twice as fast as the live API.
+		useCdn: true,
 		perspective: 'published',
 		// Keeps a slow Sanity response from stalling every page render.
 		timeout: 2000,

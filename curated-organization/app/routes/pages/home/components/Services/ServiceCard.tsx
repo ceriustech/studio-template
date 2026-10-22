@@ -7,6 +7,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, image }) 
 		<div className="serviceCard">
 			<Link
 				to="/services"
+				prefetch="intent"
 				className="serviceCardImgLink"
 				aria-label={`View all services — ${title}`}
 			>
